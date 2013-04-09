@@ -1,0 +1,1 @@
+Paperclip::Attachment.default_options[:fog_credentials] = {:provider => "Local", :local_root => "/Users/yujunwu/museme-server-end/public"}

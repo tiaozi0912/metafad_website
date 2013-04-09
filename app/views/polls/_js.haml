@@ -1,0 +1,149 @@
+:javascript
+  $('.fb-share-btn img').tooltip();
+
+  $(document).ready(function(){
+    $('#poll_title').charCount({
+      allowed:90,
+      warning:10
+    });
+  })
+
+  $(document).ready(function(){
+    $('.item-image-container .mask .btn').click(function(){
+      $imgContainer=$(this).parents('.item-container');
+      var value=$imgContainer.attr('id').replace(/item_/,'');
+      
+      // use ajax to submit the form without redirect or render
+      url = "#{@poll_vote_url}";
+      $.post( url,
+        {"item_id":value},
+        function(){
+          if("#{@current_user_name}" == "null"){
+            $('#sign-in-modal').modal();
+          }
+          else{
+            window.location.reload();
+          }
+        },
+        "html"
+      ); 
+    });
+
+    //Edit button group tooltip
+    $('.add-more-items-btn').tooltip({placement:"right"});
+    $('.delete-poll-btn').tooltip({placement:"right"});
+
+    //==========================================
+    //               Edit mode
+    //==========================================
+    $('.edit-btn').bind('click',function(){
+      //Append delete item buttons
+      $('.item-image-container').each(function(){
+        var itemId = $(this).parent().attr('id').replace('item_','');
+        $(this).siblings('.delete-item-btn-container').append("<div class='btn btn-danger delete-item-btn pull-right'><i class='icon-trash icon-white'></i></div>");  
+      })
+      //make poll title and item description editable
+      makeTitleEditable($('.poll-title'));
+      $('.item-container').each(function(){
+        var itemId = $(this).attr('id').replace('item_','');
+        $container = $(this).children('.item-description-container').find('span');
+        makeItemDescriptionEditable($container,itemId); 
+      });
+      
+      $('.btn-group-vertical .btn').fadeIn();
+      $(this).css('display','none');
+      //Delete item button pressed. Hide the deleted item and set the next span margin left as 0. 
+      $('.delete-item-btn').live('click',function(){
+        var $itemContainer = $(this).parents('.item-container');
+        $itemContainer.css('display','none');
+        if($itemContainer.prev().css('display') == null || $itemContainer.prev().css('display') == 'none'){
+          $(this).parents('.item-container').next().css('margin-left','0');
+        }
+        $(this).siblings('input.delete-item-true')[0].checked = true;
+
+        // Disable delete when the number of items equal to 2
+        if(itemsNum() == 2){
+          $('.delete-item-btn').click(false);
+          var alertMsg = "Poll at least has two items. Add more items first if you want to delete any of the current items.";
+          $('.poll-container').after("<div class='alert'>" + alertMsg + "</div>");
+        }
+      });
+      
+      function itemsNum(){
+        var count = 0;
+        $('.item-container').each(function(){
+          if($(this).css('display') != 'none'){
+            count += 1;
+          }
+        })
+        return count;
+      }
+
+      function makeTitleEditable($titleContainer){
+        var defaultValue = $titleContainer.text();
+        $titleContainer.replaceWith("<input id='poll_title' name='poll[title]' type='text'>");
+        $('input#poll_title').val(defaultValue);
+      }
+
+      function makeItemDescriptionEditable($Container,itemId){
+        if(#{@poll.state} == 0){
+          $container.replaceWith("<span><input name='items_attributes[item_" + itemId + "[brand]]' placeholder='Describe it (max 33 chars)' type='text'></span>");
+        }
+        else if(#{@poll.state} == 1){
+          var defaultValue = $Container.text();
+          var input = "<input id='description_item_" + itemId + "' name='items_attributes[item_" + itemId + "[brand]]' type='text'>";
+          $container.replaceWith("<span>" + input + "</span>");
+          $('#description_item_'+itemId).val(defaultValue);
+        }     
+      }
+    })
+    //trigger click on the edit btn if poll state is 0
+    if(#{@poll.state} == 0) $('.edit-btn').trigger('click');
+
+    //Add more items button pressed. Render the edit action
+    $('.add-more-items-btn').click(function(){
+      window.location = "/polls/#{@poll.id}/edit";
+    })
+
+    //Delete button pressed. 
+    //TODO: confirm before proceeding
+    $('.delete-poll-btn').click(function(){
+      var requestURL = '/polls/#{@poll.id}';
+      $.ajax({type:"DELETE",url:requestURL,
+              success:function(){
+                window.location = '/';
+              }
+      });
+      //$('#poll_is_deleted_true')[0].checked = true;
+      //$('#poll-update').submit();
+    })
+
+    //Save button pressed. Submit the form to the server to update the poll and reload the page
+    $('.done-btn').click(function(){
+      var pollTitle = $('input#poll_title').val();
+      var $itemDescriptions = $(".item-description-container input[type='text']");
+      if(formValidate(pollTitle,$itemDescriptions)) $('#poll-update').submit(); 
+    })
+    
+    //hide the vote button if the user voted or the user is the poll owner
+    if("#{@if_current_user_voted}" == "true" || "#{@is_poll_owner}" == "true"){
+      $('.item-image-container .mask').css('display','none');
+      $('.voted-user-container').css('display','none');
+      $('.poll-result-container').css('display','block');
+    }
+    
+    $(".item-image-container").hover(
+      function(){
+        $(this).children('.mask').stop().animate({"bottom":"0"},{queue:false,duration:300});
+      },
+      function(){
+        $(this).children('.mask').stop().animate({"bottom":"-41"},{queue:false,duration:300});
+      }
+    );
+
+    $('.user-profile-photo-small img').tooltip(
+      {'placement':"top",
+       'trigger':'hover'}
+    )
+
+  })

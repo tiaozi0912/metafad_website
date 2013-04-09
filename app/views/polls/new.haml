@@ -1,0 +1,86 @@
+#poll_new
+  .container
+    %br
+    - @poll.id.nil? ? text = "Upload item pictures to create the poll" : text = "Add more items"
+    %h2 #{text}
+    %br
+    =form_for(@poll, :html => {:multipart => true, :id => "fileupload", :class=>"new_fileupload"}) do |f|
+      - @poll.errors.full_messages.each do |msg|
+        %p = msg
+      %fieldset.title-field
+        = f.label "Describle your poll (maximum 90 characters)"
+        = f.text_field :title
+      %fieldset
+        - value = @poll.web_id || Time.now.utc.to_s + "_" + current_user.id.to_s
+        = f.text_field :web_id,:value => "#{value}", :class => "web_id"
+      - if @poll.id.nil?
+        %fieldset
+          = f.label "Select poll category"
+          = f.select "category","<option value = '0'>Art</option><option value = '1'>Beauty</option><option value = '2'>Cars</option><option value = '3'>Cute Things</option><option value = '4'>Electronics</option><option value = '5'>Events</option><option value = '6'>Fashion</option><option value = '7'>Food</option><option value = '8'>Humor</option><option value = '9'>Media</option><option value = '10'>Travel</option><option value = '11'>Other</option>".html_safe
+      %filedset
+        .row.fileupload-buttonbar
+          .span7
+            %span.btn.fileinput-button{:rel => "tooltip",:title => "Multiple photos can be selected"}
+              %span Add items
+              %input{:type => "file", :multiple => "multiple", :name => "items_attributes[photo]"}
+            %span.btn#start-upload
+              %span Start upload
+            - if !@poll.id.nil?
+              %span.btn#cancel-upload
+                %a{:href => "/polls/#{@poll.id}"}
+                  %span Cancel
+          .span5
+            .progress.progress-success.progress-striped.active.fade
+              .bar{:style => "width:0%"}
+      %fieldset
+        .fileupload-loading
+      %fieldset
+        %table.table.table-striped
+          %tbody.files{:'data-toggle' => 'modal-gallery', :'data-target' => '#modal-gallery'}
+        
+= render :partial => 'template'
+= render :partial => 'jQuery_fileupload_plugin'
+= render :partial => 'js'
+:javascript
+
+  var filesNum;
+
+  $('#start-upload.btn').live('click',function(){
+    var pollTitle = $('input#poll_title').val();
+    var $itemDescriptions = $('td.description input');
+    var validated = formValidate(pollTitle,$itemDescriptions);
+    filesNum = $('tr.template-upload').length;
+    if(validated){
+      $('.files').find('.start button').click();
+    }
+  })
+
+  var url;
+  var count = 0;
+  '#{@poll.id}' == '' ? url = '/polls/' : url = '/polls/#{@poll.id}';
+  $('#fileupload').fileupload({
+    url: url,
+    dataType: "json",
+    done: function(e,data){
+      if(data.result.errors == "true"){
+        window.location = "/polls/new";
+      }
+      else{
+        // Make sure redirect the page only after all the photos were uploaded. The function was called for each photo.
+        // Count the call backs. when the number of call backs equals to the number of uploaded
+        // photos, redirect the page.
+        if(data.result.errors != "true") count +=1;
+        if(count == filesNum) window.location = "/polls/" + data.result.id;
+      }
+    }
+  })
+
+  $('.btn.fileinput-button').tooltip({placement:'bottom'});
+
+
+
+  
+
+  
+
+

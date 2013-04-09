@@ -1,0 +1,110 @@
+#poll-page 
+  - if !@poll.nil?  && ( @poll.state == 1 || current_user == @poll.user )
+    = form_for(@poll, :url=> {:action => "update"},:multipart => true,:html=>{:method => "put",:id => "poll-update"}) do |f|
+      .caption-container.box-shadow.well
+        .container.row-fluid
+          .span1
+            .user-profile-photo.circle-mask.box-shadow
+              - @user_photo_url = controller.attachment_url(@poll.user.photo,'large')
+              -#- @user_photo_url = @poll.user.photo(:large)
+              %img{:src=>"#{@user_photo_url}"}
+          .span11
+            .poll-text-container.title-field          
+              .time-stamp #{@poll.open_time}
+              %b #{@poll.user.user_name}
+              %span would like your vote
+              %br
+              %span.poll-title #{@poll.title}
+      .container.content-container.relativePosition
+        .poll-container.relativePosition
+          - for i in 0..(@num_rows-1)
+            .row-fluid{:style=>"margin-bottom:20px"}
+              - for j in 0..(@num_items_each_row-1)
+                - item_index = i*@num_items_each_row + j
+                - if !@items[item_index].nil?
+                  -#- @url = controller.attachment_url(@items[item_index].photo,'large')
+                  - @url = @items[item_index].photo(:large)
+                  %div{:class=>"span#{12/@num_items_each_row} item-container box-shadow-small",:id=>"item_#{@items[item_index].id}"}
+                    .item-image-container.relativePosition
+                      %img.item{:src=>@url,:style=>"display:block",:onload=>"setItemImageHeight()"}
+                      .mask
+                        .btn.btn-primary Vote
+                    .delete-item-btn-container
+                      %input.delete-item.delete-item-true{:type=>"radio",:value=>"true",:name=>"items_attributes[item_#{@items[item_index].id}[is_deleted]]"}
+                      %input.delete-item.delete-item-false{:type=>"radio",:value=>"false",:name=>"items_attributes[item_#{@items[item_index].id}[is_deleted]]",:checked=>"checked"}
+                    .item-description-container
+                      %span #{@items[item_index].brand}
+                    - @audiences = @items[item_index].item_voters
+                    - if !@audiences.empty?
+                      .poll-result-container
+                        = render :partial => "poll-result",:object => @audiences
+                         
+          - if !@voted_users.empty?
+            %br
+            .voted-user-container       
+              .row-fluid
+                - if @voted_users.size == 1 
+                  %b 1
+                  %span person has voted on the poll. 
+                - else 
+                  %b #{@voted_users.size}
+                  %span people have voted on the poll.
+              .row-fluid
+                -@voted_user_ids.each do |user_id|
+                  - @user = User.find(user_id)
+                  - if @user.has_profile_photo_url
+                    - @url = controller.attachment_url(@user.photo,'medium')
+                    .user-profile-photo-small.circle-mask-small.box-shadow
+                      %img{:src=>"#{@url}",:title=>"#{@user.user_name}",:rel=>"tooltip"}
+          .btn-group.btn-group-vertical 
+            - if !@poll.open_time.nil?
+              -# TODO: check the access token first, then call shareOnFb function
+              -# To check the access token, request /auth/facebook. access token is given in the /auth/facebook/callback
+              .fb-share-btn.mobile-view-hide
+                %img{:src => '/images/facebook-share-btn.png',:height => '50',:width => '50',:rel => 'tooltip',:title => 'share the poll on Facebook'}    
+            - if @current_user == @poll.user     
+              .btn.edit-btn Edit
+              .btn.add-more-items-btn{:rel => "tooltip",:title => "Add more items"} Add
+              .btn.delete-poll-btn{:rel => "tooltip",:title => "Delete the poll"} Delete
+              - if @poll.state == 1
+                .btn.cancel-btn 
+                  %a{:href => "/polls/#{@poll.id}"} Cancel
+              .btn.btn-success.done-btn 
+                - if @poll.state == 1
+                  Save
+                - if @poll.state == 0
+                  Create
+                  
+          = render :partial => "sessions/signin",:object => @poll
+          = render :partial => 'fb-share',:object => @poll
+        
+    :javascript
+      //append fb meta tag for fb poll sharing 
+      $(document).ready(function(){
+        $('head title').after("<meta property='og:description' content='#{@poll.title}'>");
+        var items_photo_url =  #{@items_photo_urls}; 
+        items_photo_url.forEach(generateImageMetaTag);
+        function generateImageMetaTag(value,index,ar){
+          $('head title').after("<meta property='og:image' content='"+value+"'>");
+        }
+        $('head title').after("<meta property='og:title' content='a poll'>");
+        $('head title').after("<meta property='og:url' content='http://musememobile.com/polls/#{@poll.id}'>");
+        $('.fb-share-btn').click(function(){
+          if(#{current_user.nil?} == true){
+            alert('You need to log in with Facebook account first.');
+            window.location = '/auth/facebook';
+          }
+          else{
+            $('#fb-share-modal').on('shown',function(){
+              //put the cursor in the textbox
+              $('textarea#message').focus();  
+            })
+            $('#fb-share-modal').modal();
+            addPhotoPreview();  
+          } 
+        })
+      })  
+    = render :partial => "js"
+  - else
+    .container.content-container.relativePosition
+

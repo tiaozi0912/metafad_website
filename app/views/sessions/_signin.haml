@@ -1,0 +1,17 @@
+.modal.hide.fade#sign-in-modal
+  .modal-header
+    %h2 Sign In
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  .modal-body
+    %a.login-fb{:href=>"/auth/facebook"}
+      %img{:src=>"/images/login-facebook.png"}
+    %h2.center{:style=>"width:22px"} or
+    = form_for(:session, :url => sessions_path) do |f|
+      .field
+        =f.label :email
+        =f.text_field :email
+      .field
+        =f.label :password
+        =f.password_field :password
+      .actions
+        =f.submit "Sign In"

@@ -1,0 +1,26 @@
+.container#contact-page
+  %br
+  %br
+  %h3.text-shadow-1{:style=>"font-weight:normal"} If you have any questions or suggestions to MetaFad, don't hesitate to let us know.Your feedback is very important for us. 
+  =form_for(:message, :url=> contacts_path) do |form|
+    %fieldset.fields
+      .row-fluid
+        .span5
+          .field
+            =form.label :name
+            =form.text_field :name
+          .field
+            =form.label :email
+            =form.text_field :email
+        .span7
+          .field
+            =form.label :subject
+            =form.text_field :subject
+          .field.textarea
+            =form.label :content
+            =form.text_area :content
+          %fieldset.actions
+            =form.submit "Send"
+
+
+

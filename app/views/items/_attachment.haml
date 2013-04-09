@@ -1,0 +1,8 @@
+- if !attachment.id.nil?
+  %li{:id => "attachment_#{attachment.id}"}
+    %a{:href => "#{attachment.photo.url}"}
+      #{attachment.photo_file_name}
+    (#{attachment.photo_file_size/1.kilobyte} KB)
+    -# only needed if in edit action
+    - if action_name == "edit"
+      = link_to "Remove", item_path(:id => attachment), :method => :delete, :confirm => "Are you sure you want to delete "+ attachment.photo_file_name + "?", :remote => true, :class => "remove_file"

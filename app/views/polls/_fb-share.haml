@@ -1,0 +1,26 @@
+- if !current_user.nil? 
+  .modal.hide.fade#fb-share-modal
+    .modal-header
+      %h2 Share On Facebook
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick='removePhotoPreview()'>&times;</button>
+    .modal-body
+      .field
+        .row-fluid
+          .span2
+            - @url = controller.attachment_url(current_user.photo,'large')
+            %img{:src => @url}
+          .span10
+            %p Say something about this...
+            %textarea{:rows => '2',:id => 'message'}
+      .field
+        .row-fluid#photo-preview
+    .modal-footer
+      .btn.btn-primary.pull-right{:'data-dismiss' => 'modal'} Share
+
+  :javascript
+    $('#fb-share-modal .modal-footer .btn').click(function(){
+      removePhotoPreview();
+      var token = "#{cookies.signed[:access_token]}";
+      shareOnFb(token);
+    })
+  

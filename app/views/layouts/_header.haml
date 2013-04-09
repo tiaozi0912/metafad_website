@@ -1,0 +1,27 @@
+:javascript
+
+  $(document).ready(function(){
+    $('#sign-in').click(function(){
+      $('#sign-in-modal').modal();
+    });
+
+  });
+
+#header
+  .header-container.relativePosition
+    %a{:href=>"/"}
+      %img#brand{:src=>"/images/logo.png",:alt => "logo"}
+    .right-text.pull-right
+      - if !cookies.signed[:page].nil?
+        - if current_user.nil?
+          -#%b
+            %a#sign-in Sign In 
+          - if is_consumer?
+            %a#identity{:href=>"/retailers"}I'm a retailer
+          - else
+            %a#identity{:href=>"/consumers"}I'm a user
+        - else
+          %a{:href=>"/signout"}
+            Sign out
+
+= render :partial=>"sessions/signin"  

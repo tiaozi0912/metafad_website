@@ -1,0 +1,22 @@
+- @num_audiences_each_row = 6
+- @number_voters = [@audiences.size,12].min
+- @num_rows = @number_voters/@num_audiences_each_row +1
+- @num_rows = @num_rows -1 if @number_voters/@num_audiences_each_row == @number_voters.to_f/@num_audiences_each_row.to_f
+- if @audiences.size == 1
+  %b 1
+  %span vote
+- else
+  %b #{@audiences.size}
+  %span votes
+%br
+- for i in 0..(@num_rows-1)
+  .row-fluid   
+    - for j in 0..(@num_audiences_each_row-1)
+      - index = i*@num_audiences_each_row + j
+      - if !@audiences[index].nil?
+        - @url = controller.attachment_url(@audiences[index].photo,'medium')
+        %div{:class=>"span#{12/@num_audiences_each_row}"}
+          .user-profile-photo-small.circle-mask-small.box-shadow
+            %img{:src=>@url,:rel=>"tooltip",:title=>"#{@audiences[index].user_name}"}
+
+

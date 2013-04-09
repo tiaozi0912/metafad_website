@@ -1,0 +1,77 @@
+#consumer-home-page
+  %section#featured-section.content-container
+    .container
+      #carousel
+        %img.shadow{:src=>"/images/carousel/poll_1.png",:alt=>"pic_1"}
+        %img.shadow{:src=>"/images/carousel/poll_2.png",:alt=>"pic_2"}
+        %img.shadow{:src=>"/images/carousel/poll_3.png",:alt=>"pic_3"}
+        %img.shadow{:src=>"/images/carousel/poll_4.png",:alt=>"pic_4"}
+      #slogan.pull-right
+        %h1 Express your opinions on the trending fashion
+        %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"btn sign-up-btn green-btn"} 
+          %img.icon{:src=>"/images/icons/phone-icon.png",:alt=>"phone-icon"} Sign Up For Points
+        = render :partial => 'preSignUp'
+  %section#features-section.content-container
+    .container
+      .row-fluid
+        .span4
+          %img{:src=>"/images/icons/vote-icon-big.png",:alt=>"vote-icon-big"}
+          .title
+            %h3 Vote for styles 
+        .span4
+          %img{:src=>"/images/icons/points-icon-big.png",:alt=>"points-icon-big"}
+          .title
+            %h3 Earn points, stay faddy          
+        .span4
+          %img{:src=>"/images/icons/coupon-icon-big.png",:alt=>"coupon-icon-big"}
+          .title
+            %h3 Obtain exclusive coupons
+  %section#gallery-section.content-container
+    .container
+      #gallery.relativePosition.hide
+        .nav
+          -#.btn-group
+            %a{:href=>"#gallery/colors/dusk_blue",:class=>"btn"} Colors
+            %a{:href=>"#gallery/brands/burberry",:class=>"btn"} Brands
+        .row
+          #image-wall
+          #sidebar.pull-right
+        %a{:href=>"#gallery-section",:class=>"half-circle close-btn shadow"}
+          .triangle
+      #play.relativePosition
+        .round-wrapper
+          .img-container
+        %h1.red.play-btn EXPLORE
+        %h1.red.cancel-btn CANCEL
+        .left-half-circle.half-circle.white.collapsed
+        .right-half-circle.half-circle.black.collapsed
+
+%script{:type=>"text/template",:id=>"gallery-tag-item-template"}
+  %a{:href=>"#"}
+    %h3 <%= htmlText(name) %>
+    .color-block.transition-config
+
+%script{:type=>"text/template",:id=>"gallery-tag-template"}
+  - for i in 1..3
+    .span4
+      - for j in 1..3
+        .img-container.relativePosition
+
+%script{:type=>"text/template",:id=>"gallery-mask-template"}
+  .mask-content
+    %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
+    %h3 100
+
+    
+= javascript_include_tag 'models/Gallery.js'
+= javascript_include_tag 'views/GalleryView.js'       
+= javascript_include_tag 'views/TagView.js' 
+= javascript_include_tag 'views/PlayBtnView.js'
+= javascript_include_tag 'routers/GalleryRouter.js'      
+
+:javascript
+  $('#carousel').photoStack();
+  var playBtnView = new PlayBtnView();
+  var router = new GalleryRouter();
+  Backbone.history.start();
+/* router ends */

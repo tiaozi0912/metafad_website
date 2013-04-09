@@ -1,0 +1,240 @@
+#poll-page select{
+  display:none;
+}
+#poll-page .well{
+  padding:20px;
+  background-color:white;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+}
+#poll-page .caption-container{
+  margin:0px 0 20px 0;
+  -moz-border-radius:0px;
+  border-radius:0px;
+  -webkit-border-radius:0px;
+}
+#poll-page .caption-container input{
+  width:500px;
+  margin-top:10px;
+}
+.circle-mask{
+  overflow: hidden;
+  -moz-border-radius:30px;
+  border-radius:30px;
+  -webkit-border-radius:30px;
+  width:60px;
+  height:60px;
+}
+.circle-mask-small{
+  overflow: hidden;
+  -moz-border-radius:12px;
+  border-radius:12px;
+  -webkit-border-radius:12px;
+  width:24px;
+  height:24px;
+}
+.user-profile-photo img{
+  width:60px;
+  height:60px;
+}
+.user-profile-photo-small.circle-mask-small img{
+  width:24px;
+  height:24px;
+  vertical-align: top;
+}
+.user-profile-photo-small{
+  float:left;
+  margin-right:10px;
+  margin-top:10px;
+}
+.voted-user-container{
+	/*height:70px;*/
+	padding-top:10px;
+}
+.voted-user-container .span10{
+	margin-left:-45px;
+}
+.box-shadow{
+	box-shadow: 0px 0px 3px 0px #333;
+	-webkit-box-shadow: 0px 0px 3px 0px #333;
+	-moz-box-shadow: 0px 0px 3px 0px #333;
+}
+.box-shadow-small{
+  box-shadow: 0px 0px 1px 0px #333;
+  -webkit-box-shadow: 0px 0px 1px 0px #333;
+  -moz-box-shadow: 0px 0px 1px 0px #333;
+}
+.item-container{
+  padding:10px;
+  background-color:white;
+  font-size:14px;
+  line-height:18px;
+  color:#999;
+} 
+.item-image-container{
+  height:202px;
+  /*border:5px solid #eee;*/
+  overflow: hidden;
+}
+.item-image-container .mask{
+  height:40px;
+  width:100%;
+  background-color:#666;
+  opacity:0.8;
+  -webkit-opacity:0.8;
+  -moz-opacity:0.8;
+  /* For IE 5-7 */  
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);  
+  /* For IE 8 */  
+  -MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  position:absolute;
+  bottom:-41px;
+}
+.item-image-container .mask .btn{
+  position:absolute;
+  right:10px;
+  top:7px;
+}
+#poll-page form{
+	margin:0px;
+}
+.poll-container img{
+  width:100%;
+  height:auto;
+}
+#sign-in-modal{
+  /*margin-top:px;*/
+  width:400px;
+}
+.center{
+  margin-left: auto;
+  margin-right:auto;
+}
+#sign-in-modal .fb-login-button{
+  margin-left:140px;
+}
+#sign-in-modal form{
+  width:220px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#sign-in-modal .actions{
+  margin-left:80px;
+}
+.modal button.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+}
+.modal a.login-fb{
+  margin-left:70px;
+}
+a.login-fb img{
+  width:230px;
+}
+.poll-container section{
+  float:left;
+}
+.poll-container .btn-group-vertical{
+  position:absolute;
+  top:0px;
+  left:-70px;
+}
+.poll-container .btn-group-vertical .btn{
+  display:none;
+  float:none;
+  border-radius:0px;
+  -webkit-border-radius:0px;
+  -moz-border-radius:0px;
+  margin:0px;
+  width:32px;
+}
+.cancel-btn a{
+  color:#333;
+}
+.item-description-container{
+  height:20px;
+  padding-bottom:5px;
+  font-size:14px;
+  line-height:16px;
+  color:black;
+  vertical-align: bottom;
+}
+.item-description-container input{
+  width:160px;
+}
+.poll-container .btn-group-vertical .btn.edit-btn{
+  display: block;
+}
+.poll-result-container{
+  display: none;
+}
+.delete-item-btn-container{
+  margin-top:10px;
+}
+.delete-item-btn{
+  line-height:13px;
+  font-size:13px;
+  padding:4px;
+}
+input.delete-item{
+  display: none;
+}
+#poll-delete-buttons-container{
+  display: none;
+}
+.fb-share-btn img{
+  height:50px;
+  width:50px;
+  margin-bottom:10px;
+  margin-top:-5px;
+}
+
+.fb-share-btn{
+  cursor: pointer;
+}
+
+#fb-share-modal #photo-preview img{
+  width:100%;
+}
+#fb-share-modal textarea{
+  width:98%;
+}
+#fb-share-modal .span3{
+  overflow: hidden;
+}
+
+/* ----- photo upload ------*/
+input[type="file"]{
+  line-height: normal;
+}
+#poll_new form{
+  position: relative;
+}
+form .counter{
+  font-size:20px;
+  font-weight:bold;
+  color:#ccc;
+}
+input.web_id{
+  display: none;
+}
+table .start{
+  display: none;
+}
+form .warning{color:#600;}  
+form .exceeded{color:#e00;}
+#poll_new .container{
+  /*width:300px;*/
+}
+#attachment_list li{
+  width:500px;
+}
+#attachment_list li img{
+  width:200px;
+  float:left;
+}
+#attachment_list li input{
+  width:200px;
+}
