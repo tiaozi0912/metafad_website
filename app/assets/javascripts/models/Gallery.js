@@ -19,13 +19,15 @@ window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,b
   },
   initialize: function(){
     this.initializeCollection();
-    this.bind('change:currTag',this.initializeCollection);
+    this.bind('change:currTag category',this.initializeCollection);
   },
   initializeCollection: function(){
     var model = this;
     var currTag = model.get('currTag');
     var category = model.get('category');
     var settings = model.get('settings');
+    //console.log('category is:'+category);
+    //console.log('current tag is:'+currTag);
     var tags = settings[category]; 
     var collection = new TagCollection();
     if(category == 'colors'){

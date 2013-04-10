@@ -42,19 +42,22 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
       $('#gallery-section').removeClass('wall-bg');
       self.$el.hide();
       $('#play').show();
-      $('#gallery-section').animate({'height':self.sectionHeight},600,null,function(){
-        $(this).css('height','auto');  
+
+      /* still can't understand the animation behavior 
+       * $('#gallery-section') must be a class of transition-config
+       * jQuery animate should be applied to the height, then the scrollTop changes
+       * and then able to use jQuery scrollTop animation
+       *****************************************************/
+      $('#gallery-section').animate({'height':self.sectionHeight},function(){
+        $(this).css('height','auto');
         $('body').animate({scrollTop:$('#gallery-section').offset().top});
       });
-      
     }); 
   },
   renderTagView:function(){
     var self = this;
     this.tag = this.model.get('collection').where({isSelected:true})[0];
-    if(!this.tagView){
-      this.tagView = new TagView({model:this.tag});
-    }
+    this.tagView = new TagView({model:this.tag});
     var $imageWall = this.$el.find('#image-wall');
     var $imgs = $imageWall.find('img.gallery-img');
     if($imgs.length){

@@ -17,10 +17,10 @@ class PagesController < ApplicationController
   def consumer
     cookies.signed[:page] = 'consumers'
     @form_header = "Sign Up To Get Bonus Points"
-    @imgs = Dir.glob('public/images/gallery/colors/dusk_blue/*')
-    puts 'count images'
-    puts @imgs.count
-    render 'consumer'
+    #@imgs = Dir.glob('public/images/gallery/colors/dusk_blue/*')
+    #puts 'count images'
+    #puts @imgs.count
+    #render 'consumer'
   end
 
   def retailer

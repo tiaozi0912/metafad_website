@@ -132,17 +132,11 @@
 
   /*min-height:675px;*/
 
-  /*-o-transition-property:height;
+  -o-transition-property:height;
   -ms-transition-property:height;  
   transition-property:height; 
   -webkit-transition-property:height; 
   -moz-transition-property:height;
-
-  transition-duration:10s;
-  -webkit-transition-duration:10s;
-  -moz-transition-duration:10s;
-  -ms-transition-duration:10s;
-  -o-transition-duration:10s;*/
 }
 #gallery-section.wall-bg{
   background-image:url('/images/backgrounds/wall_bg.jpg');
