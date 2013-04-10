@@ -11,24 +11,49 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
   settings:{
     transitionTime:600,
     categories: {'colors':{'default':'dusk_blue'},
-                 'brands':{'default':'burberry'}}
+                 'brands':{'default':'burberry'}},
+    scrollTop: 773,
   },
   el: "#gallery",
   initialize: function(){
+    console.log('gallery view initialized!');
     this.render();
     this.model.bind('change',this.render,this);
 	},
   render: function(){
+    var top = this.settings.scrollTop + $('#header').height();
+    //console.log('scroll to:' + top.toString());
+    //scrollTo(0,top);
+    this.hideHeader();
     this.renderTagView();
     this.renderTagListView();
     this.renderNavView();
+    this.closeHandler();
     return this.el;
   },
+  hideHeader: function(){
+    var self = this;
+    $(window).scroll(function(){
+      var top = self.settings.scrollTop;
+      $(window).scrollTop() >  top ? $('#header').fadeOut('fast') : $('#header').fadeIn('fast');
+    });
+  },
+  closeHandler: function(){
+    var self = this;
+    self.$el.find('.close-btn').click(function(){  
+      //$(window).scrollTop(self.settings.scrollTop);  
+      self.$el.fadeOut('slow',function(){
+        $('#gallery-section').removeClass('wall-bg');
+        $('#play').fadeIn('slow',function(){
+          $(window).scrollTop(self.settings.scrollTop);  
+        });
+   
+      });
+    }); 
+  },
   renderTagView:function(){
-    //if(this.currentView) this.currentView.close();
     var self = this;
     this.tag = this.model.get('collection').where({isSelected:true})[0];
-    //this.tagView = new TagView({model:this.tag});
     if(!this.tagView){
       this.tagView = new TagView({model:this.tag});
     }

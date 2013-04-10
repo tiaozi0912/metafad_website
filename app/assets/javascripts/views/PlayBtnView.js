@@ -2,7 +2,8 @@ window.PlayBtnView = Backbone.View.extend({
   el:"#play",
   settings: {
     defaultColor:'dusk_blue',
-    defaultBrand:'burberry'
+    defaultBrand:'burberry',
+    scrollTop:843
   },
   initialize:function(){
     var self = this;
@@ -57,7 +58,10 @@ window.PlayBtnView = Backbone.View.extend({
     $('#play .half-circle').animate({'border-width':0,"opacity":0},'fast');
   },
   showGallery:function(){
+    var self = this;
     $('#gallery-section').addClass('wall-bg');
-    $('#gallery').fadeIn('slow');
+    $('#gallery').fadeIn('slow',function(){
+      $(window).scrollTop(self.settings.scrollTop);
+    }); 
   }
 })
