@@ -12,18 +12,16 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     transitionTime:600,
     categories: {'colors':{'default':'dusk_blue'},
                  'brands':{'default':'burberry'}},
-    scrollTop: 773,
   },
   el: "#gallery",
   initialize: function(){
     console.log('gallery view initialized!');
+    //this.sectionHeight = $('#gallery-section').height();
+    this.sectionHeight = 443;
     this.render();
     this.model.bind('change',this.render,this);
 	},
   render: function(){
-    var top = this.settings.scrollTop + $('#header').height();
-    //console.log('scroll to:' + top.toString());
-    //scrollTo(0,top);
     this.hideHeader();
     this.renderTagView();
     this.renderTagListView();
@@ -34,21 +32,21 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
   hideHeader: function(){
     var self = this;
     $(window).scroll(function(){
-      var top = self.settings.scrollTop;
+      var top = $('#gallery-section').offset().top - $('#header').height();
       $(window).scrollTop() >  top ? $('#header').fadeOut('fast') : $('#header').fadeIn('fast');
     });
   },
   closeHandler: function(){
     var self = this;
-    self.$el.find('.close-btn').click(function(){  
-      //$(window).scrollTop(self.settings.scrollTop);  
-      self.$el.fadeOut('slow',function(){
-        $('#gallery-section').removeClass('wall-bg');
-        $('#play').fadeIn('slow',function(){
-          $(window).scrollTop(self.settings.scrollTop);  
-        });
-   
+    self.$el.find('.close-btn').click(function(){
+      $('#gallery-section').removeClass('wall-bg');
+      self.$el.hide();
+      $('#play').show();
+      $('#gallery-section').animate({'height':self.sectionHeight},600,null,function(){
+        $(this).css('height','auto');  
+        $('body').animate({scrollTop:$('#gallery-section').offset().top});
       });
+      
     }); 
   },
   renderTagView:function(){

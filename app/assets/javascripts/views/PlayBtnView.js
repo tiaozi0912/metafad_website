@@ -3,7 +3,6 @@ window.PlayBtnView = Backbone.View.extend({
   settings: {
     defaultColor:'dusk_blue',
     defaultBrand:'burberry',
-    scrollTop:843
   },
   initialize:function(){
     var self = this;
@@ -61,7 +60,8 @@ window.PlayBtnView = Backbone.View.extend({
     var self = this;
     $('#gallery-section').addClass('wall-bg');
     $('#gallery').fadeIn('slow',function(){
-      $(window).scrollTop(self.settings.scrollTop);
+      //$(window).scrollTop($('#gallery-section').offset().top);
+      $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
     }); 
   }
 })
