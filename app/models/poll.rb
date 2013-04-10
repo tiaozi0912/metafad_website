@@ -25,17 +25,17 @@ class Poll < ActiveRecord::Base
 
   def self.colors
   	return {
-  		'dusk_blue':'rgb(91,145,181)',
-         'linen':'rgb(241,208,181)',
-         'poppy_red':'rgb(200,20,20)',
-         'emerald':'rgb(0,150,127)',
-         'grayed_jade':'rgb(141,171,163)',
-         'lemon_zest':'rgb(254,219,63)',
-         'monaco_blue':'rgb(24,43,83)',
-         'nectarine':'rgb(243,113,51)',
-         'rose_smoke':'rgb(223,193,185)',
-         'tender_shoots':'rgb(163,190,57)',
-         'violet':'rgb(153,108,175)'
+  		'dusk_blue' => 'rgb(91,145,181)',
+         'linen' => 'rgb(241,208,181)',
+         'poppy_red'=>'rgb(200,20,20)',
+         'emerald'=>'rgb(0,150,127)',
+         'grayed_jade'=>'rgb(141,171,163)',
+         'lemon_zest'=>'rgb(254,219,63)',
+         'monaco_blue'=>'rgb(24,43,83)',
+         'nectarine'=>'rgb(243,113,51)',
+         'rose_smoke'=>'rgb(223,193,185)',
+         'tender_shoots'=>'rgb(163,190,57)',
+         'violet'=>'rgb(153,108,175)'
       }
   end
 
