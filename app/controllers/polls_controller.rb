@@ -6,6 +6,7 @@ class PollsController < ApplicationController
     @polls_per_page = 10.0
     @page_end = (Poll.all.count / @polls_per_page).ceil
     @next_pages = 2;
+    store_location
   end
 
   def polls_to_json
@@ -25,7 +26,7 @@ class PollsController < ApplicationController
             :id => item.id,
             :photo_url => item.photo_url_with_style('medium'),
             :brand => item.brand,
-            :tags => item.tags
+            :tags => item.tags.join(',') #to_s
           }
         end
       }

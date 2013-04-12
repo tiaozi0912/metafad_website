@@ -37,7 +37,7 @@ h2{
 .container{
 	width:980px;
 }
-.btn,h3,.modal label,.modal input{
+.btn.btn-big,h3,.modal label,.modal input{
   font-size:16px;
   line-height:20px;
   font-weight: normal;
@@ -47,7 +47,7 @@ h2{
 	-webkit-border-radius:0px;
 	-moz-border-radius:0px;
 }
-.btn{
+.btn.btn-big{
   padding:17px;
   text-shadow:none;
 }
@@ -68,7 +68,6 @@ a:hover{
   background-image:none;
   border:1px solid #333;
 }
-.green-btn
 .error{
 	color:#b94a48;
 	background-color:#f2dede;

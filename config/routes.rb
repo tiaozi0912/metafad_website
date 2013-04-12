@@ -40,6 +40,9 @@ SampleApp::Application.routes.draw do
 
   match '/admin/polls/:page' => 'polls#index'
   match '/admin/polls_to_json/:page' => 'polls#polls_to_json'
+  match '/admin/items/:id/edit' => 'items#edit'
+  match '/items/:item_id/delete' => 'items#destroy'
+  put '/items/:id' => 'items#update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	attr_accessible :photo, :photo_url, :poll_id, :brand, :number_of_votes,:description, :is_deleted,:creator_id, :owner_id
+	attr_accessible :photo, :photo_url, :poll_id, :brand, :number_of_votes,:description, :is_deleted,:creator_id, :owner_id,:tags
   has_many :comments, :dependent => :destroy
   has_many :flags
   validates :brand, :length => { :maximum => 33 }
@@ -14,7 +14,9 @@ class Item < ActiveRecord::Base
                     :url=>"/item_:id/created_at_:created_at/:style.jpg",
                     :path => '/app/public:url'
 	belongs_to :poll
+
   serialize :tags
+
   Max_Attachments = 100
   Max_Attachment_Size = 10.megabyte
 
@@ -37,5 +39,13 @@ class Item < ActiveRecord::Base
     puts voter_ids.to_s
     return User.where('id IN (?)',voter_ids)
   end  
+
+  def update_tags tags_arr #tags is an arr
+    new_tags = tags_arr - tags
+    remove_tags = tags - tags_arr
+    tags.delete_if{|x| remove_tags.include?(x)} if !remove_tags.empty?
+    new_tags.each {|tag| tags << tag}
+    self.save
+  end
 
 end

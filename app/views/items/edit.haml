@@ -1,0 +1,15 @@
+#polls-admin
+  .container#page
+    = form_for(@item, :url=> {:action => "update"},:multipart => true,:html=>{:method => "put",:id => "item-update"}) do |f|
+      %img{:src=>"#{@item.photo_url_with_style('medium')}"}
+      %field
+        = f.label :brand
+        = f.text_field :brand,:value=>"#{@item.brand}"
+      %field
+        = f.label :tags
+        = f.text_field :tags,:value=>"#{@item.tags.join(",")}"
+        %span.hint
+          %i Use comma to seperate tags, e.x. "red,T-shirt,spring"
+      %field
+        %button.save-btn.btn{:type=>"submit"} Save
+        %a{:href=>"javascript:history.back()"} Cancel

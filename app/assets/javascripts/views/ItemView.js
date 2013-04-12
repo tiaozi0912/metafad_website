@@ -7,7 +7,8 @@ window.ItemView = Backbone.View.extend({ //model:item
   render: function(){
   	var self = this;
     this.$el.append(self.image())
-        .append(self.info());
+        .append(self.info())
+        .append(self.btns());
     return this.el;
   },
   image: function(){
@@ -20,9 +21,21 @@ window.ItemView = Backbone.View.extend({ //model:item
   info:function(){
   	var model = this.model;
   	var $info = $("<div class='item-info'></div>");
-    $brand = $('<p></p>').html('brand:'+model.get('brand'));
-    //$tags = $('<p></p>').html('tags:'+model.tags);
-    $info.append($brand);
+    $brand = $('<p></p>').html('brand: '+model.get('brand'));
+    $tags = $('<p></p>').html('tags: '+model.get('tags'));
+    $info.append($brand)
+        .append($tags);
     return $info;
+  },
+  btns: function(){
+  	var editURL = '/admin/items/' + this.model.get('id').toString() + '/edit';
+  	var deleteURL = '/items/' + this.model.get('id').toString() + '/delete';
+  	var $btns = $("<div class='btn-group'></div>");
+  	var $editBtn = $("<button class='btn btn-small edit-btn'></button>")
+  	    .html("<a href='" + editURL + "'>Edit</a>");
+  	var $deleteBtn = $("<button class='btn btn-small delete-btn'>Delete</button>")
+  	    .html("<a href='" + deleteURL + "'>Delete</a>");
+    return $btns.append($editBtn)
+  	    .append($deleteBtn);
   }
 })

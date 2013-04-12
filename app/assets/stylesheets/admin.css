@@ -3,6 +3,7 @@
 }
 #page .item-container{
   padding:0;
+  position:relative;
 }
 #page .poll-container{
 	margin-bottom:20px;
@@ -12,4 +13,12 @@
 }
 #page li.disabled a{
 	color:#333;
+}
+#page .item-container .btn-group{
+	position: absolute;
+	top:0;
+	right:0;
+}
+form field{
+	display: block;
 }
