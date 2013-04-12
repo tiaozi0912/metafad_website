@@ -96,4 +96,5 @@ class ApplicationController < ActionController::Base
   def is_consumer?
     cookies.signed[:page] == "consumers"
   end
+
 end

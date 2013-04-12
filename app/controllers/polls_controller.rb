@@ -2,8 +2,10 @@ class PollsController < ApplicationController
 	#before_filter :authenticate
 
   def index
-    @page = params[:page]
-
+    @page = params[:page].to_i
+    @polls_per_page = 10.0
+    @page_end = (Poll.all.count / @polls_per_page).ceil
+    @next_pages = 2;
   end
 
   def polls_to_json

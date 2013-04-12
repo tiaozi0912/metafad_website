@@ -10,3 +10,6 @@
 #page .poll-container h3 b{
 	color:rgb(220,20,20);
 }
+#page li.disabled a{
+	color:#333;
+}
