@@ -1,0 +1,12 @@
+#page{
+	padding:30px 0;
+}
+#page .item-container{
+  padding:0;
+}
+#page .poll-container{
+	margin-bottom:20px;
+}
+#page .poll-container h3 b{
+	color:rgb(220,20,20);
+}

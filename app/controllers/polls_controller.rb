@@ -1,5 +1,36 @@
 class PollsController < ApplicationController
 	#before_filter :authenticate
+
+  def index
+    @page = params[:page]
+
+  end
+
+  def polls_to_json
+    @page = params[:page].to_i
+    @polls_per_page = 10
+    @polls = Poll.first(@polls_per_page*@page)
+    @end = @polls_per_page*@page - 1;
+    @start = @end - @polls_per_page + 1; 
+    @polls = @polls[@start..@end]
+    @polls_toJSON = @polls.map do |poll|
+      {
+        :id => poll.id,
+        :title => poll.title,
+        :date => poll.open_time.to_s,
+        :items => poll.items.map do |item|
+          {
+            :id => item.id,
+            :photo_url => item.photo_url_with_style('medium'),
+            :brand => item.brand,
+            :tags => item.tags
+          }
+        end
+      }
+    end
+    render :json => {:polls => @polls_toJSON}
+  end
+
 	def show
     store_location
     @poll=Poll.where("is_deleted = false AND id = #{params[:id]}")[0]

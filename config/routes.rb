@@ -38,7 +38,8 @@ SampleApp::Application.routes.draw do
   match '/test_email' => 'users#test_email'
   #match '/update/polls/:id' => 'polls#update'
 
-
+  match '/admin/polls/:page' => 'polls#index'
+  match '/admin/polls_to_json/:page' => 'polls#polls_to_json'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

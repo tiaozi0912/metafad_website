@@ -1,3 +1,5 @@
 LOG:  database system was shut down at 2013-04-10 01:21:16 PDT
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+ERROR:  missing FROM-clause entry for table "items" at character 39
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (items.count == 0) ORDER BY polls.created_at DESC
