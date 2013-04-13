@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	attr_accessible :photo, :photo_url, :poll_id, :brand, :number_of_votes,:description, :is_deleted,:creator_id, :owner_id,:tags
+	attr_accessible :photo, :photo_url, :poll_id, :brand, :number_of_votes,:description, :is_deleted,:creator_id, :owner_id,:tags,:colors
   has_many :comments, :dependent => :destroy
   has_many :flags
   validates :brand, :length => { :maximum => 33 }
@@ -16,6 +16,7 @@ class Item < ActiveRecord::Base
 	belongs_to :poll
 
   serialize :tags
+  serialize :colors
 
   Max_Attachments = 100
   Max_Attachment_Size = 10.megabyte

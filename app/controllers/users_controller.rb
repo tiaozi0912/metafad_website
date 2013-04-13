@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       #handle a successful case
       current_user = sign_in @user
-      flash[:'alert-sucess'] = "Welcome to MetaFad!"
+      flash[:'alert-success'] = "Welcome to MetaFad!"
       # equal to redirect_to user_path(@user)
       redirect_back_or_default root_path
     else
