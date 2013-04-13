@@ -85,9 +85,25 @@
         $('input#poll_title').val(defaultValue);
       }
 
-      function makeItemDescriptionEditable($Container,itemId){
+      function makeItemDescriptionEditable($container,itemId){
         if(#{@poll.state} == 0){
-          $container.replaceWith("<span><input name='items_attributes[item_" + itemId + "[brand]]' placeholder='Describe it (max 33 chars)' type='text'></span>");
+          var name = 'items_attributes[item_' + itemId + "[brand]]";
+          var $brand = $('<input>')
+              .attr({'name':name,
+                     'placeholder':'Describe it (max 33 chars)',
+                     'type':'text'
+                    });
+          name = 'items_attributes[item_' + itemId + "[tags]]";
+          var $tags = $('<input>')
+              .attr({'name':name,
+                     'placeholder':'Tags:deperate with comma',
+                     'type':'text'
+                    });
+          var $span = $('<span></span>')
+              .append($brand)
+              .append($tags);
+          $container.replaceWith($span);
+          //$container.replaceWith("<span><input name='items_attributes[item_" + itemId + "[brand]]' placeholder='Describe it (max 33 chars)' type='text'></span>");
         }
         else if(#{@poll.state} == 1){
           var defaultValue = $Container.text();

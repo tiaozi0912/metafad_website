@@ -13,6 +13,16 @@ class ApplicationController < ActionController::Base
     end
     return !current_user.nil?
   end
+
+  def admin_authenticate
+    if current_user.nil?
+      flash[:error] = "Please log in your Muse Me account."
+      store_location
+      cookies.signed[:admin] = true
+      redirect_to '/signin'
+    end
+    return !current_user.nil?
+  end
   
   def get_token auth
     token = auth['credentials']['token'];

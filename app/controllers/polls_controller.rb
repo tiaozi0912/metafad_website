@@ -70,7 +70,8 @@ class PollsController < ApplicationController
 
   # POST /polls
   def new
-    if authenticate
+    store_location
+    if admin_authenticate
       @poll = Poll.new
       respond_to do |format|
         format.html

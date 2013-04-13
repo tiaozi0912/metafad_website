@@ -3,3 +3,5 @@ LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 ERROR:  missing FROM-clause entry for table "items" at character 39
 STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (items.count == 0) ORDER BY polls.created_at DESC
+ERROR:  null value in column "user_name" violates not-null constraint
+STATEMENT:  INSERT INTO "users" ("admin", "created_at", "crypted_password", "current_login_at", "current_login_ip", "email", "failed_login_count", "fb_id", "first_name", "gender", "has_profile_photo_url", "last_login_at", "last_login_ip", "last_name", "last_request_at", "login_count", "number_of_flags", "number_of_votes", "password_salt", "perishable_token", "persistence_token", "personal_description", "photo_content_type", "photo_file_name", "photo_file_size", "photo_updated_at", "point", "pre_sign_up", "rank", "single_access_token", "updated_at", "user_name", "votes_rewards_tracker") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33) RETURNING "id"

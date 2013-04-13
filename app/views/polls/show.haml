@@ -61,7 +61,7 @@
               -# TODO: check the access token first, then call shareOnFb function
               -# To check the access token, request /auth/facebook. access token is given in the /auth/facebook/callback
               .fb-share-btn.mobile-view-hide
-                %img{:src => '/images/facebook-share-btn.png',:height => '50',:width => '50',:rel => 'tooltip',:title => 'share the poll on Facebook'}    
+                %img{:src => '/images/icons/facebook-share-btn.png',:height => '50',:width => '50',:rel => 'tooltip',:title => 'share the poll on Facebook'}    
             - if @current_user == @poll.user     
               .btn.edit-btn Edit
               .btn.add-more-items-btn{:rel => "tooltip",:title => "Add more items"} Add
@@ -103,8 +103,8 @@
             addPhotoPreview();  
           } 
         })
-      })  
-    = render :partial => "js"
+      }) 
+    = render :partial => 'js' 
   - else
     .container.content-container.relativePosition
 

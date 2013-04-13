@@ -149,13 +149,14 @@ a.login-fb img{
   -moz-border-radius:0px;
   margin:0px;
   width:32px;
+  font-size:11px;
 }
 .cancel-btn a{
   color:#333;
 }
 .item-description-container{
-  height:20px;
-  padding-bottom:5px;
+  /*height:20px;
+  padding-bottom:5px;*/
   font-size:14px;
   line-height:16px;
   color:black;

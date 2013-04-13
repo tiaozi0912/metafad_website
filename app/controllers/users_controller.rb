@@ -12,13 +12,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user[:user_name] ||= @user[:email].match(/^[^@]+/).to_s 
     @user.encrypt_password(params[:user][:password])
     if @user.save
       #handle a successful case
       current_user = sign_in @user
-      flash[:sucess] = "Welcome to Muse Me!"
+      flash[:'alert-sucess'] = "Welcome to MetaFad!"
       # equal to redirect_to user_path(@user)
-      redirect_to @user
+      redirect_back_or_default root_path
     else
       @title = "Sign Up"
       render 'new'

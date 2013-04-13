@@ -2,11 +2,12 @@
   %br
   %h1 Sign In
   %br
-  %a.login-fb{:href=>"/auth/facebook"}
-    %img{:src=>"/images/login-facebook.png"}
-  %br
-  %br
-  %p{:style=>"font-size:20px;line-height:24px"} Or
+  - if !cookies.signed[:admin]
+    %a.login-fb{:href=>"/auth/facebook"}
+      %img{:src=>"/images/login-facebook.png"}
+    %br
+    %br
+    %p{:style=>"font-size:20px;line-height:24px"} Or
   =form_for(:session, :url => sessions_path) do |f|
     .field
       =f.label :email
