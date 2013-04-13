@@ -40,8 +40,8 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     var self = this;
     self.$el.find('.close-btn').click(function(){
       $('#gallery-section').removeClass('wall-bg');
-      //self.$el.ami();
-      $('#play').show();
+      self.$el.hide();
+      $('#play').fadeIn('slow');
 
       /* still can't understand the animation behavior 
        * $('#gallery-section') must be a class of transition-config
