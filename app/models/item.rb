@@ -40,6 +40,17 @@ class Item < ActiveRecord::Base
     return User.where('id IN (?)',voter_ids)
   end  
 
+  def update_item_attributes params
+    if !params[:tags].nil?
+      tags = params[:tags]
+      params.delete :tags
+      self.update_attributes params
+      self.update_tags tags
+    else
+      self.update_attributes params
+    end
+  end
+
   def update_tags tags_arr #tags is an arr
     new_tags = tags_arr - tags
     remove_tags = tags - tags_arr

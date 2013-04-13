@@ -46,7 +46,7 @@
       makeTitleEditable($('.poll-title'));
       $('.item-container').each(function(){
         var itemId = $(this).attr('id').replace('item_','');
-        $container = $(this).children('.item-description-container').find('span');
+        $container = $(this).children('.item-description-container');
         makeItemDescriptionEditable($container,itemId); 
       });
       
@@ -86,31 +86,38 @@
       }
 
       function makeItemDescriptionEditable($container,itemId){
+        $field = $("<field></field>");
         if(#{@poll.state} == 0){
           var name = 'items_attributes[item_' + itemId + "[brand]]";
           var $brand = $('<input>')
               .attr({'name':name,
                      'placeholder':'Describe it (max 33 chars)',
                      'type':'text'
-                    });
+              });
           name = 'items_attributes[item_' + itemId + "[tags]]";
           var $tags = $('<input>')
               .attr({'name':name,
                      'placeholder':'Tags:deperate with comma',
                      'type':'text'
-                    });
-          var $span = $('<span></span>')
-              .append($brand)
+              });
+          $field.append($brand)
               .append($tags);
-          $container.replaceWith($span);
-          //$container.replaceWith("<span><input name='items_attributes[item_" + itemId + "[brand]]' placeholder='Describe it (max 33 chars)' type='text'></span>");
         }
-        else if(#{@poll.state} == 1){
-          var defaultValue = $Container.text();
-          var input = "<input id='description_item_" + itemId + "' name='items_attributes[item_" + itemId + "[brand]]' type='text'>";
-          $container.replaceWith("<span>" + input + "</span>");
-          $('#description_item_'+itemId).val(defaultValue);
-        }     
+        else if(#{@poll.state} == 1){         
+          $container.find('span').each(function(){
+            var className = $(this).attr('class');
+            var defaultValue = $(this).text();
+            var name = 'items_attributes[item_' + itemId + "[" + className + "]]";
+            var id = "description_item_" + itemId;
+            var $input = $("<input type='text'>")
+                .attr({'name':name,
+                       'id':id,
+                       'value':defaultValue
+                });
+            $field.append($input);
+          })
+        } 
+        $container.html($field);    
       }
     })
     //trigger click on the edit btn if poll state is 0

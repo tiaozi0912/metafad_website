@@ -14,10 +14,10 @@ class ItemsController < ApplicationController
   end
   def update
     @item = Item.find(params[:id].to_i)
-    @tags = params[:item][:tags].split(",") #arr
-    params[:item].delete(:tags)
-    if @item.update_attributes(params[:item])
-      @item.update_tags @tags
+    params[:item][:tags] = params[:item][:tags].split(",") #arr
+    #params[:item].delete(:tags)
+    if @item.update_item_attributes(params[:item])
+      #@item.update_tags @tags
       flash[:'alert-success'] = 'Updated successfully.'    
     else
       flash[:'alert-error'] = @item.errors.full_messages

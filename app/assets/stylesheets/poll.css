@@ -71,7 +71,11 @@
   font-size:14px;
   line-height:18px;
   color:#999;
-} 
+}
+.item-container i{
+  font-size:11px;
+  color:#666;
+}
 .item-image-container{
   height:202px;
   /*border:5px solid #eee;*/
@@ -148,7 +152,7 @@ a.login-fb img{
   -webkit-border-radius:0px;
   -moz-border-radius:0px;
   margin:0px;
-  width:32px;
+  width:40px;
   font-size:11px;
 }
 .cancel-btn a{
@@ -161,6 +165,12 @@ a.login-fb img{
   line-height:16px;
   color:black;
   vertical-align: bottom;
+}
+.item-description-container .tags{
+  color:#666;
+  font-size:11px;
+  font-style: italic;
+  display: block;
 }
 .item-description-container input{
   width:160px;

@@ -8,8 +8,15 @@
 #page .poll-container{
 	margin-bottom:20px;
 }
-#page .poll-container h3 b{
+#page .poll-container .row-fluid{
+	margin-bottom: 10px
+}
+#page .poll-container h3 a{
 	color:rgb(220,20,20);
+	margin-right:10px;
+}
+#page .poll-container h3 a:hover{
+	color:rgb(254,80,80);
 }
 #page li.disabled a{
 	color:#333;
@@ -21,4 +28,7 @@
 }
 form field{
 	display: block;
+}
+#page .item-info p{
+	margin-bottom: 0;
 }

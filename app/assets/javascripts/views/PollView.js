@@ -13,8 +13,14 @@ window.PollAdminView = Backbone.View.extend({ //model poll
       itemCollection.push(item);
     });
     var itemCollectionView = new ItemCollectionView({model:itemCollection});
+    var $text = $('<h3></h3>');
+    var $title = $('<a></a>')
+        .attr('href','/polls/' + poll.get('id').toString())
+        .html(poll.get('title'));
+    var $date = $("<i></i>").html(poll.get('date'));
+    $text.append($title).append($date);
     this.$el
-        .append("<h3><b>"+poll.get('title')+"</b> <i>"+poll.get('date')+"</i></h3>")
+        .append($text)
         .append(itemCollectionView.render());
     return this.el;
   }
@@ -23,7 +29,6 @@ window.PollAdminView = Backbone.View.extend({ //model poll
 function renderPollsAdmin(url){
   $.get(url,function(data){
     var polls = data.polls;
-    console.log('there are '+polls.length+' polls fetched');
     //console.log(polls);
     _.each(polls,function(p){
       var poll = new Poll(p);

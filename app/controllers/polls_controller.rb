@@ -103,15 +103,12 @@ class PollsController < ApplicationController
 
   def update
     if params[:poll][:web_id].nil? # from the direct edit
-      @poll = Poll.find(params[:id])
-      @items_attributes = Array.new
+      @poll = Poll.find(params[:id])   
       params[:items_attributes].each do |key,value|
         item_id = key.gsub('item_','').to_i
-        item_attributes = Hash[:id => item_id,:is_deleted => value[:is_deleted],:brand => value[:brand]]
-        @items_attributes << item_attributes
-        item_attributes = nil
+        item_attributes = Hash[:id => item_id,:is_deleted => value[:is_deleted],:brand => value[:brand],:tags => value[:tags].split(",")]
+        Item.find(item_id).update_item_attributes item_attributes
       end
-      params[:poll][:items_attributes] = @items_attributes
       if @poll.state == 1
         flash[:'alert-success'] = "Changes were saved." 
       elsif @poll.state == 0  #publish the poll
@@ -164,6 +161,8 @@ private
 
   def create_or_update_poll(params,poll)
     params[:poll][:items_attributes] = get_items_attributes params[:items_attributes]
+    puts 'attributes:'
+    puts params[:poll][:items_attributes].to_json
     if poll.nil?
       params[:poll][:category] = params[:poll][:category].to_i
       params[:poll][:user_id] = current_user.id
@@ -180,7 +179,7 @@ private
   def get_items_attributes params
     params[:creator_id] = current_user.id
     params[:owner_id] = current_user.id
-    items_attributes = [params]
+    items_attributes = [params]  # using array to wrapper up the hash
   end
 
   def items_photo_urls items
