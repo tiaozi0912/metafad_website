@@ -46,7 +46,9 @@ window.TagView = Backbone.View.extend({ //model:Tag
   },
   mask: function($img){
     var $mask = $("<div class='mask hide'></div>");
+    var link = $img.attr('src').replace(/small/,'large');
     $mask.html(_.template($('#gallery-mask-template').html()));
+    $mask.find('.lightbox').attr('href',link);
     return $mask;
   },
   rotate: function($img,name){

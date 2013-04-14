@@ -215,8 +215,16 @@
 #image-wall .mask-content .icon{
   cursor: pointer;
 }
+#image-wall .mask-content a{
+  display:block;
+  margin-left:30px;
+  margin-top:50px;
+}
 #gallery-section .row{
   margin-left: 0;
+}
+#lightbox-secNav-btnClose{
+  width:auto;
 }
 /* image wall css ends */
 

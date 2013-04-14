@@ -15,6 +15,7 @@
 //= require Underscore
 //= require backbone
 //= require bootstrap.min
+//= require jquery.lightbox-0.5.js
 //= require main
 //= require charCount
 //= require multiple-photos-post-on-fb

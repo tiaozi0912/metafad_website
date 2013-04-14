@@ -26,6 +26,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     this.renderTagView();
     this.renderTagListView();
     this.renderNavView();
+    this.lightboxHandler();
     this.closeHandler();
     return this.el;
   },
@@ -92,7 +93,10 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
       $btnGroup.append($a);
     }
     $nav.html($btnGroup);
-  } 
+  },
+  lightboxHandler: function(){
+    $('#gallery .img-container .lightbox').lightBox({fixedNavigation:true});
+  }
 });
 
 window.TagListView = Backbone.View.extend({ //model:TagCollection
