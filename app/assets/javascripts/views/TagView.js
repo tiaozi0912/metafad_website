@@ -31,7 +31,7 @@ window.TagView = Backbone.View.extend({ //model:Tag
     var photoCollection = this.model.get('collection');
     $imgContainers.each(function(i){
       var photo = photoCollection.at(i);
-      var name = photo.get('category') + "-" + photo.get('tag') + "-" + photo.get('name');
+      var name = photo.get('category') + "-" + photo.get('tag').replace(/\s/,"-") + "-" + photo.get('name');
       var $img = $('<img>').attr({src:photo.get('src')})
           .addClass('gallery-img')
           .addClass(name);

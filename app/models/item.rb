@@ -6,9 +6,9 @@ class Item < ActiveRecord::Base
 
 	has_attached_file :photo,
                     :styles => { :thumbnail => "100x100#",
-                                   :small => "160x160>",
-                                   :medium => "320x320>",
-                                   :large => "640x640>" },
+                                   :small => "160x240>",
+                                   :medium => "320x480>",
+                                   :large => "640x960>" },
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :url=>"/item_:id/created_at_:created_at/:style.jpg",
@@ -58,6 +58,21 @@ class Item < ActiveRecord::Base
     tags.delete_if{|x| remove_tags.include?(x)} if !remove_tags.empty?
     new_tags.each {|tag| tags << tag}
     self.save
+  end
+
+  def to_json *arg #{:photo_style => 'large',..}
+    default = {
+      :photo_style => 'medium'
+    }
+    if arg.length > 0
+      photo_style = ( arg[0][:photo_style] ||= default[:photo_style] )
+    end
+    json = {
+      :id => id,
+      :photo_url => photo_url_with_style(photo_style ||= default[:photo_style]),
+      :brand => brand,
+      :tags => tags.join(',') #to_s
+    }
   end
 
 end

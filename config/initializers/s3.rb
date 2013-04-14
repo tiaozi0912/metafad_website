@@ -5,7 +5,7 @@ S3_SECRET="iKBI4P+Tz5jywIHrQoVf/yYlzwHYcUIiMagj8pNs"
 S3_STG_BUCKET="staging-item-photos-akiajbfjoiwfjzd6aypa"
 S3_PRO_BUCKET="MuseMe-images-bucket-akiajbfjoiwfjzd6aypa"
 
-S3_DEV_BUCKET=S3_PRO_BUCKET
+S3_DEV_BUCKET="MuseMe-images-bucket-akiajbfjoiwfjzd6aypa"
 
 
 if Rails.env.development?

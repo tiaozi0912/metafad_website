@@ -16,21 +16,7 @@ class PollsController < ApplicationController
     @end = @polls_per_page*@page - 1;
     @start = @end - @polls_per_page + 1; 
     @polls = @polls[@start..@end]
-    @polls_toJSON = @polls.map do |poll|
-      {
-        :id => poll.id,
-        :title => poll.title,
-        :date => poll.open_time.to_s,
-        :items => poll.items.map do |item|
-          {
-            :id => item.id,
-            :photo_url => item.photo_url_with_style('medium'),
-            :brand => item.brand,
-            :tags => item.tags.join(',') #to_s
-          }
-        end
-      }
-    end
+    @polls_toJSON = @polls.map {|p| p.to_json}
     render :json => {:polls => @polls_toJSON}
   end
 

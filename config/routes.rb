@@ -43,7 +43,7 @@ SampleApp::Application.routes.draw do
   match '/admin/items/:id/edit' => 'items#edit'
   match '/items/:item_id/delete' => 'items#destroy'
   put '/items/:id' => 'items#update'
-
+  match '/gallery/:category' => 'pages#gallery'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

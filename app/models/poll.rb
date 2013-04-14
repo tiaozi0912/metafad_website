@@ -42,4 +42,29 @@ class Poll < ActiveRecord::Base
   def self.brands
     return ['burberry','celine','chanel','chloe','christian_dior','dolce_&_gabbana','donnakaran','elie_saab','fendi','valentino']
   end
+
+  def self.category_to_num str
+    case str
+    when 'colors'
+      num = 0
+    when 'brands'
+      num = 1
+    else
+      num = 2
+    end
+    return num
+  end
+  
+  def to_json *arg #{:photo_style => 'large',..}
+    json = {
+      :id => id,
+      :category => category,
+      :title => title,
+      :date => open_time.to_s,
+      :items => items.map do |item|
+        item.to_json *arg
+      end
+    }
+  end
+
 end

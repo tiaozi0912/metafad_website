@@ -29,4 +29,14 @@ class PagesController < ApplicationController
     render 'retailer'
   end
 
+  def gallery
+    @category = params[:category] #string
+    #category_num = Poll.category_to_num @category
+    #@polls = User.find(ADMIN_ID).polls.where('category = ?',@category)
+    #query in this way faster
+    @polls = Poll.where('user_id = ? AND category = ?',ADMIN_ID,@category);
+    @polls_to_json = @polls.map {|p| p.to_json({:photo_style => 'small'})}
+    render :json => {:polls => @polls_to_json}
+  end
+
 end

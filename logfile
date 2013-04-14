@@ -5,3 +5,16 @@ ERROR:  missing FROM-clause entry for table "items" at character 39
 STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (items.count == 0) ORDER BY polls.created_at DESC
 ERROR:  null value in column "user_name" violates not-null constraint
 STATEMENT:  INSERT INTO "users" ("admin", "created_at", "crypted_password", "current_login_at", "current_login_ip", "email", "failed_login_count", "fb_id", "first_name", "gender", "has_profile_photo_url", "last_login_at", "last_login_ip", "last_name", "last_request_at", "login_count", "number_of_flags", "number_of_votes", "password_salt", "perishable_token", "persistence_token", "personal_description", "photo_content_type", "photo_file_name", "photo_file_size", "photo_updated_at", "point", "pre_sign_up", "rank", "single_access_token", "updated_at", "user_name", "votes_rewards_tracker") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33) RETURNING "id"
+ERROR:  column "brand" does not exist at character 9
+STATEMENT:  SELECT  brand FROM "polls"  WHERE "polls"."id" = $1 ORDER BY polls.created_at DESC LIMIT 1
+ERROR:  syntax error at or near ")" at character 78
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE "polls"."user_id" = 448 AND (category is) ORDER BY polls.created_at DESC
+ERROR:  operator does not exist: integer == at character 76
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE "polls"."user_id" = 448 AND (category ==) ORDER BY polls.created_at DESC
+ERROR:  syntax error at or near ")" at character 77
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE "polls"."user_id" = 448 AND (category =) ORDER BY polls.created_at DESC
+ERROR:  argument of AND must be type boolean, not type integer at character 67
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE "polls"."user_id" = 448 AND (category) ORDER BY polls.created_at DESC
+ERROR:  invalid input syntax for integer: "brands" at character 68
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (user_id = 448 AND category = 'brands') ORDER BY polls.created_at DESC

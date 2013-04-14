@@ -1,59 +1,54 @@
-window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,brands]
+window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,brands],polls(array of json object)
   defaults: {
     settings: {
-      colors: {'dusk_blue':'rgb(91,145,181)',
+      palette: {'dusk_blue':'rgb(91,145,181)',
                'linen':'rgb(241,208,181)',
-               'poppy_red':'rgb(200,20,20)',
+               'poppy red':'rgb(200,20,20)',
                'emerald':'rgb(0,150,127)',
-               'grayed_jade':'rgb(141,171,163)',
-               'lemon_zest':'rgb(254,219,63)',
-               'monaco_blue':'rgb(24,43,83)',
+               'grayed jade':'rgb(141,171,163)',
+               'lemon zest':'rgb(254,219,63)',
+               'monaco blue':'rgb(24,43,83)',
                'nectarine':'rgb(243,113,51)',
-               'rose_smoke':'rgb(223,193,185)',
-               'tender_shoots':'rgb(163,190,57)',
+               'rose smoke':'rgb(223,193,185)',
+               'tender shoots':'rgb(163,190,57)',
                'violet':'rgb(153,108,175)'
               },
-      brands: ['burberry','celine','chanel','chloe','christian_dior','dolce_&_gabbana','donnakaran','elie_saab','fendi','valentino'],
+      //brands: ['burberry','celine','chanel','chloe','christian_dior','dolce_&_gabbana','donnakaran','elie_saab','fendi','valentino'],
       rows:3
     },
   },
   initialize: function(){
     this.initializeCollection();
-    this.bind('change:currTag category',this.initializeCollection);
+    this.bind('change:currTag category polls',this.initializeCollection);
   },
   initializeCollection: function(){
     var model = this;
+    var polls = model.get('polls');
     var currTag = model.get('currTag');
     var category = model.get('category');
     var settings = model.get('settings');
     //console.log('category is:'+category);
     //console.log('current tag is:'+currTag);
-    var tags = settings[category]; 
+    //var tags = settings[category]; 
+    //var tags = this.get(category); 
     var collection = new TagCollection();
-    if(category == 'colors'){
-      for(var colorName in settings.colors){
-        var isSelected = (colorName == currTag);
-        collection.add(new Tag({name:colorName,category:category,isSelected:isSelected,rgb:settings.colors[colorName]}));
+    _.each(polls,function(p){
+      var isSelected = (p.title == currTag);
+      var tagProperties = {name:p.title,category:category,isSelected:isSelected,photos:p.items};
+      if(category == 'colors'){
+        tagProperties.rgb = settings.palette[p.title];
       }
-    }else if(category == 'brands'){
-      _.each(settings.brands,function(el){
-        var isSelected = (el == currTag);
-        collection.add(new Tag({name:el,category:category,isSelected:isSelected}));
-      });
-    }
+      collection.add(new Tag(tagProperties));
+    });
     this.set({collection:collection});
   }
 });
 
-window.Tag = Backbone.Model.extend({ //attributes:name,category，isSelected
+window.Tag = Backbone.Model.extend({ //attributes:name,category，isSelected, photos(array of objects)
   defaults: {
     settings:{
-      photosNum:9,
-      extension:"jpg",
-      baseURL: "/images/gallery/",
-    },
-    name:"",
-    category:""
+      photosNum:9
+    }
   },
   initialize:function(){
     var collection = new PhotoCollection();
@@ -71,9 +66,8 @@ window.Tag = Backbone.Model.extend({ //attributes:name,category，isSelected
     this.setURL();
   },
   src: function(i){
-    var settings = this.get('settings');
-    var photoName = (i+1).toString();
-    return settings.baseURL + this.get('category') + "/" + this.get('name') + "/" + photoName + "." + settings.extension;
+    var photo = this.get('photos')[i];
+    return photo.photo_url
   },
   setURL: function(){
     var url = '#gallery/' + this.get('category') + '/' + this.get('name');

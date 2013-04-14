@@ -10,7 +10,7 @@ Backbone.View.prototype.close = function(){
 window.GalleryView = Backbone.View.extend({ //model:Gallery
   settings:{
     transitionTime:600,
-    categories: {'colors':{'default':'dusk_blue'},
+    categories: {'colors':{'default':'dusk blue'},
                  'brands':{'default':'burberry'}},
   },
   el: "#gallery",

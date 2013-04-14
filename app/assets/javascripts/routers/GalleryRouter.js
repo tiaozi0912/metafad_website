@@ -5,11 +5,16 @@ var GalleryRouter = Backbone.Router.extend({
     //'gallery-section':'close'
   },
   selectTag: function(category,tag){
-    if(this.gallery){
-      this.gallery.set({category:category,currTag:tag});
-    }else{
-     this.gallery = new Gallery({category:category,currTag:tag});
-     this.galleryView = new GalleryView({model:this.gallery});
-    }
+    var url = '/gallery/' + category;
+    var tag = tag.replace(/_/," ");
+    $.get(url,function(data){
+      var polls = data.polls;
+      if(this.gallery){
+        this.gallery.set({category:category,currTag:tag,polls:polls});
+      }else{
+       this.gallery = new Gallery({category:category,currTag:tag,polls:polls});
+       this.galleryView = new GalleryView({model:this.gallery});
+      }
+    });  
   }
 });
