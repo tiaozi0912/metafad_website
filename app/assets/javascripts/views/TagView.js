@@ -36,7 +36,7 @@ window.TagView = Backbone.View.extend({ //model:Tag
           .addClass('gallery-img')
           .addClass(name);
       var $pin = $("<div class='pin shadow'></div>");
-      var $mask = self.mask($img);
+      var $mask = self.mask(photo);
       self.rotate($img,name);
       $(this).append($img)
           .append($pin)
@@ -44,11 +44,12 @@ window.TagView = Backbone.View.extend({ //model:Tag
     });
     this.$el.find('img').fadeIn(this.settings.transitionTime);
   },
-  mask: function($img){
+  mask: function(photo){
     var $mask = $("<div class='mask hide'></div>");
-    var link = $img.attr('src').replace(/small/,'large');
+    var link = photo.get('src').replace(/small/,'large');
     $mask.html(_.template($('#gallery-mask-template').html()));
-    $mask.find('.lightbox').attr('href',link);
+    $mask.find('.lightbox').attr('href',link)
+      .attr('rel','lightbox['+photo.get('tag').replace(/\s/,"-")+']');
     return $mask;
   },
   rotate: function($img,name){

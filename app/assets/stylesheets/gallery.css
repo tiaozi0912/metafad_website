@@ -226,6 +226,9 @@
 #lightbox-secNav-btnClose{
   width:auto;
 }
+a.lb-next,a.lb-prev{
+  cursor: pointer;
+}
 /* image wall css ends */
 
 /* sidebar css begins */

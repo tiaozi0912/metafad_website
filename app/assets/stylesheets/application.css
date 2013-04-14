@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.lightbox-0.5.css
+ *= require lightbox.css
  *= require jquery.fileupload-ui
  *= require bootstrap.min.css
  *= require bootstrap-responsive.min.css
