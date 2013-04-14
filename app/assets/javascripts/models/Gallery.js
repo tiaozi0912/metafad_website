@@ -54,12 +54,11 @@ window.Tag = Backbone.Model.extend({ //attributes:name,category，isSelected, ph
     var collection = new PhotoCollection();
     var settings = this.get('settings');
     for(var i=0;i<settings.photosNum;i++){
-      var photo = new Photo({
-        category:this.get('category'),
-        tag:this.get('name'),
-        src:this.src(i),
-        name:(i+1).toString()}
-      );
+      var property = this.get('photos')[i];
+      property.category = this.get('category');
+      property.tag = this.get('name');
+      property.id = 'gallery-item-' + property.id.toString();
+      var photo = new Photo(property);
       collection.add(photo);
     }
     this.set({collection:collection});

@@ -13,8 +13,9 @@ window.TagView = Backbone.View.extend({ //model:Tag
   },
   render: function(){
     var self = this;
-    self.fadeIn();
+    self.photosView();
     self.hover();
+    self.vote();
     return this.el;
   },
   reset: function(){
@@ -24,32 +25,36 @@ window.TagView = Backbone.View.extend({ //model:Tag
       $('#image-wall').remove();
     });
   },
-  fadeIn:function(){
+  photosView:function(){
     var self = this;
     this.$el.html(this.template());
     var $imgContainers = this.$el.find('.img-container');
     var photoCollection = this.model.get('collection');
     $imgContainers.each(function(i){
       var photo = photoCollection.at(i);
-      var name = photo.get('category') + "-" + photo.get('tag').replace(/\s/,"-") + "-" + photo.get('name');
-      var $img = $('<img>').attr({src:photo.get('src')})
-          .addClass('gallery-img')
-          .addClass(name);
-      var $pin = $("<div class='pin shadow'></div>");
-      var $mask = self.mask(photo);
-      self.rotate($img,name);
-      $(this).append($img)
-          .append($pin)
-          .append($mask);
+      self.photoView(photo,$(this));
     });
     this.$el.find('img').fadeIn(this.settings.transitionTime);
   },
+  photoView: function(photo,$imgContainer){
+    //var name = photo.get('category') + "-" + photo.get('tag').replace(/\s/,"-") + "-" + photo.get('name');
+    var $img = $('<img>').attr({src:photo.get('photo_url')})
+        .addClass('gallery-img')
+        .attr('id',photo.get('id'));
+    var $pin = $("<div class='pin shadow'></div>");
+    var $mask = this.mask(photo);
+    this.rotate($img,name);
+    $imgContainer.append($img)
+        .append($pin)
+        .append($mask);
+  },
   mask: function(photo){
     var $mask = $("<div class='mask hide'></div>");
-    var link = photo.get('src').replace(/small/,'large');
+    var link = photo.get('photo_url').replace(/small/,'large');
     $mask.html(_.template($('#gallery-mask-template').html()));
     $mask.find('.lightbox').attr('href',link)
       .attr('rel','lightbox['+photo.get('tag').replace(/\s/,"-")+']');
+    $mask.find('h3').html(photo.get('number_of_votes'));
     return $mask;
   },
   rotate: function($img,name){
@@ -92,11 +97,25 @@ window.TagView = Backbone.View.extend({ //model:Tag
         
         $img.css(self.r[name]);
       }
-    },'.img-container');
-    //listener to the heart icon
+    },'.img-container');    
+  },
+  vote: function(){
     $('#image-wall').on('click','.mask-content .icon',function(){
+      var itemID = $(this).parents('.img-container').find('.gallery-img').attr('id').replace(/gallery-item-/,'');
+      var url = '/gallery_items/' + itemID + '/update';
+      //update the number of votes
+      var count = parseInt($(this).siblings('h3').html()) + 1;
+      $(this).siblings('h3').html(count.toString());
+      $.post(url,{'item':{'number_of_votes': count}},function(data){
+         if(data.errors){
+            console.log(data.errors);
+         }
+      });
       $(this).attr('src','/images/icons/red-heart.png');
       $(this).parents('.img-container').find('.gallery-img').css('border-color','rgb(220,0,0)');
     });
   }
-})
+});
+
+
+

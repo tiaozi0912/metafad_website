@@ -16,7 +16,7 @@
       - if @poll.id.nil?
         %fieldset
           = f.label "Select poll category"
-          = f.select "category","<option value = '0'>Colors</option><option value = '1'>Brands</option>".html_safe
+          = f.select "category","<option value = 'colors'>Colors</option><option value = 'brands'>Brands</option>".html_safe
       %filedset
         .row.fileupload-buttonbar
           .span7

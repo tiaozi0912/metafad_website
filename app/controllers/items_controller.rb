@@ -24,6 +24,16 @@ class ItemsController < ApplicationController
     end
     redirect_back_or_default root_path
   end
+
+  def gallery_item_update
+    item = Item.find(params[:id].to_i)
+    if item.update_attributes params[:item]
+      render :nothing => true    
+    else
+      render :json => {:errors => item.errors.full_messages}
+    end
+    
+  end
   def destroy
     item_id = params["item_id"].to_i
     Item.find(item_id).destroy

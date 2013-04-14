@@ -127,7 +127,7 @@ window.TagItemView = Backbone.View.extend({ //model:Tag
     var isColor = ( tag.get('category') == 'colors' );
     this.$el.html(this.template(this.model.toJSON()));
     var $colorBlock = this.$el.find('.color-block');
-    this.$el.find('a').attr('href',tag.get('url'));
+    this.$el.find('a').attr('href',tag.get('url').replace(/\s/,"_"));
     if(tag.get('isSelected')){
       this.$el.addClass('selected');
       $colorBlock.addClass('expand');

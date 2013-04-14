@@ -18,3 +18,5 @@ ERROR:  argument of AND must be type boolean, not type integer at character 67
 STATEMENT:  SELECT "polls".* FROM "polls"  WHERE "polls"."user_id" = 448 AND (category) ORDER BY polls.created_at DESC
 ERROR:  invalid input syntax for integer: "brands" at character 68
 STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (user_id = 448 AND category = 'brands') ORDER BY polls.created_at DESC
+ERROR:  cached plan must not change result type
+STATEMENT:  SELECT  "items".* FROM "items"  WHERE "items"."id" = $1 ORDER BY items.created_at DESC LIMIT 1

@@ -30,9 +30,6 @@
     .container
       #gallery.relativePosition.hide
         .nav
-          -#.btn-group
-            %a{:href=>"#gallery/colors/dusk_blue",:class=>"btn"} Colors
-            %a{:href=>"#gallery/brands/burberry",:class=>"btn"} Brands
         .row
           #image-wall
           #sidebar.pull-right
@@ -66,7 +63,7 @@
 
     
 = javascript_include_tag 'models/Gallery.js'
-= javascript_include_tag 'views/GalleryView.js'       
+= javascript_include_tag 'views/GalleryView.js'      
 = javascript_include_tag 'views/TagView.js' 
 = javascript_include_tag 'views/PlayBtnView.js'
 = javascript_include_tag 'routers/GalleryRouter.js'      

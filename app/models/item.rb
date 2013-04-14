@@ -69,6 +69,7 @@ class Item < ActiveRecord::Base
     end
     json = {
       :id => id,
+      :number_of_votes => number_of_votes,
       :photo_url => photo_url_with_style(photo_style ||= default[:photo_style]),
       :brand => brand,
       :tags => tags.join(',') #to_s
