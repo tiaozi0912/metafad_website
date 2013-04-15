@@ -117,6 +117,10 @@ window.TagItemView = Backbone.View.extend({ //model:Tag
     this.template = _.template($('#gallery-tag-item-template').html());
     this.model.bind('change',this.render,this);
   },
+  events: {
+    'mouseenter a':'expand',
+    'mouseleave a':'collapse'
+  },
   render: function(){
     var tag = this.model;
     var isColor = ( tag.get('category') == 'colors' );
@@ -133,21 +137,19 @@ window.TagItemView = Backbone.View.extend({ //model:Tag
     }else{
       this.$el.addClass('brand');
     }
-    this.hover();
+    //this.hover();
     return this.el;
   },
-  hover: function(){
-    $('body').on({
-      mouseenter: function(){
-        if(!this.selected) this.selected = $('.color-block.expand');
-        this.selected.removeClass('expand');
-        $(this).find('.color-block').addClass('expand');
-      },
-      mouseleave: function(){
-        $(this).find('.color-block').removeClass('expand');
-        this.selected.addClass('expand');
-      }
-    },'#sidebar li');
+  expand: function(e){
+    var target = e.currentTarget;
+    if(!this.selected) this.selected = $('.color-block.expand');
+    this.selected.removeClass('expand');
+    $(target).find('.color-block').addClass('expand');
+  },
+  collapse: function(e){
+    var target = e.currentTarget;
+    $(target).find('.color-block').removeClass('expand');
+    this.selected.addClass('expand');
   }
 });
 
