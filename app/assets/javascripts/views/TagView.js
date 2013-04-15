@@ -1,6 +1,6 @@
 window.TagView = Backbone.View.extend({ //model:Tag
   tagName: 'div',
-  className: 'row-fluid',
+  className: 'row-fluid tag-view',
   template: _.template($('#gallery-tag-template').html()),
   settings:{
     transitionTime : 3000,
@@ -8,14 +8,17 @@ window.TagView = Backbone.View.extend({ //model:Tag
     maxRotationAngle: 3
   },
   r: {},
+  events: {
+    'mouseover .img-container':'showMask',
+    'mouseout .img-container':'hideMask',
+    'click .mask-content .icon':'vote',
+  },
   initialize: function(){
     this.model.bind('change',this.render,this);
   },
   render: function(){
-    var self = this;
-    self.photosView();
-    self.hover();
-    self.vote();
+    this.photosView();
+
     return this.el;
   },
   reset: function(){
@@ -42,6 +45,7 @@ window.TagView = Backbone.View.extend({ //model:Tag
         .attr('id',photo.get('id'));
     var $pin = $("<div class='pin shadow'></div>");
     var $mask = this.mask(photo);
+    var name = photo.get('id');
     this.rotate($img,name);
     $imgContainer.append($img)
         .append($pin)
@@ -73,46 +77,37 @@ window.TagView = Backbone.View.extend({ //model:Tag
       "-o-transform": angle
     };
   },
-  hover: function(){
-    var self = this;
-    $('#image-wall').on({
-      mouseover: function(){
-        var $mask = $(this).find('.mask');
-        var $img = $(this).find('.gallery-img');
-        $img.css(self.rotateProperty(0));
-        //$container.
-        $mask.height($img.outerHeight());
-        $mask.width($img.outerWidth());
-        $mask.removeClass('hide');
-      },
-      mouseout: function(){
-        var $mask = $(this).find('.mask');
-        var $img = $(this).find('.gallery-img');
-        var name = $img.attr('class')
-          .replace(/gallery-img/,"")
-          .replace(/\s/g,'');
-        
-        $mask.addClass('hide');
-        
-        $img.css(self.r[name]);
-      }
-    },'.img-container');    
+  showMask: function(e){
+    var target = e.currentTarget;
+    var $mask = $(target).find('.mask');
+    var $img = $(target).find('.gallery-img');
+    $img.css(this.rotateProperty(0));
+    $mask.height($img.outerHeight());
+    $mask.width($img.outerWidth());
+    $mask.removeClass('hide');
   },
-  vote: function(){
-    $('#image-wall').on('click','.mask-content .icon',function(){
-      var itemID = $(this).parents('.img-container').find('.gallery-img').attr('id').replace(/gallery-item-/,'');
-      var url = '/gallery_items/' + itemID + '/update';
-      //update the number of votes
-      var count = parseInt($(this).siblings('h3').html()) + 1;
-      $(this).siblings('h3').html(count.toString());
-      $.post(url,{'item':{'number_of_votes': count}},function(data){
-         if(data.errors){
-            console.log(data.errors);
-         }
-      });
-      $(this).attr('src','/images/icons/red-heart.png');
-      $(this).parents('.img-container').find('.gallery-img').css('border-color','rgb(220,0,0)');
+  hideMask: function(e){
+    var target = e.currentTarget;
+    var $mask = $(target).find('.mask');
+    var $img = $(target).find('.gallery-img');
+    var name = $img.attr('id');
+    $mask.addClass('hide');
+    $img.css(this.r[name]);
+  },
+  vote: function(e){
+    var target = e.currentTarget;
+    var itemID = $(target).parents('.img-container').find('.gallery-img').attr('id').replace(/gallery-item-/,'');
+    var url = '/gallery_items/' + itemID + '/update';
+    //update the number of votes
+    var count = parseInt($(target).siblings('h3').html()) + 1;
+    $(target).siblings('h3').html(count.toString());
+    $.post(url,{'item':{'number_of_votes': count}},function(data){
+       if(data.errors){
+          console.log(data.errors);
+       }
     });
+    $(target).attr('src','/images/icons/red-heart.png');
+    $(target).parents('.img-container').find('.gallery-img').css('border-color','rgb(220,0,0)'); 
   }
 });
 

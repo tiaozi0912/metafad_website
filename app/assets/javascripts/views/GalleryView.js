@@ -18,8 +18,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     'click .close-btn':"close"
   },
   initialize: function(){
-    console.log('gallery view initialized!');
-    //this.sectionHeight = $('#gallery-section').height();
+    //console.log('gallery view initialized!');
     this.sectionHeight = 443;
     this.render();
     this.model.bind('change',this.render,this);
@@ -40,7 +39,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     });
   },
   close: function(e){
-    this.$el.removeClass('wall-bg');
+    this.$el.parents('#gallery-section').removeClass('wall-bg');
     this.$el.hide();
     $('#play').fadeIn('slow');
       /* still can't understand the animation behavior 
@@ -53,6 +52,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
         $('body').animate({scrollTop:$('#gallery-section').offset().top});
       });*/
   },
+  //function is called when GalleryView is initialized or the model of GalleryView is changed
   renderTagView:function(){
     var self = this;
     this.tag = this.model.get('collection').where({isSelected:true})[0];
@@ -70,7 +70,6 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
   renderTagListView: function(){
     var $sidebar = this.$el.find('#sidebar');
     var tagListView = new TagListView({model:this.model.get('collection')});
-    if(this.currentView) this.currentView.close();
     this.showView($sidebar,tagListView);
   },
   showView:function($selector,view){

@@ -18,7 +18,7 @@ window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,b
   },
   initialize: function(){
     this.initializeCollection();
-    this.bind('change:currTag category polls',this.initializeCollection);
+    this.bind('change:currTag category polls',this.initializeCollection,this);
   },
   initializeCollection: function(){
     var model = this;
@@ -26,10 +26,6 @@ window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,b
     var currTag = model.get('currTag');
     var category = model.get('category');
     var settings = model.get('settings');
-    //console.log('category is:'+category);
-    //console.log('current tag is:'+currTag);
-    //var tags = settings[category]; 
-    //var tags = this.get(category); 
     var collection = new TagCollection();
     _.each(polls,function(p){
       var isSelected = (p.title == currTag);
@@ -39,7 +35,7 @@ window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,b
       }
       collection.add(new Tag(tagProperties));
     });
-    this.set({collection:collection});
+    this.set({collection:collection}); //collection reset
   }
 });
 
