@@ -14,6 +14,9 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
                  'brands':{'default':'burberry'}},
   },
   el: "#gallery",
+  events: {
+    'click .close-btn':"close"
+  },
   initialize: function(){
     console.log('gallery view initialized!');
     //this.sectionHeight = $('#gallery-section').height();
@@ -26,7 +29,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     this.renderTagView();
     this.renderTagListView();
     this.renderNavView();
-    this.closeHandler();
+    //this.closeHandler();
     return this.el;
   },
   hideHeader: function(){
@@ -36,13 +39,10 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
       $(window).scrollTop() >  top ? $('#header').fadeOut('fast') : $('#header').fadeIn('fast');
     });
   },
-  closeHandler: function(){
-    var self = this;
-    self.$el.find('.close-btn').click(function(){
-      $('#gallery-section').removeClass('wall-bg');
-      self.$el.hide();
-      $('#play').fadeIn('slow');
-
+  close: function(e){
+    this.$el.removeClass('wall-bg');
+    this.$el.hide();
+    $('#play').fadeIn('slow');
       /* still can't understand the animation behavior 
        * $('#gallery-section') must be a class of transition-config
        * jQuery animate should be applied to the height, then the scrollTop changes
@@ -52,7 +52,6 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
         $(this).css('height','auto');
         $('body').animate({scrollTop:$('#gallery-section').offset().top});
       });*/
-    }); 
   },
   renderTagView:function(){
     var self = this;
@@ -105,12 +104,8 @@ window.TagListView = Backbone.View.extend({ //model:TagCollection
     this.remove();
     _.each(this.model.models,function(tag){
       var tagItemView = new TagItemView({model:tag});
-      /*if(photoRow.get('category') == 'colors'){
-        this.$el.find('.color-label').css('background-color',photoRow.get('color'));
-      }*/
       this.$el.append(tagItemView.render());
     },this);
-    //this.$el.after("<div class='btn pull-right'>Brands</div>");
     return this.el;
   }
 });

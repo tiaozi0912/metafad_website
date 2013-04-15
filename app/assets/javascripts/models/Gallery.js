@@ -1,7 +1,7 @@
 window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,brands],polls(array of json object)
   defaults: {
     settings: {
-      palette: {'dusk_blue':'rgb(91,145,181)',
+      palette: {'dusk blue':'rgb(91,145,181)',
                'linen':'rgb(241,208,181)',
                'poppy red':'rgb(200,20,20)',
                'emerald':'rgb(0,150,127)',
@@ -13,7 +13,6 @@ window.Gallery = Backbone.Model.extend({ //attributes: currTag,category[colors,b
                'tender shoots':'rgb(163,190,57)',
                'violet':'rgb(153,108,175)'
               },
-      //brands: ['burberry','celine','chanel','chloe','christian_dior','dolce_&_gabbana','donnakaran','elie_saab','fendi','valentino'],
       rows:3
     },
   },

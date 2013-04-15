@@ -37,7 +37,6 @@ window.TagView = Backbone.View.extend({ //model:Tag
     this.$el.find('img').fadeIn(this.settings.transitionTime);
   },
   photoView: function(photo,$imgContainer){
-    //var name = photo.get('category') + "-" + photo.get('tag').replace(/\s/,"-") + "-" + photo.get('name');
     var $img = $('<img>').attr({src:photo.get('photo_url')})
         .addClass('gallery-img')
         .attr('id',photo.get('id'));

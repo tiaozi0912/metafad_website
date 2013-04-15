@@ -59,9 +59,8 @@ window.PlayBtnView = Backbone.View.extend({
   showGallery:function(){
     var self = this;
     $('#gallery-section').addClass('wall-bg');
-    $('#gallery').fadeIn('slow',function(){
-      //$(window).scrollTop($('#gallery-section').offset().top);
+    $('#gallery').fadeIn('fast',function(){
       $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
-    }); 
+    });
   }
 })
