@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     end
     
   end
-  def destroy
+  def destroy # ajax call
     item_id = params["item_id"].to_i
     Item.find(item_id).destroy
     render :nothing => true

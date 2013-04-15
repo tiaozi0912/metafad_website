@@ -3,8 +3,7 @@ module PollsHelper
     bound_1 = curr_page - next_pages
     bound_2 = curr_page + next_pages
     if end_page >= next_pages * 2 + 1
-      if bound_1 > 0 && bound_2 <= end_page
-      elsif bound_1 < 0
+      if bound_1 < 1
         bound_1 = 1
         bound_2 = bound_1 + next_pages * 2
       elsif bound_2 > end_page

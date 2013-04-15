@@ -29,12 +29,10 @@ window.ItemView = Backbone.View.extend({ //model:item
   },
   btns: function(){
   	var editURL = '/admin/items/' + this.model.get('id').toString() + '/edit';
-  	var deleteURL = '/items/' + this.model.get('id').toString() + '/delete';
   	var $btns = $("<div class='btn-group'></div>");
   	var $editBtn = $("<button class='btn btn-small edit-btn'></button>")
   	    .html("<a href='" + editURL + "'>Edit</a>");
-  	var $deleteBtn = $("<button class='btn btn-small delete-btn'>Delete</button>")
-  	    .html("<a href='" + deleteURL + "'>Delete</a>");
+  	var $deleteBtn = $("<button class='btn btn-small delete-btn'>Delete</button>");
     return $btns.append($editBtn)
   	    .append($deleteBtn);
   }

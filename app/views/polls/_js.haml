@@ -59,13 +59,22 @@
         if($itemContainer.prev().css('display') == null || $itemContainer.prev().css('display') == 'none'){
           $(this).parents('.item-container').next().css('margin-left','0');
         }
-        $(this).siblings('input.delete-item-true')[0].checked = true;
-
+        //$(this).siblings('input.delete-item-true')[0].checked = true;
+        var itemID = $itemContainer.attr('id').replace(/item_/,'');
+        deleteItemByID(itemID);
+        $itemContainer.remove();
         // Disable delete when the number of items equal to 2
         if(itemsNum() == 2){
           $('.delete-item-btn').click(false);
           var alertMsg = "Poll at least has two items. Add more items first if you want to delete any of the current items.";
           $('.poll-container').after("<div class='alert'>" + alertMsg + "</div>");
+        }
+
+        function deleteItemByID(itemID){
+          var url = '/items/' + itemID + '/delete';
+          $.get(url,function(){
+            alert('Item deleted!');
+          });
         }
       });
       

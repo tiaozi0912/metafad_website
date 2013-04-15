@@ -8,7 +8,7 @@ window.PollAdminView = Backbone.View.extend({ //model poll
     var poll = this.model;
     var itemCollection = new ItemCollection();
     _.each(poll.get('items'),function(e){
-      console.log(e);
+      //console.log(e);
       var item = new Item(e);
       itemCollection.push(item);
     });
@@ -36,6 +36,18 @@ function renderPollsAdmin(url){
       $('#page').append(pollView.render());
     });
   });
+  deleteBtnListener();
+  function deleteBtnListener(){
+    $('body').on('click','.item-container .delete-btn',function(){
+      var itemID = $(this).parents('.item-container').find('.item-image').attr('id').replace(/item-image-/,"");
+      var url = '/items/' + itemID + '/delete';
+      var self = this;
+      $.get(url,function(){
+        alert('item deleted!');
+        $(self).parents('.item-container').css("opacity",0.25);
+      });
+    })
+  }
 }
 
 
