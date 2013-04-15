@@ -4,18 +4,18 @@ window.PlayBtnView = Backbone.View.extend({
     defaultColor:'dusk_blue',
     defaultBrand:'burberry',
   },
-  initialize:function(){
-    var self = this;
-    this.$el.find('.play-btn').click(function(){self.playBtnHandler()});
-    this.$el.find('.cancel-btn').click(function(){self.cancelBtnHandler()});
+  events: {
+    'click .play-btn':'playBtn',
+    'click .cancel-btn':'cancelBtn',
+    'click .half-circle a':'showGallery'
   },
-	playBtnHandler: function(){
+	playBtn: function(){
 		$('.play-btn').hide();
     $('.cancel-btn').show();
 		this.collapseLogo();
 		this.showOptions();
 	},
-  cancelBtnHandler: function(){
+  cancelBtn: function(){
     $('.play-btn').show();
     $('.cancel-btn').hide();
     this.collapseOptions();
@@ -45,11 +45,6 @@ window.PlayBtnView = Backbone.View.extend({
           }
           $(this).html($a);
         });
-    $('#play').on('click','#play .half-circle a',function(){
-      self.cancelBtnHandler();
-      self.$el.hide();
-      self.showGallery();
-    })
   },
   collapseOptions: function(){
     var $text = this.$el.find('h3')
@@ -57,7 +52,8 @@ window.PlayBtnView = Backbone.View.extend({
     $('#play .half-circle').animate({'border-width':0,"opacity":0},'fast');
   },
   showGallery:function(){
-    var self = this;
+    this.cancelBtn();
+    this.$el.hide();    
     $('#gallery-section').addClass('wall-bg');
     $('#gallery').fadeIn('fast',function(){
       $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
