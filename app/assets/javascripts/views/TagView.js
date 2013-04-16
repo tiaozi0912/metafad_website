@@ -24,6 +24,8 @@ window.TagView = Backbone.View.extend({ //model:Tag
       mouseover: function(){ self.showMask(this)},
       mouseout: function(){self.hideMask(this)}
     },'.tag-view .img-container');
+    // hack way to unbound delegate event
+    $('body').off('click','.mask-content .icon');
     $('body').on('click','.mask-content .icon',function(){
       self.vote(this);
     })

@@ -4,7 +4,8 @@ Backbone.View.prototype.close = function(){
     this.beforeClose();//extra clean up staff
   }
   this.remove();
-  this.unbind();
+  this.undelegateEvents();
+  //this.unbind();
 }
 
 window.GalleryView = Backbone.View.extend({ //model:Gallery
@@ -54,6 +55,11 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
   //function is called when GalleryView is initialized or the model of GalleryView is changed
   renderTagView:function(){
     var self = this;
+    /* ********************************
+     * Remove the previous view, it's important,especially to unbind 
+     * all the events to prevent the event from firing multiple times
+     * *********************************/
+    if(this.tagView) this.tagView.close();
     this.tag = this.model.get('collection').where({isSelected:true})[0];
     /*if(!this.tagView){
       this.tagView = new TagView({model:this.tag});
