@@ -59,7 +59,7 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
      * Remove the previous view, it's important,especially to unbind 
      * all the events to prevent the event from firing multiple times
      * *********************************/
-    if(this.tagView) this.tagView.close();
+    //if(this.tagView) this.tagView.close();
     this.tag = this.model.get('collection').where({isSelected:true})[0];
     /*if(!this.tagView){
       this.tagView = new TagView({model:this.tag});

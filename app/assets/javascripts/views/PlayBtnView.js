@@ -55,10 +55,10 @@ window.PlayBtnView = Backbone.View.extend({
     this.cancelBtn();
     this.$el.hide();    
     $('#gallery-section').addClass('wall-bg');
-    //$('#gallery').imagesLoaded(function(){
-      $('#gallery').fadeIn('slow',function(){
+    $('#gallery').imagesLoaded(function(){
+      $('#gallery').fadeIn('fast',function(){
         $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
       });
-    //});
+    });
   }
 })

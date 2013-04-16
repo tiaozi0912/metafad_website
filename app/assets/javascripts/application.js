@@ -12,7 +12,7 @@
 // 
 //= require jquery
 //= require jquery-ui-1.8.23.custom.min
-
+//= require jquery.imagesloaded.js
 //= require Underscore
 //= require backbone
 //= require bootstrap.min
