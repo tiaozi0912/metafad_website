@@ -55,7 +55,7 @@ window.PlayBtnView = Backbone.View.extend({
     this.cancelBtn();
     this.$el.hide();    
     $('#gallery-section').addClass('wall-bg');
-    $('#gallery').fadeIn('fast',function(){
+    $('#gallery').fadeIn('slow',function(){
       $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
     });
   }
