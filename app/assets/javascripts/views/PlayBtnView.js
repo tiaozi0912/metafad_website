@@ -55,7 +55,10 @@ window.PlayBtnView = Backbone.View.extend({
     this.cancelBtn();
     this.$el.hide();    
     $('#gallery-section').addClass('wall-bg');
-    $('#gallery').imagesLoaded(function(){
+    //wait until images are loaded
+    $('#gallery .gallery-img').imagesLoaded(function(){
+      console.log('images loaded!');
+      //this.siblings('.loading').addClass('hide');
       $('#gallery').fadeIn('fast',function(){
         $('body').animate({scrollTop:$('#gallery-section').offset().top},'fast');
       });

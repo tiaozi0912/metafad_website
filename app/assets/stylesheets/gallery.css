@@ -234,6 +234,15 @@
 a.lb-next,a.lb-prev{
   cursor: pointer;
 }
+.loading.small{
+  width:20px;
+}
+#gallery .img-container .loading{
+  position: absolute;
+  left:52px;
+  top:82px;
+  z-index:10;
+}
 /* image wall css ends */
 
 /* sidebar css begins */
