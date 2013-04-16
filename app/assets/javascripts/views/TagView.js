@@ -50,12 +50,16 @@ window.TagView = Backbone.View.extend({ //model:Tag
       var photo = photoCollection.at(i);
       self.photoView(photo,$(this));
     });
-    //this.$el.find('img').fadeIn(this.settings.transitionTime);
-    this.$el.find('.gallery-img').imagesLoaded(function(){
+    this.$el.find('img').fadeIn(this.settings.transitionTime);
+    /* ************************************
+     * bug here: callback function isn't fired
+     * if images are loaded from internet (not from cache)
+     * *************************************/
+    /*this.$el.find('.gallery-img').imagesLoaded(function(){
       console.log('tag view photo loaded!');
       this.siblings('.loading').addClass('hide');
       this.fadeIn(self.settings.transitionTime);
-    });
+    });*/
   },
   photoView: function(photo,$imgContainer){
     var $img = $('<img>').attr({src:photo.get('photo_url')})
@@ -64,13 +68,13 @@ window.TagView = Backbone.View.extend({ //model:Tag
         .css('display','auto');
     var $pin = $("<div class='pin shadow'></div>");
     var $mask = this.mask(photo);
-    var $loading = $("<img class='loading small' src='/images/icons/loading.gif'>");
+    var $loading = $("<img class='loading small hide' src='/images/icons/loading.gif'>");
     var name = photo.get('id');
     this.rotate($img,name);
     $imgContainer.append($img)
         .append($pin)
-        .append($mask)
-        .append($loading);
+        .append($mask);
+        //.append($loading);
   },
   mask: function(photo){
     var $mask = $("<div class='mask hide'></div>");
