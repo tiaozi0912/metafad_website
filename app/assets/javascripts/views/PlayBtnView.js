@@ -47,7 +47,7 @@ window.PlayBtnView = Backbone.View.extend({
         });
   },
   collapseOptions: function(){
-    var $text = this.$el.find('h3')
+    var $text = this.$el.find('.half-circle h3')
         .remove();
     $('#play .half-circle').animate({'border-width':0,"opacity":0},'fast');
   },

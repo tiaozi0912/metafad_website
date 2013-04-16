@@ -28,7 +28,6 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
     this.renderTagView();
     this.renderTagListView();
     this.renderNavView();
-    //this.closeHandler();
     return this.el;
   },
   hideHeader: function(){
@@ -56,7 +55,11 @@ window.GalleryView = Backbone.View.extend({ //model:Gallery
   renderTagView:function(){
     var self = this;
     this.tag = this.model.get('collection').where({isSelected:true})[0];
-    this.tagView = new TagView({model:this.tag});
+    if(!this.tagView){
+      this.tagView = new TagView({model:this.tag});
+    }else{
+      console.log('tag view model reset!');
+    } 
     var $imageWall = this.$el.find('#image-wall');
     var $imgs = $imageWall.find('img.gallery-img');
     if($imgs.length){

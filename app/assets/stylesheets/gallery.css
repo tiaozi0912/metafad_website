@@ -154,7 +154,12 @@
   -webkit-box-shadow:0px 2px 1px 0px rgba(0,0,0,0.75);
   -moz-box-shadow:0px 2px 1px 0px rgba(0,0,0,0.75);
 }
-
+#gallery-section .text-content h3{
+  color:#eee;
+}
+.pressed{
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.8),0 1px 0 rgba(255, 255, 255, 0.5);
+}
 /* image wall css begins */
 #image-wall{
   padding:20px 115px;

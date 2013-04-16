@@ -8,17 +8,28 @@ window.TagView = Backbone.View.extend({ //model:Tag
     maxRotationAngle: 3
   },
   r: {},
-  events: {
+  /*events: {
     'mouseover .img-container':'showMask',
     'mouseout .img-container':'hideMask',
     'click .mask-content .icon':'vote',
-  },
+  },*/
   initialize: function(){
+    this.bindEvents();
     this.model.bind('change',this.render,this);
+    this.model.bind('reset',this.render,this);
+  },
+  bindEvents: function(){
+    var self = this;
+    $('body').on({
+      mouseover: function(){ self.showMask(this)},
+      mouseout: function(){self.hideMask(this)}
+    },'.tag-view .img-container');
+    $('body').on('click','.mask-content .icon',function(){
+      self.vote(this);
+    })
   },
   render: function(){
     this.photosView();
-
     return this.el;
   },
   reset: function(){
@@ -77,8 +88,8 @@ window.TagView = Backbone.View.extend({ //model:Tag
       "-o-transform": angle
     };
   },
-  showMask: function(e){
-    var target = e.currentTarget;
+  showMask: function(target){
+    //var target = e.currentTarget;
     var $mask = $(target).find('.mask');
     var $img = $(target).find('.gallery-img');
     $img.css(this.rotateProperty(0));
@@ -86,16 +97,16 @@ window.TagView = Backbone.View.extend({ //model:Tag
     $mask.width($img.outerWidth());
     $mask.removeClass('hide');
   },
-  hideMask: function(e){
-    var target = e.currentTarget;
+  hideMask: function(target){
+    //var target = e.currentTarget;
     var $mask = $(target).find('.mask');
     var $img = $(target).find('.gallery-img');
     var name = $img.attr('id');
     $mask.addClass('hide');
     $img.css(this.r[name]);
   },
-  vote: function(e){
-    var target = e.currentTarget;
+  vote: function(target){
+    //var target = e.currentTarget;
     var itemID = $(target).parents('.img-container').find('.gallery-img').attr('id').replace(/gallery-item-/,'');
     var url = '/gallery_items/' + itemID + '/update';
     //update the number of votes
