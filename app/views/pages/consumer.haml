@@ -1,6 +1,15 @@
 #consumer-home-page
   %section#featured-section.content-container
-    .container
+    .container.relativePosition
+      #app-demo-container
+        #app-demo
+          .slider-wrapper.theme-default
+            #slider.nivoSlider
+              %img{:src=>'/images/app-demo/image_1.png',:alt=>"demo image 1"}
+              %img{:src=>'/images/app-demo/image_2.png',:alt=>"demo image 2"}
+              %img{:src=>'/images/app-demo/image_3.png',:alt=>"demo image 3"}
+              %img{:src=>'/images/app-demo/image_4.png',:alt=>"demo image 4"}
+
       #slogan.pull-right.relativePosition
         %h1.extra-big.text-shadow-black Let Your Fashion Voice Heard
         %article.relativePosition
@@ -75,8 +84,14 @@
 = javascript_include_tag 'routers/GalleryRouter.js'      
 
 :javascript
-  $('#carousel').photoStack();
-  var playBtnView = new PlayBtnView();
-  var router = new GalleryRouter();
-  Backbone.history.start();
+  $(document).ready(function(){
+    $('#slider').nivoSlider({
+      effect:'fade',
+      animSpeed: 600,
+      pauseTime:6000
+    });
+    var playBtnView = new PlayBtnView();
+    var router = new GalleryRouter();
+    Backbone.history.start();
+  }) 
 /* router ends */
