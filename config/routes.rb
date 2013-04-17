@@ -19,8 +19,8 @@ SampleApp::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   #match '/sessions', :to => 'sessions#create' implicitly created by resources
-  match '/', :to=>'pages#home'
-  root :to => 'pages#home'
+  match '/', :to=>'pages#consumer'
+  root :to => 'pages#consumer'
   match 'contact' => 'contacts#new', :as => 'contacts', :via => :get
   match 'contact' => 'contacts#create', :as => 'contacts', :via => :post
   match '/legal/terms' => 'pages#terms'
@@ -29,7 +29,7 @@ SampleApp::Application.routes.draw do
   match '/publish/polls/:id' => 'polls#publish'
   match '/polls/:id/create_item' => 'items#create'
   match '/auth/failure' => 'sessions#fb_signin_failure'
-  match '/consumers' => 'pages#consumer'
+  #match '/consumers' => 'pages#consumer'
   match '/retailers' => 'pages#retailer'
   match '/users/pre_sign_up' => 'users#pre_sign_up'
   match '/retailers/pre_sign_up' => 'retailers#pre_sign_up'
