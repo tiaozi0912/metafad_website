@@ -1,15 +1,18 @@
 #consumer-home-page
   %section#featured-section.content-container
     .container
-      #carousel
-        %img.shadow{:src=>"/images/carousel/poll_1.png",:alt=>"pic_1"}
-        %img.shadow{:src=>"/images/carousel/poll_2.png",:alt=>"pic_2"}
-        %img.shadow{:src=>"/images/carousel/poll_3.png",:alt=>"pic_3"}
-        %img.shadow{:src=>"/images/carousel/poll_4.png",:alt=>"pic_4"}
-      #slogan.pull-right
-        %h1 Express your opinions on the trending fashion
-        %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"btn btn-big sign-up-btn green-btn"} 
-          %img.icon{:src=>"/images/icons/phone-icon.png",:alt=>"phone-icon"} Sign Up For Points
+      #slogan.pull-right.relativePosition
+        %h1.extra-big.text-shadow-black Let Your Fashion Voice Heard
+        %article.relativePosition
+          %p Just a trend follower? No, You can be the <b>trend creator</b>! Why not to vote for the fashion in your heart?
+          %p Well,did we mention you'll earn <b>exclusive coupons</b> for votings? 
+        .ribbon.ribbon-green
+          .ribbon-stitches-top
+          .ribbon-content
+            %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn"}  
+              %h1 
+                %b Sign Up
+          .ribbon-stitches-bottom
         = render :partial => 'preSignUp'
   %section#features-section.content-container
     .container

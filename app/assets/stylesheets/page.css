@@ -18,16 +18,20 @@ body{
 	background-image:url('/images/backgrounds/bg.png');
 }
 .main-content{
-	margin-top:70px;
+	margin-top:68px;
 }
 body,h1,h2,h3,h4,h5,p,label,button,a{
 	font-family: "Century Gothic",sans-serif;
-	color:rgb(134,134,134);
+	/*color:rgb(134,134,134);*/
+	color:#333;
 }
 h1{
 	font-size:36px;
 	line-height: 1.2em;
 	font-weight: normal;
+}
+h1.extra-big{
+	font-size:56px;
 }
 h2{
 	font-size:30px;
@@ -109,6 +113,9 @@ a:hover{
 .text-shadow-2{
 	text-shadow:1px 1px 0 white;
 }
+.text-shadow-black{
+	text-shadow:2px 2px 0 black;
+}
 
 
 .mobile-view-show{
@@ -173,15 +180,38 @@ section.content-container{
 	min-height:0;
 
 }
+#featured-section{
+	background:url('/images/backgrounds/photo-grid-bg.jpg') no-repeat;
+	z-index: 0;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 430px;
+}
 #carousel{
 	display: inline-block;
 }
 #slogan{
-	width:38%;
-	padding-top:55px;
+	width:45%;
+	z-index:5;
 }
-#slogan h1{
+#slogan h1.extra-big{
+	color:white;
 	margin-bottom: 15px;
+}
+#slogan article{
+	padding:20px 36px 40px 36px;
+	background-color:rgba(250,250,250,0.8);
+	z-index: -2;
+}
+#slogan p{
+	font-family: 'Arial';
+}
+#slogan .ribbon{
+	position:absolute;
+	left:160px;
+	bottom:-90px;
 }
 #features-section img{
 	width:200px;
@@ -647,6 +677,103 @@ a:hover{
     line-height: 22px;
     margin-left:10px;
 }
+
+/* ribbon css begins */
+.ribbon-green{
+  background: #a9d880;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a9d880), to(#608244));
+  background: -webkit-linear-gradient(top, #a9d880, #608244);
+  background: -moz-linear-gradient(top, #a9d880, #608244);
+  background: -ms-linear-gradient(top, #a9d880, #608244);
+  background: -o-linear-gradient(top, #a9d880, #608244);
+  background-image: -ms-linear-gradient(top, #a9d880 0%, #608244 100%);
+}
+.ribbon-green h1{
+  color: #608244;
+}
+.ribbon-green:before, .ribbon-green:after{
+	border: 1.5em solid #7da858;
+}
+.ribbon-green .ribbon-content:before, .ribbon-green .ribbon-content:after{
+   border-color: #608244 transparent transparent transparent;
+}
+
+.ribbon {
+   width: auto;
+   position: absolute;
+   text-align: center;
+   font-size: 16px!important;
+   -webkit-box-shadow: rgba(000,000,000,0.3) 0 1px 1px;
+   -moz-box-shadow: rgba(000,000,000,0.3) 0 1px 1px;
+   box-shadow: rgba(000,000,000,0.3) 0 1px 1px;
+   font-family: 'Helvetica Neue',Helvetica, sans-serif;
+}
+.ribbon h1 {
+   font-size: 25px
+   ;
+   text-shadow: #d8f5bf 0 1px 0;
+   margin:0px;
+   padding: 15px 10px;
+}
+.ribbon:before, .ribbon:after {
+   content: '';
+   position: absolute;
+   display: block;
+   bottom: -1em;
+   z-index: -1;
+}
+.ribbon:before {
+   left: -2em;
+   border-right-width: 1.5em;
+   border-left-color: transparent;
+   -webkit-box-shadow: rgba(000,000,000,0.4) 1px 1px 1px;
+   -moz-box-shadow: rgba(000,000,000,0.4) 1px 1px 1px;
+   box-shadow: rgba(000,000,000,0.4) 1px 1px 1px;
+  
+}
+.ribbon:after {
+   right: -2em;
+   border-left-width: 1.5em;
+   border-right-color: transparent;
+   -webkit-box-shadow: rgba(000,000,000,0.4) -1px 1px 1px;
+   -moz-box-shadow: rgba(000,000,000,0.4) -1px 1px 1px;
+   box-shadow: rgba(000,000,000,0.4) -1px 1px 1px; 
+}
+.ribbon .ribbon-content{
+	padding:0 15px;
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+   position: absolute;
+   display: block;
+   border-style: solid;
+   bottom: -1em;
+   content: '';
+   }
+.ribbon .ribbon-content:before {
+   left: 0;
+   border-width: 1em 0 0 1em;
+   }
+.ribbon .ribbon-content:after {
+   right: 0;
+   border-width: 1em 1em 0 0;
+   }
+.ribbon-stitches-top {
+   margin-top:2px;
+   border-top: 1px dashed rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+   box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.5);
+}
+.ribbon-stitches-bottom {
+   margin-bottom:2px;
+   border-top: 1px dashed rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+   box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* ribbon css end */
+
 
 
 
