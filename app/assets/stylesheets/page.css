@@ -248,11 +248,15 @@ section.content-container{
 #features-section .span4:last-child .title{
     margin:0 0 0 auto;
 }
+#features-section .row-fluid{
+	padding:30px 0;
+}
 .shadow{
 	box-shadow:0px 0px 5px 0px #666;
 	-webkit-box-shadow:0px 0px 5px 0px #666;
 	-moz-box-shadow:0px 0px 5px 0px #666;
 }
+
 /* retailers home page begins */
 #retailer-featured-section{
 	padding:0;
