@@ -15,13 +15,7 @@
         %article.relativePosition
           %p Just a trend follower? No, You can be the <b>trend creator</b>! Why not to vote for the fashion in your heart?
           %p Well,did we mention you'll earn <b>exclusive coupons</b> for votings? 
-        .ribbon.ribbon-green
-          .ribbon-stitches-top
-          .ribbon-content
-            %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn"}  
-              %h1 
-                %b Sign Up
-          .ribbon-stitches-bottom
+        %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn green-btn btn btn-big"} Sign Up 
         = render :partial => 'preSignUp'
   %section#features-section.content-container
     .container
