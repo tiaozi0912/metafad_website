@@ -20,6 +20,11 @@ class PollsController < ApplicationController
     render :json => {:polls => @polls_toJSON}
   end
 
+  def poll_to_json
+    @poll = Poll.find(params[:id].to_i)
+    render :json => {:poll => @poll.to_json}
+  end
+
 	def show
     store_location
     @poll=Poll.where("is_deleted = false AND id = #{params[:id]}")[0]

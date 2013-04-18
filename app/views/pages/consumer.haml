@@ -11,11 +11,12 @@
               %img{:src=>'/images/app-demo/image_4.png',:alt=>"demo image 4"}
 
       #slogan.pull-right.relativePosition
-        %h1.extra-big.text-shadow-black Let Your Fashion Voice Heard
+        %h1.extra-big.text-shadow-black Let Your Fashion Voice Be Heard
         %article.relativePosition
-          %p Just a trend follower? No, You can be the <b>trend creator</b>! Why not to vote for the fashion in your heart?
+          %p Just a trend follower? No, You can be the <b>trend setter</b>! Why not <b>vote</b> on your favorite fashion styles?
           %p Well,did we mention you'll earn <b>exclusive coupons</b> for votings? 
         %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn green-btn btn btn-big"} Sign Up 
+
         = render :partial => 'preSignUp'
   %section#features-section.content-container
     .container
@@ -29,7 +30,7 @@
           .title
             %h3 Earn points, stay faddy          
         .span4
-          %img{:src=>"/images/icons/coupon-icon-big.png",:alt=>"coupon-icon-big"}
+          %img{:src=>"/images/icons/coupon-icon-big.png",:alt=>"coupon icon big"}
           .title
             %h3 Obtain exclusive coupons
   %section#featured-polls-section.relativePosition.content-container
@@ -44,15 +45,23 @@
         - for i in 0..2
           .span4
             %h3.header Brand New Arrials
-            .img-container.relativePosition
-              %img{:src=>'http://placehold.it/310x310',:class=>"poll-image",:alt=>'poll-image'}
+            .item-container.relativePosition
+              .img-container.relativePosition
+                %img{:src=>'http://placehold.it/310x310',:class=>"poll-image",:alt=>'poll-image'}
+                .mask.hide
+                  .mask-content
+                    %img.icon{:src=>"/images/icons/eye-icon.png",:alt=>"eye icon"}
+                    %h3 
+                      %a{:href=>"#polls/463"} Check it out!
               .title-container.poll
                 %span.poll-title 
-                  %a{:href=>"#"}
+                  %a{:href=>"#polls/463"}
                     2013 Chanel Spring Dress
                 %span.vote-container.pull-right
                   %img{:src=>'/images/icons/red-heart.png',:alt=>'heart-icon',:class=>'icon'}
                   %span 45
+      #poll-view-wrapper
+              
 
   -#%section#gallery-section.content-container.transition-config
     .container
@@ -79,9 +88,9 @@
     %h3 <%= htmlText(name) %>
     .color-block.transition-config
 
-%script{:type=>"text/template",:id=>"gallery-tag-template"}
+%script{:type=>"text/template",:id=>"#gallery-tag-template"}
   - for i in 1..3
-    .span4
+    .span3
       - for j in 1..3
         .img-container.relativePosition
 
@@ -93,11 +102,12 @@
       %i.icon-zoom-in.icon-white
 
     
-= javascript_include_tag 'models/Gallery.js'
-= javascript_include_tag 'views/GalleryView.js'      
-= javascript_include_tag 'views/TagView.js' 
-= javascript_include_tag 'views/PlayBtnView.js'
-= javascript_include_tag 'routers/GalleryRouter.js'      
+= javascript_include_tag 'models/Item.js'
+= javascript_include_tag 'models/Poll.js'
+= javascript_include_tag 'views/PollView.js'
+= javascript_include_tag 'views/ItemView.js'
+= javascript_include_tag 'views/ItemCollectionView.js'
+= javascript_include_tag 'routers/MainPagePollRouter.js'      
 
 :javascript
   $(document).ready(function(){
@@ -106,8 +116,16 @@
       animSpeed: 600,
       pauseTime:6000
     });
-    var playBtnView = new PlayBtnView();
-    var router = new GalleryRouter();
+
+    $('.img-container').hover(function(){
+      $(this).find('.mask').stop(true,true).fadeIn();
+      $(this).siblings('.title-container').hide();
+    },function(){
+      $(this).find('.mask').stop(true,true).fadeOut();
+      $(this).siblings('.title-container').show();
+    });
+
+    var router = new MainPagePollRouter();
     Backbone.history.start();
   }) 
 /* router ends */

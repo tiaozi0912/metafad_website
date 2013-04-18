@@ -1,7 +1,7 @@
 /* router begins */
 var GalleryRouter = Backbone.Router.extend({
   routes: {
-    'gallery/:category/:tag':"selectTag"
+    'polls/:category/:title':"selectTag"
     //'gallery-section':'close'
   },
   selectTag: function(category,tag){
@@ -12,12 +12,12 @@ var GalleryRouter = Backbone.Router.extend({
       var polls = data.polls;
       if(self.gallery){
         console.log('gallery model changed!');
-        self.gallery.set({category:category,currTag:tag,polls:polls});
+        self.poll.set({category:category,currTag:tag,polls:polls});
       }else{
        console.log('initialize gallery model');
        console.log('initialize gallery view');
-       self.gallery = new Gallery({category:category,currTag:tag,polls:polls});
-       self.galleryView = new GalleryView({model:self.gallery});
+       self.poll = new Poll({category:category,currTag:tag,polls:polls});
+       self.pollView = new SinglePollView({model:self.gallery});
       }
     });  
   }

@@ -1,55 +1,48 @@
-window.PollAdminView = Backbone.View.extend({ //model poll
+window.PollView = Backbone.View.extend({ //model poll
   tagName: "div",
   className: "poll-container",
+  settings: {
+    title: true,
+    admin: false
+  },
   initialize: function(){
+    this.itemCollection = this.initItemCollection();
+    this.itemCollectionView = new ItemCollectionView({model:this.itemCollection,
+                                                      settings:this.settings
+                                                    });
     this.model.bind('change',this.render,this);
+    this.model.bind('reset',this.render,this);
   },
   render: function(){
-    var poll = this.model;
+    //render title view
+    var self = this;
+    $.extend(self.settings,self.options.settings);
+    if (this.settings.title) this.$el.append(this.titleViewRender());
+    //render item collection view
+    this.$el.append(this.itemCollectionView.render());
+    return this.el;
+  },
+  initItemCollection: function(){
     var itemCollection = new ItemCollection();
+    var poll = this.model;
     _.each(poll.get('items'),function(e){
       //console.log(e);
       var item = new Item(e);
       itemCollection.push(item);
     });
-    var itemCollectionView = new ItemCollectionView({model:itemCollection});
+    return itemCollection;
+  },
+  titleViewRender: function(){
+    var poll = this.model;
     var $text = $('<h3></h3>');
     var $title = $('<a></a>')
         .attr('href','/polls/' + poll.get('id').toString())
         .html(poll.get('title'));
     var $date = $("<i></i>").html(poll.get('date'));
-    $text.append($title).append($date);
-    this.$el
-        .append($text)
-        .append(itemCollectionView.render());
-    return this.el;
+    $text.append($title)
+        .append($date);
+    return $text;
   }
 })
-
-function renderPollsAdmin(url){
-  $.get(url,function(data){
-    var polls = data.polls;
-    //console.log(polls);
-    _.each(polls,function(p){
-      var poll = new Poll(p);
-      var pollView = new PollAdminView({model:poll});
-      $('#page').append(pollView.render());
-    });
-  });
-  deleteBtnListener();
-  function deleteBtnListener(){
-    $('body').on('click','.item-container .delete-btn',function(){
-      var itemID = $(this).parents('.item-container').find('.item-image').attr('id').replace(/item-image-/,"");
-      var url = '/items/' + itemID + '/delete';
-      var self = this;
-      $.get(url,function(){
-        alert('item deleted!');
-        $(self).parents('.item-container').css("opacity",0.25);
-      });
-    })
-  }
-}
-
-
 
 

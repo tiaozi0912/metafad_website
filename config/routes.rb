@@ -45,6 +45,8 @@ SampleApp::Application.routes.draw do
   put '/items/:id' => 'items#update'
   match '/gallery_items/:id/update' => 'items#gallery_item_update'
   match '/gallery/:category' => 'pages#gallery'
+
+  get '/web/polls/:id' => 'polls#poll_to_json'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

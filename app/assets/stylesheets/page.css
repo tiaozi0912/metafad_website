@@ -38,6 +38,9 @@ h2{
 	line-height: 1.2em;
 	font-weight: normal;
 }
+img{
+	width:100%;
+}
 .container{
 	width:980px;
 }
@@ -56,10 +59,13 @@ h2{
   text-shadow:none;
 }
 .icon{
-	height:25px;
+	height:20px;
 	width:auto;
 	display: inline-block;
 	margin-right:5px;
+}
+.icon.icon-big{
+	height:25px;
 }
 .green-btn{
   background-color:rgb(168,216,128);
@@ -130,6 +136,7 @@ h2{
 
 #brand{
 	height:70px;
+    width:auto;
 	position: relative;
 	top:-10px;
 }
@@ -248,7 +255,10 @@ section.content-container{
 #features-section .span4:last-child .title{
     margin:0 0 0 auto;
 }
-#features-section .row-fluid,#featured-polls-section .row-fluid{
+#features-section .row-fluid{
+	padding:50px 0;
+}
+#featured-polls-section .row-fluid{
 	padding:30px 0;
 }
 .shadow{
@@ -309,13 +319,32 @@ section.content-container{
   background-color: rgba(254,254,254,0.8);
 }
 .vote-container .icon{
-  height:20px;
   margin-right:0;
 }
 .poll span{
   vertical-align: middle;
 }
+#featured-polls-section .mask{
+	width:100%;
+	height:100%;
 
+}
+#featured-polls-section .mask-content{
+	left:30%;
+}
+#featured-polls-section .item-container{
+	padding:0;
+}
+#featured-polls-section .item-container a{
+	margin:0;
+}
+
+/* polls css begins */
+
+
+
+
+/* polls css ends */
 
 /* retailers home page begins */
 #retailer-featured-section{

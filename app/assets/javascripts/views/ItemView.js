@@ -1,14 +1,18 @@
 window.ItemView = Backbone.View.extend({ //model:item
   tagName: 'div',
   className: 'item-container',
+  settings: {
+    admin: false
+  },
   initialize: function(){
   	this.model.bind('change',this.render,this);
   },
   render: function(){
   	var self = this;
+    $.extend(self.settings,self.options.settings);
     this.$el.append(self.image())
-        .append(self.info())
-        .append(self.btns());
+        .append(self.info());
+    if (this.settings.admin) this.$el.append(self.btns());
     return this.el;
   },
   image: function(){
