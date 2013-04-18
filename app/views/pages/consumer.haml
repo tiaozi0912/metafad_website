@@ -38,7 +38,29 @@
           %img{:src=>"/images/icons/coupon-icon-big.png",:alt=>"coupon-icon-big"}
           .title
             %h3 Obtain exclusive coupons
-  %section#gallery-section.content-container.transition-config
+  %section#featured-polls-section.relativePosition.content-container
+    .container.relativePosition
+      .ribbon.ribbon-red.section-title
+        .ribbon-stitches-top
+        .ribbon-content 
+          %h1 
+            %b Featured Polls Of This Week
+          .ribbon-stitches-bottom
+      .row-fluid
+        - for i in 0..2
+          .span4
+            %h3.header Brand New Arrials
+            .img-container.relativePosition
+              %img{:src=>'http://placehold.it/310x310',:class=>"poll-image",:alt=>'poll-image'}
+              .title-container.poll
+                %span.poll-title 
+                  %a{:href=>"#"}
+                    2013 Chanel Spring Dress
+                %span.vote-container.pull-right
+                  %img{:src=>'/images/icons/red-heart.png',:alt=>'heart-icon',:class=>'icon'}
+                  %span 45
+
+  -#%section#gallery-section.content-container.transition-config
     .container
       #gallery.relativePosition.hide
         .nav

@@ -20,7 +20,7 @@ body{
 .main-content{
 	margin-top:68px;
 }
-body,h1,h2,h3,h4,h5,p,label,button,a{
+body,h1,h2,h3,h4,h5,p,label,button{
 	font-family: "Century Gothic",sans-serif;
 	/*color:rgb(134,134,134);*/
 	color:#333;
@@ -60,9 +60,6 @@ h2{
 	width:auto;
 	display: inline-block;
 	margin-right:5px;
-}
-a:hover{
-	color:#333;
 }
 .btn a:hover{
 	color:rgb(134,134,134);
@@ -248,7 +245,7 @@ section.content-container{
 #features-section .span4:last-child .title{
     margin:0 0 0 auto;
 }
-#features-section .row-fluid{
+#features-section .row-fluid,#featured-polls-section .row-fluid{
 	padding:30px 0;
 }
 .shadow{
@@ -256,6 +253,66 @@ section.content-container{
 	-webkit-box-shadow:0px 0px 5px 0px #666;
 	-moz-box-shadow:0px 0px 5px 0px #666;
 }
+#app-demo-container{
+	background: url('/images/app-demo/iphone.png') no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height:515px;
+	width:260px;
+	position:absolute;
+	right:476px;
+	top:0px;
+}
+#app-demo{
+	padding-top:82px; 
+	padding-left:15px;
+}
+#app-demo .slider-wrapper{
+	height:349px;
+	width:232px;
+	/*background-color: rgba(220,0,0,0.5);*/
+}
+#featured-polls-section{
+	background-color:black;
+	z-index:0;
+}
+#featured-polls-section .section-title{
+  left:25%;
+  width:50%;
+  top:-75px;
+}
+#featured-polls-section .header{
+  margin-bottom: 10px;
+  color:#eee;
+}
+#featured-polls-section .poll-title{
+	width:245px;
+	float: left;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.title-container.poll{
+  width:94%;
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:3%;
+  padding-right:3%;
+  position: absolute;
+  bottom: 0px;
+  left:0px;
+  background-color: rgba(254,254,254,0.8);
+}
+.vote-container .icon{
+  height:20px;
+  margin-right:0;
+}
+.poll span{
+  vertical-align: middle;
+}
+
 
 /* retailers home page begins */
 #retailer-featured-section{
@@ -285,27 +342,6 @@ section.retailer-features-section h1{
 }
 .white-font,.white-font h1{
 	color:#eee;
-}
-#app-demo-container{
-	background: url('/images/app-demo/iphone.png') no-repeat;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height:515px;
-	width:260px;
-	position:absolute;
-	right:476px;
-	top:0px;
-}
-#app-demo{
-	padding-top:82px; 
-	padding-left:15px;
-}
-#app-demo .slider-wrapper{
-	height:349px;
-	width:232px;
-	/*background-color: rgba(220,0,0,0.5);*/
 }
 /* retailers home page ends */
 
@@ -716,15 +752,34 @@ a:hover{
   background: -o-linear-gradient(top, #a9d880, #608244);
   background-image: -ms-linear-gradient(top, #a9d880 0%, #608244 100%);
 }
+.ribbon-red{
+	background: #d64b4b;
+   background: -webkit-gradient(linear, left top, left bottom, from(#d64b4b), to(#ab2c2c));
+   background: -webkit-linear-gradient(top, #d64b4b, #ab2c2c);
+   background: -moz-linear-gradient(top, #d64b4b, #ab2c2c);
+   background: -ms-linear-gradient(top, #d64b4b, #ab2c2c);
+   background: -o-linear-gradient(top, #d64b4b, #ab2c2c);
+   background-image: -ms-linear-gradient(top, #d64b4b 0%, #ab2c2c 100%);
+}
 .ribbon-green h1{
   color: #608244;
   text-shadow: #d8f5bf 0 1px 0;
 }
+.ribbon-red h1{
+   color: #801111;
+   text-shadow: #d65c5c 0 1px 0;
+}
 .ribbon-green:before, .ribbon-green:after{
 	border: 1.5em solid #7da858;
 }
+.ribbon-red:before, .ribbon-red:after{
+  border: 1.5em solid #c23a3a;
+}
 .ribbon-green .ribbon-content:before, .ribbon-green .ribbon-content:after{
    border-color: #608244 transparent transparent transparent;
+}
+.ribbon-red .ribbon-content:before, .ribbon-red .ribbon-content:after{
+   border-color: #871616 transparent transparent transparent;
 }
 
 .ribbon {
