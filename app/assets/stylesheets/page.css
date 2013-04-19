@@ -165,6 +165,28 @@ a:hover{
 	height:45px;
 	padding:12.5px 0 12.5px 0px;
 }
+#header .user-profile-photo img{
+	width:100%;
+	height:auto;
+}
+.user-profile-photo{
+	float:left;
+}
+.user-profile-photo.small{
+	height:30px;
+	width:30px;
+	overflow: hidden;
+	margin-right:10px;
+}
+#header .caret{
+	border-top-color:white;
+}
+#header .dropdown-menu a{
+	color:#333;
+}
+#user-info-container{
+  /*padding-right:40px;*/
+}
 #sign-in{
 	cursor: pointer;
 	padding-right:10px;

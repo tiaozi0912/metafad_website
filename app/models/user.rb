@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
                                    :large => "125x125>" },
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
-                    :url=>"/user_:id/created_at_:created_at/:style.jpg"
+                    :url=>"/user_:id/created_at_:created_at/:style.jpg",
+                    :path => '/app/public:url'
 
   Paperclip.interpolates :created_at do |attachment, style|
     attachment.instance.created_at
