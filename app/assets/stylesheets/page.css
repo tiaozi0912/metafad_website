@@ -267,9 +267,9 @@ section.content-container{
 	-moz-box-shadow:0px 0px 5px 0px #666;
 }
 .shadow-subtle{
-	box-shadow:0px 1px 3px 0px rgba(255,255,255,0.6);
-	-webkit-box-shadow:0px 1px 3px 0px rgba(255,255,255,0.6);
-	-moz-box-shadow:0px 1px 3px 0px rgba(255,255,255,0.6);
+	box-shadow:0px 1px 3px 0px rgba(255,255,255,0.4);
+	-webkit-box-shadow:0px 1px 3px 0px rgba(255,255,255,0.4);
+	-moz-box-shadow:0px 1px 3px 0px rgba(255,255,255,0.4);
 }
 #app-demo-container{
 	background: url('/images/app-demo/iphone.png') no-repeat;
