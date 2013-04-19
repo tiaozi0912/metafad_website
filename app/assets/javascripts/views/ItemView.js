@@ -1,43 +1,32 @@
 window.ItemView = Backbone.View.extend({ //model:item
   tagName: 'div',
-  className: 'item-container',
+  className: 'item-container shadow-subtle',
   settings: {
-    admin: false
+    admin: false,
+    voteEnabled: true
+  },
+  events:{
+    'mouseenter .img-container':'showMask',
+    'mouseleave .img-container':'hideMask'
   },
   initialize: function(){
+    this.template = _.template($('#item-view-template').html());
   	this.model.bind('change',this.render,this);
   },
   render: function(){
   	var self = this;
     $.extend(self.settings,self.options.settings);
-    this.$el.append(self.image())
-        .append(self.info());
-    if (this.settings.admin) this.$el.append(self.btns());
+    this.$el.html(this.template(this.model.toJSON()));
+    if (!this.settings.admin) this.$el.find('.btn-group').remove();
+    if(!this.settings.voteEnabled) this.$el.find('.mask').remove();
     return this.el;
   },
-  image: function(){
-  	var model = this.model;
-    $img = $("<img alt='item photo' class='item-image'>")
-        .attr('src',model.get('photo_url'))
-        .attr('id','item-image-' + model.get('id').toString());
-    return $img;
+  showMask: function(e){
+    var target = e.currentTarget;
+    $(target).find('.mask').stop(true,true).fadeIn();
   },
-  info:function(){
-  	var model = this.model;
-  	var $info = $("<div class='item-info'></div>");
-    $brand = $('<p></p>').html('brand: '+model.get('brand'));
-    $tags = $('<p></p>').html('tags: '+model.get('tags'));
-    $info.append($brand)
-        .append($tags);
-    return $info;
-  },
-  btns: function(){
-  	var editURL = '/admin/items/' + this.model.get('id').toString() + '/edit';
-  	var $btns = $("<div class='btn-group'></div>");
-  	var $editBtn = $("<button class='btn btn-small edit-btn'></button>")
-  	    .html("<a href='" + editURL + "'>Edit</a>");
-  	var $deleteBtn = $("<button class='btn btn-small delete-btn'>Delete</button>");
-    return $btns.append($editBtn)
-  	    .append($deleteBtn);
+  hideMask: function(e){
+    var target = e.currentTarget;
+    $(target).find('.mask').stop(true,true).fadeOut();
   }
 })

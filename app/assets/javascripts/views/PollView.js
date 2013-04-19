@@ -3,7 +3,8 @@ window.PollView = Backbone.View.extend({ //model poll
   className: "poll-container",
   settings: {
     title: true,
-    admin: false
+    admin: false,
+    closeBtn:false
   },
   initialize: function(){
     this.itemCollection = this.initItemCollection();
@@ -12,6 +13,8 @@ window.PollView = Backbone.View.extend({ //model poll
                                                     });
     this.model.bind('change',this.render,this);
     this.model.bind('reset',this.render,this);
+  },
+  events: {
   },
   render: function(){
     //render title view
@@ -34,11 +37,11 @@ window.PollView = Backbone.View.extend({ //model poll
   },
   titleViewRender: function(){
     var poll = this.model;
-    var $text = $('<h3></h3>');
+    var $text = $("<h3 class='poll-title'></h3>");
     var $title = $('<a></a>')
         .attr('href','/polls/' + poll.get('id').toString())
         .html(poll.get('title'));
-    var $date = $("<i></i>").html(poll.get('date'));
+    var $date = $("<i class='date'></i>").html(poll.get('date'));
     $text.append($title)
         .append($date);
     return $text;

@@ -41,12 +41,12 @@
           %h1 
             %b Featured Polls Of This Week
           .ribbon-stitches-bottom
-      .row-fluid
+      .row-fluid#featured-polls
         - for i in 0..2
           .span4
             %h3.header Brand New Arrials
             .item-container.relativePosition
-              .img-container.relativePosition
+              .img-container.img-collage-container.relativePosition
                 %img{:src=>'http://placehold.it/310x310',:class=>"poll-image",:alt=>'poll-image'}
                 .mask.hide
                   .mask-content
@@ -61,6 +61,7 @@
                   %img{:src=>'/images/icons/red-heart.png',:alt=>'heart-icon',:class=>'icon'}
                   %span 45
       #poll-view-wrapper
+      %a{:href=>"#featured-polls-section",:class=>"close-btn btn hide"} Back
               
 
   -#%section#gallery-section.content-container.transition-config
@@ -98,9 +99,24 @@
   .mask-content
     %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
     %h3 100
-    %a{:href=>"#",:class=>"lightbox",:rel=>"lightbox"}
+    %a{:href=>"#",:class=>"lightbox",:rel=>"lightbox[item]"}
       %i.icon-zoom-in.icon-white
 
+%script{:type=>"text/template",:id=>"item-view-template"}
+  .img-container.relativePosition
+    <img src="<%= photo_url %>" class="item-image" alt="item photo" id="item-image-<%= id %>"/>
+    .mask.hide
+      .mask-content
+        %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
+        %h3 <%= number_of_votes %>
+        <a href="<%= photo_url.replace(/medium/,'large') %>" class='lightbox' rel='lightbox[item]'><i class='icon-zoom-in icon-white'></i></a>
+  .item-info
+    %span Brand here: <%= brand %>
+    -#%p tags: <%= tags %>
+  .btn-group
+    %button.btn.btn-small.edit-btn
+      %a{:href=>"#"}Edit
+    %button.btn.btn-small.delete-btn Delete  
     
 = javascript_include_tag 'models/Item.js'
 = javascript_include_tag 'models/Poll.js'

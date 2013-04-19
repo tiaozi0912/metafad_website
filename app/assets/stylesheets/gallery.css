@@ -220,7 +220,7 @@
 .img-container .mask-content .icon{
   cursor: pointer;
 }
-.img-container .mask-content a{
+.img-container .mask-content .lightbox{
   display:block;
   margin-left:30px;
   margin-top:50px;
