@@ -7,7 +7,10 @@ window.ItemView = Backbone.View.extend({ //model:item
   },
   events:{
     'mouseenter .img-container':'showMask',
-    'mouseleave .img-container':'hideMask'
+    'mouseleave .img-container':'hideMask',
+    'click .mask .icon':'vote',
+    'mouseenter .mask .icon':'redHeart',
+    'mouseleave .mask .icon':'whiteHeart'
   },
   initialize: function(){
     this.template = _.template($('#item-view-template').html());
@@ -28,5 +31,31 @@ window.ItemView = Backbone.View.extend({ //model:item
   hideMask: function(e){
     var target = e.currentTarget;
     $(target).find('.mask').stop(true,true).fadeOut();
+  },
+  vote: function(e){
+    var target = e.currentTarget;
+    var url = '/gallery_items/' + this.model.get('id') + '/update';
+    var $votedIcon = $("<img src='/images/icons/red-heart.png' class='icon' id='voted' alt='red heart'>");
+
+    //update the number of votes
+    var count = parseInt($(target).siblings('h3').html()) + 1;
+    $(target).siblings('h3').html(count.toString());
+    $.post(url,{'item':{'number_of_votes': count}},function(data){
+       if(data.errors){
+          console.log(data.errors);
+       }
+    });
+    $(target).attr('src','/images/icons/red-heart.png'); 
+
+    //attach the voted icon to the item 
+    $(target).parents('.img-container').append($votedIcon);
+  },
+  redHeart: function(e){
+    var target = e.currentTarget;
+    $(target).attr('src','/images/icons/red-heart.png'); 
+  },
+  whiteHeart: function(e){
+    var target = e.currentTarget;
+    $(target).attr('src','/images/icons/white-heart.png'); 
   }
 })

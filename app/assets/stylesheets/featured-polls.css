@@ -71,6 +71,7 @@
 #featured-polls-section #poll-view-wrapper .poll-title a{
   cursor: default;
   pointer-events:none;
+  color:rgb(220,20,20);
 }
 #featured-polls-section #poll-view-wrapper .date{
   color:gray;
@@ -86,6 +87,12 @@
   font-size:13px;
   line-height:18px;
   color:#333;
+}
+#voted{
+  position: absolute;
+  left:10px;
+  top:10px;
+  z-index:2;
 }
 
 
