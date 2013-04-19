@@ -11,9 +11,27 @@ var MainPagePollRouter = Backbone.Router.extend({
   initialize: function(){
     var self = this;
     $('#featured-polls-section .close-btn').click(function(){
-      self.pollView.remove();
-      $(this).hide();
-      $('#featured-polls').show();
+      var $btn = $(this);
+      $('#featured-polls').slideDown(400);
+     $('#poll-view-wrapper').animate({'height':0},'slow',function(){
+        self.pollView.remove();
+        $btn.hide();
+        $(this).height('auto');
+      });
+      /*setTimeout(function(){
+        $('#poll-view-wrapper').animate({'height':0},'slow',function(){
+          self.pollView.remove();
+          $btn.hide();
+          $(this).height('auto');
+        });
+      },10);*/
+      /*$('#featured-polls').slideDown('fast',function(){
+        $('#poll-view-wrapper').animate({'height':0},'slow',function(){
+          self.pollView.remove();
+          $btn.hide();
+          $(this).height('auto');
+        }) 
+      });*/
     })
   },
   selectTag: function(id){
@@ -24,9 +42,11 @@ var MainPagePollRouter = Backbone.Router.extend({
       self.pollView = new PollView({model:self.poll,
                                     settings:self.settings
                                   });
-      $('#featured-polls').hide();
       $('#poll-view-wrapper').html(self.pollView.render());
-      $('#featured-polls-section .close-btn').show();
+      $('#poll-view-wrapper').slideDown('fast',function(){
+        $('#featured-polls-section .close-btn').show();
+        $('#featured-polls').slideUp();
+      });
     })
   }
 });
