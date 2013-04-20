@@ -21,7 +21,19 @@
           - else
             %a#identity{:href=>"/"}I'm a user
         - else
-          %a{:href=>"/signout"}
-            Sign out
+          #user-info-container.dropdown
+            %a.user-profile-photo.small{:href=>"/users/#{current_user.id}"}
+              %img{:src =>"#{current_user.photo.url(:small)}"}
+            %a.dropdown-toggle#dLabel{:"data-toggle"=>"dropdown",:"data-target"=>"#",:href=>"#",:role=>"button"}
+              #{current_user.user_name}
+              %b.caret
+            %ul.dropdown-menu.pull-right#menu{:role=>"menu",:"aria-labelledby"=>"dLabel"}
+              %li 
+                %a{:href=>"/users/#{current_user.id}"} Profile
+              %li 
+                %a{:href=>"#",:tabindex=>"-1"} Settings
+              %li
+                %a{:href=>"/signout",:tabindex=>"-1"} Logout
+              
 
 = render :partial=>"sessions/signin"  
