@@ -22,12 +22,14 @@
             %a#identity{:href=>"/consumers"}I'm a user
         - else
           #user-info-container.dropdown
-            .user-profile-photo.small
+            %a.user-profile-photo.small{:href=>"/users/#{current_user.id}"}
               %img{:src =>"#{current_user.photo.url(:small)}"}
-            %a.dropdown-toggle{:href=>"/users/#{current_user.id}",:"data-toggle"=>"dropdown",:"data-target"=>"#"}
+            %a.dropdown-toggle#dLabel{:"data-toggle"=>"dropdown",:"data-target"=>"#",:href=>"#",:role=>"button"}
               #{current_user.user_name}
               %b.caret
             %ul.dropdown-menu.pull-right#menu{:role=>"menu",:"aria-labelledby"=>"dLabel"}
+              %li 
+                %a{:href=>"/users/#{current_user.id}"} Profile
               %li 
                 %a{:href=>"#",:tabindex=>"-1"} Settings
               %li

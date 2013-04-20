@@ -1,16 +1,14 @@
-%table.profile{:summary=>"Profile Infomation"}
-  %tr
-    %td.main
-      %h1
-        = gravatar_for @user
-        #{@user.name}
-    %td.sidebar.round
-      %strong Name
-      #{@user.name}
-      %br
-      %strong URL 
-      = link_to user_path(@user), @user
-
+#user-profile-page
+  %section.content-container
+    .container.relativePosition.shadow
+      %ul.nav.nav-tabs
+        %li.active
+          %a{:href=>"#"} You wins
+        %li 
+          %a{:href=>"#"} Earned Deals
+        %li 
+          %a{:href=>"#"} Rewards Store
+      .detail-content
 
    
   

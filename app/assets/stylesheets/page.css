@@ -183,6 +183,8 @@ a:hover{
 }
 #header .dropdown-menu a{
 	color:#333;
+	font-size:13px;
+	line-height: 18px;
 }
 #user-info-container{
   /*padding-right:40px;*/
