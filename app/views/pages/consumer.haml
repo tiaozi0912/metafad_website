@@ -14,8 +14,6 @@
       #slogan.pull-right.relativePosition
         %h1.extra-big.text-shadow-black Let Your Fashion Voice Be Heard 
         %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn green-btn btn btn-big"} Sign Up 
-
-        = render :partial => 'preSignUp'
   %section#features-section.content-container
     .container
       %article.center
@@ -64,6 +62,8 @@
                   %span 45
       #poll-view-wrapper.hide
       %a{:href=>"#featured-polls-section",:class=>"close-btn btn hide"} Back
+      
+  = render :partial => 'preSignUp'
               
 
   -#%section#gallery-section.content-container.transition-config

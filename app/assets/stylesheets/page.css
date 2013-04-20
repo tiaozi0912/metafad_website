@@ -250,7 +250,7 @@ section.content-container{
 }
 #slogan{
 	width:45%;
-	z-index:5;
+	z-index:15;
 }
 #slogan h1.extra-big{
 	color:white;
@@ -357,7 +357,7 @@ article.center{
 	top: 0;
 	left: 0;
 }
-
+#consumer-home-page .mod
 /* general home page css starts */
 #logo-container{
   width:100%;
