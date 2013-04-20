@@ -47,16 +47,15 @@ img{
 .btn.btn-big,h3,.modal label,.modal input{
   font-size:16px;
   line-height:20px;
-  font-weight: normal;
+  font-weight: bold;
 }
-.btn,.btn-group>.btn:first-child,.btn-group>.btn:last-child{
+/*.btn,.btn-group>.btn:first-child,.btn-group>.btn:last-child{
 	border-radius:0px;
 	-webkit-border-radius:0px;
 	-moz-border-radius:0px;
-}
+}*/
 .btn.btn-big{
   padding:17px;
-  text-shadow:none;
 }
 .icon{
 	height:20px;
@@ -69,8 +68,24 @@ img{
 }
 .green-btn{
   background-color:rgb(168,216,128);
-  background-image:none;
+  /*background-image:none;*/
+  background-image: linear-gradient(bottom, rgb(44,89,5) 0%, rgb(132,191,80) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(44,89,5) 0%, rgb(132,191,80) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(44,89,5) 0%, rgb(132,191,80) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(44,89,5) 0%, rgb(132,191,80) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(44,89,5) 0%, rgb(132,191,80) 100%);
+
+  background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(44,89,5)),
+	color-stop(1, rgb(132,191,80))
+  );
   border:1px solid #333;
+}
+.btn.btn-big.green-btn:hover{
+	background-color:none;
 }
 .error{
 	color:#b94a48;
