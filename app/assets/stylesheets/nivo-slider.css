@@ -91,7 +91,7 @@
 .nivo-directionNav a {
 	position:absolute;
 	top:45%;
-	z-index:9;
+	z-index:15;
 	cursor:pointer;
 }
 .nivo-prevNav {
@@ -107,6 +107,8 @@
 }
 .nivo-controlNav a {
 	cursor:pointer;
+	z-index: 15;
+	position: relative;
 }
 .nivo-controlNav a.active {
 	font-weight:bold;

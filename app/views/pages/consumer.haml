@@ -2,6 +2,7 @@
   %section#featured-section.content-container
     .container.relativePosition
       #app-demo-container
+        %img#iphone-mask{:src=>'/images/app-demo/iphone.png',:alt=>'iphone mask'}
         #app-demo
           .slider-wrapper.theme-default
             #slider.nivoSlider
@@ -11,16 +12,16 @@
               %img{:src=>'/images/app-demo/image_4.png',:alt=>"demo image 4"}
 
       #slogan.pull-right.relativePosition
-        %h1.extra-big.text-shadow-black Let Your Fashion Voice Be Heard
-        %article.relativePosition
-          %p Just a trend follower? No, You can be the <b>trend setter</b>! 
-          %p Why not <b>vote</b> on your favorite fashion styles and let your fashion voice be heard.
-          %p Oh, did we mention you'll earn <b>exclusive coupons</b> for votings? 
+        %h1.extra-big.text-shadow-black Let Your Fashion Voice Be Heard 
         %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn green-btn btn btn-big"} Sign Up 
 
         = render :partial => 'preSignUp'
   %section#features-section.content-container
     .container
+      %article.center
+        %h3 Just a trend follower? No, You can be the <b>trend setter</b>! 
+        %h3 Why not <b>vote</b> on your favorite fashion styles and let your fashion voice be heard.
+        %h3 Oh, did we mention you'll earn <b>exclusive coupons</b> for votings? 
       .row-fluid
         .span4
           %img{:src=>"/images/icons/vote-icon-big.png",:alt=>"vote-icon-big"}
