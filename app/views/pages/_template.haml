@@ -1,0 +1,33 @@
+%script{:type=>"text/template",:id=>"gallery-tag-item-template"}
+  %a{:href=>"#"}
+    %h3 <%= htmlText(name) %>
+    .color-block.transition-config
+
+%script{:type=>"text/template",:id=>"#gallery-tag-template"}
+  - for i in 1..3
+    .span3
+      - for j in 1..3
+        .img-container.relativePosition
+
+%script{:type=>"text/template",:id=>"gallery-mask-template"}
+  .mask-content
+    %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
+    %h3 100
+    %a{:href=>"#",:class=>"lightbox",:rel=>"lightbox[item]"}
+      %i.icon-zoom-in.icon-white
+
+%script{:type=>"text/template",:id=>"item-view-template"}
+  .img-container.relativePosition
+    <img src="<%= photo_url %>" class="item-image" alt="item photo" id="item-image-<%= id %>"/>
+    .mask.hide
+      .mask-content
+        %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
+        %h3 <%= number_of_votes %>
+        <a href="<%= photo_url.replace(/medium/,'large') %>" class='lightbox' rel='lightbox[item]'><i class='icon-zoom-in icon-white'></i></a>
+  .item-info
+    %span Brand here: <%= brand %>
+    -#%p tags: <%= tags %>
+  .btn-group
+    %button.btn.btn-small.edit-btn
+      %a{:href=>"#"}Edit
+    %button.btn.btn-small.delete-btn Delete  
