@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :apn_notifications, :dependent => :destroy
   has_many :shared_polls, :dependent => :destroy
   has_many :comments,:through => :comments,:dependent => :destroy
+  has_many :point_actions, :dependent => :destroy
 
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

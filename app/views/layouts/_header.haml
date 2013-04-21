@@ -13,6 +13,7 @@
       %img#brand{:src=>"/images/logo.png",:alt => "logo"}
     .right-text.pull-right
       - if !cookies.signed[:page].nil?
+
         - if current_user.nil?
           -#%b
             %a#sign-in Sign In 
@@ -20,16 +21,17 @@
             %a#identity{:href=>"/retailers"}I'm a brand
           - else
             %a#identity{:href=>"/"}I'm a user
+
         - else
           #user-info-container.dropdown
-            %a.user-profile-photo.small{:href=>"/users/#{current_user.id}"}
+            %a.user-profile-photo.small{:href=>"/users/#{current_user.id}#points"}
               %img{:src =>"#{current_user.photo.url(:small)}"}
             %a.dropdown-toggle#dLabel{:"data-toggle"=>"dropdown",:"data-target"=>"#",:href=>"#",:role=>"button"}
               #{current_user.user_name}
               %b.caret
             %ul.dropdown-menu.pull-right#menu{:role=>"menu",:"aria-labelledby"=>"dLabel"}
               %li 
-                %a{:href=>"/users/#{current_user.id}"} Profile
+                %a{:href=>"/users/#{current_user.id}#points"} Profile
               %li 
                 %a{:href=>"#",:tabindex=>"-1"} Settings
               %li

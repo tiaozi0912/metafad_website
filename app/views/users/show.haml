@@ -12,6 +12,14 @@
 
 = render :partial => 'template'
 
+= javascript_include_tag 'models/User.js'
+= javascript_include_tag 'views/ProfileView.js'
+= javascript_include_tag 'routers/ProfileRouter.js' 
+
+:javascript
+  var router = new ProfileRouter();
+  Backbone.history.start();
+
 
    
   

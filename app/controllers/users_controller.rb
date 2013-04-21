@@ -45,4 +45,9 @@ class UsersController < ApplicationController
     redirect_to '/consumers'
   end
 
+  def user_to_json
+    @user = User.find(params[:id].to_i)
+    render :json => @user.to_json
+  end
+
 end
