@@ -2,26 +2,26 @@
   %section#retailer-featured-section.content-container
     .container
       #retailer-slogan.pull-right
-        %h1 A platform to collect <span style="color:#333"> real-time market data  </span> for fashion retailers
+        %h1 A platform to collect <span style="color:#333"> real-time market data  </span> for fashion brands
         %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"btn btn-big sign-up-btn green-btn pull-right"}
-          %img.icon{:src=>"/images/icons/join-icon.png",:alt=>"join-icon"} Join MetaFad
+          Join MetaFad
       = render :partial => 'preSignUp'
   %section.retailer-features-section.content-container
     .container
       .row-fluid
         .span4
-          %img{:src=>"/images/retailer-features/bar.png",:alt=>"bar-figure"}
+          %img{:src=>"/images/retailer-features/popularity.png",:alt=>"popularity figure"}
         .span8
-          %h1 Predict product popularity
+          %h1 Measure product popularity
           %ul 
-            %li Survey real time market
+            %li Survey consumers' preference
             %li Capture the current fashion trend
             %li Forecast inventory to reduce production cost
   %section.retailer-features-section.black-bg.white-font.content-container
     .container
       .row-fluid
         .span4
-          %img{:src=>"/images/retailer-features/pie.png",:alt=>"pie-figure"}
+          %img{:src=>"/images/retailer-features/consumers.png",:alt=>"consumers figure"}
         .span8
           %h1 Analyze target consumers
           %ul 
@@ -32,7 +32,7 @@
     .container
       .row-fluid
         .span4
-          %img{:src=>"/images/retailer-features/scatter.png",:alt=>"scatter-figure"}
+          %img{:src=>"/images/retailer-features/market.png",:alt=>"market figure"}
         .span8
           %h1 Market trendy designs
           %ul 
