@@ -7,16 +7,15 @@ window.PollView = Backbone.View.extend({ //model poll
     closeBtn:false
   },
   initialize: function(){
+    this.model.on('change',this.render,this);
+    this.model.on('reset',this.render,this);
+    this.model.fetch();
+  },
+  render: function(){
     this.itemCollection = this.initItemCollection();
     this.itemCollectionView = new ItemCollectionView({model:this.itemCollection,
                                                       settings:this.settings
-                                                    });
-    this.model.bind('change',this.render,this);
-    this.model.bind('reset',this.render,this);
-  },
-  events: {
-  },
-  render: function(){
+                                                    }); 
     //render title view
     var self = this;
     $.extend(self.settings,self.options.settings);
@@ -29,7 +28,6 @@ window.PollView = Backbone.View.extend({ //model poll
     var itemCollection = new ItemCollection();
     var poll = this.model;
     _.each(poll.get('items'),function(e){
-      //console.log(e);
       var item = new Item(e);
       itemCollection.push(item);
     });

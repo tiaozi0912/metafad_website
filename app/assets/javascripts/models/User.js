@@ -1,1 +1,3 @@
-window.User = Backbone.Model.extend(); 
+window.User = Backbone.Model.extend({
+	
+}); 
