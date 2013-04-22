@@ -3,3 +3,43 @@
 	background-color: white;
 	padding:20px;
 }
+.round{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  float:left;
+  margin-right:20px;
+  text-align: center;
+  font-weight: bold;
+  font-size:16px;
+  line-height:20px;
+  vertical-align: middle;
+}
+.black-bg{
+	color:#eee;
+	background-color:#333;
+}
+#user-profile-page #summary .round{
+	width:50px;
+	height:20px;
+	padding-top:15px;
+  padding-bottom:15px;
+}
+#user-profile-page #summary{
+	margin-bottom:20px;
+}
+#user-profile-page #summary h3{
+	padding:15px 0;
+}
+#content-container table{
+	width:70%;
+}
+#content-container table td{
+	border-width:0;
+}
+.table td{
+	vertical-align: middle;
+}
+.gray{
+	color:#666;
+}

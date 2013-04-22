@@ -1,6 +1,17 @@
 window.User = Backbone.Model.extend({
-	urlRoot: '/web/users',
 	initialize: function(){
-		if (this.get('tab') == 'stores') this.urlRoot = '/web/stores/users';
+    this.urlRoot = '/web/profile/' + this.get('tab');
 	}
 }); 
+
+window.Point = Backbone.Model.extend(); 
+
+window.PointCollection = Backbone.Collection.extend({
+  model:Point
+})
+
+window.Coupon = Backbone.Model.extend(); 
+
+window.PointCollection = Backbone.Collection.extend({
+  model:Coupon
+})

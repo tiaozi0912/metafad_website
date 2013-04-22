@@ -47,7 +47,8 @@ class UsersController < ApplicationController
 
   def user_to_json
     @user = User.find(params[:id].to_i)
-    render :json => @user.to_json
+    @tab = params[:tab]
+    render :json => @user.to_json({:tab => @tab})
   end
 
 end

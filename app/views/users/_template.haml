@@ -1,4 +1,16 @@
 %script{:type=>"text/template",:id=>"points-template"}
+  #summary
+    .round.black-bg <%= point %>
+    %h3 Points
+  %table.table.table-striped
+
+%script{:type=>"text/template",:id=>"point-collection-template"}
+  %tr
+    %td
+      %h3.red + <%= point %>
+    %td
+      .date.gray <%= created_at %>
+      <%= content %>
 
 %script{:type=>"text/template",:id=>"coupons-template"}
 

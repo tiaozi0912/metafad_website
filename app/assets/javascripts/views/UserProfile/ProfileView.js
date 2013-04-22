@@ -1,5 +1,5 @@
 window.ProfileView = Backbone.View.extend({ //model: user
-  tag:'div',
+  tagName:'div',
   className:'profile-container',
   initialize: function(){
     //this.model.fetch();
@@ -7,8 +7,8 @@ window.ProfileView = Backbone.View.extend({ //model: user
     this.model.on('reset',this.render,this);
   },
   render: function(){
-    console.log('user model is:');
-    console.log(this.model.toJSON());
+    //console.log('user model is:');
+    //console.log(this.model.toJSON());
     var tab = this.model.get('tab');
     this.template = _.template($('#'+ tab + '-template').html());
     this.$el.html(this.template(this.model.toJSON()));
@@ -19,7 +19,7 @@ window.ProfileView = Backbone.View.extend({ //model: user
     return this.el;
   },
   initCollectionView: function(){
-    var sef = this;
+    var self = this;
     var tab = this.model.get('tab');
     var collections = this.model.get(tab);
     switch (tab){

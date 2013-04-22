@@ -115,6 +115,38 @@ class User < ActiveRecord::Base
     end
   end
 
+  def to_json *arg #{:photo_style => 'large',..}
+    default = {
+      :photo_style => 'small'
+    }
+    if arg.length > 0
+      photo_style = arg[0][:photo_style] # could be nil
+        case arg[0][:tab]
+        when 'points'
+          extra = {
+            :points => point_actions.map do |pa|
+              pa.to_json
+            end
+          }
+        when 'coupons'
+          #fetch user's redeemed coupons
+        when 'stores'
+          # fetch retailers' coupons for redeem
+        end
+    end
+    photo_style ||= default[:photo_style]
+    base = {
+      :id => id,
+      :user_name => user_name,
+      :point => point,
+      :photo_url => photo_url_with_style(photo_style),
+      :number_of_votes => number_of_votes,
+      :rank => rank,
+      :email => email
+    }
+    base.merge extra
+  end
+
   #Earn point when publishing poll
   def poll_publish_reward
     self.point = self.point + Reward.point_rewards[:publish_poll]

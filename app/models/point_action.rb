@@ -22,4 +22,16 @@ class PointAction < ActiveRecord::Base
   	end
   end
 
+  def to_json
+    json = {
+      :point => point,
+      :content => content,
+      :action_type => action_type,
+      :thumbnail => thumbnail,
+      :poll_id => poll_id,
+      :user_id => user_id,
+      :created_at => created_at.to_s
+    }
+  end
+
 end

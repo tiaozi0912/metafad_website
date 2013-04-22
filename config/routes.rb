@@ -47,7 +47,8 @@ SampleApp::Application.routes.draw do
   match '/gallery/:category' => 'pages#gallery'
 
   get '/web/polls/:id' => 'polls#poll_to_json'
-  get '/web/users/:id' => 'users#user_to_json'
+  get '/web/profile/:tab/:id' => 'users#user_to_json'
+  get '/web/users/:id' => 'users#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
