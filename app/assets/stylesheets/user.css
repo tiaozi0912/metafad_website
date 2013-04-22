@@ -32,7 +32,7 @@
 	padding:15px 0;
 }
 #content-container table{
-	width:70%;
+	width:65%;
 }
 #content-container table td{
 	border-width:0;
@@ -42,4 +42,18 @@
 }
 .gray{
 	color:#666;
+}
+#achievement-container{
+	width:30%;
+}
+#achievement-container .alert h3{
+  color:#468847;
+}
+#achievement-container .well{
+	padding:19px;
+	min-height:60px;
+}
+#achievement-container ul{
+	list-style: none;
+	margin-left:0;
 }

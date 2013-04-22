@@ -2,7 +2,18 @@
   #summary
     .round.black-bg <%= point %>
     %h3 Points
-  %table.table.table-striped
+  %table.table.table-striped.inline-block
+  -# hacky codes
+  #achievement-container.pull-right
+    .well.alert.alert-success
+      %ul
+        %li
+          %h3 
+            %img.icon{:src=>'/images/icons/star-golden.png',:alt=>'golden star'}
+            %i Privilege to view poll results.
+
+
+
 
 %script{:type=>"text/template",:id=>"point-collection-template"}
   %tr

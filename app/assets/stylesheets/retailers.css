@@ -26,3 +26,7 @@ section.retailer-features-section h1{
 .white-font,.white-font h1{
 	color:#eee;
 }
+.retailer-features-section li{
+	font-size:16px;
+	line-height:20px;
+}

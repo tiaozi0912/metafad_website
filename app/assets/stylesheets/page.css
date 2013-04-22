@@ -70,9 +70,11 @@ img{
 	width:auto;
 	display: inline-block;
 	margin-right:5px;
+	vertical-align: middle;
 }
 .icon.icon-big{
 	height:25px;
+	background-image: none;
 }
 .green-btn{
    background-color:rgb(165,224,110);
