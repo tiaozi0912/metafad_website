@@ -13,19 +13,20 @@ class SessionsController < ApplicationController
     else
       #Sign in and redirect
       current_user = sign_in user
-      flash['alert-success'.to_sym] = "Sign in successfully."
-      redirect_to :back
+      flash[:'alert-success'] = "Sign in successfully."
+      #redirect_to :back
+      redirect_back_or_default(profile_path)
     end
   end
 
   def create_fb
     auth = request.env["omniauth.auth"]
     user = User.find_by_fb_id(auth["uid"].to_s) || User.find_by_email(auth['info']['email']) || User.create_with_omniauth(auth)
-    get_token auth
+    get_token auth #for debug
     sign_in user
     flash[:'alert-success'] = 'Sign in successfully.'
     #redirect_to :back
-    redirect_back_or_default(root_path)
+    redirect_back_or_default(profile_path)
   end
 
   def create_fb_poll_page

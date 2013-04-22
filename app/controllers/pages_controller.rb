@@ -14,19 +14,17 @@ class PagesController < ApplicationController
   	@title ="About"
   end
 
-  def consumer
+  def consumer # it's the main page of the website
     cookies.signed[:page] = 'consumers'
     @form_header = "Sign Up To Get Bonus Points"
     #@imgs = Dir.glob('public/images/gallery/colors/dusk_blue/*')
-    #puts 'count images'
-    #puts @imgs.count
-    #render 'consumer'
+    clear_location
   end
 
   def retailer
     cookies.signed[:page] = 'retailers'
     @form_header = "Sign Up To Get Free Trial"
-    render 'retailer'
+    clear_location
   end
 
   def gallery

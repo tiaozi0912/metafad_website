@@ -36,10 +36,14 @@ class ApplicationController < ActionController::Base
     cookies.signed[:return_to] = request.url
   end
 
+  def clear_location
+    cookies.signed[:return_to] = nil
+  end
+
   def redirect_back_or_default(default)
     #print "url is #{session[:return_to].to_s}"
     redirect_to(cookies.signed[:return_to]||default)
-    cookies.signed[:return_to] = nil
+    clear_location
   end
   
   def select_not_deleted obj_arr
@@ -90,7 +94,7 @@ class ApplicationController < ActionController::Base
       cookies.signed[:item_id] = nil
 
       (cookies.signed[:item_id].nil?) ? (puts "cookie is clear") : (puts "cookie is not clear!")
-      flash[:alert]="Thank you for your vote."
+      flash[:'alert-success']="Thank you for your vote."
       redirect_to "/polls/#{@poll.id}"
     end
   end

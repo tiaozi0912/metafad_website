@@ -2,7 +2,7 @@
 /* router begins */
 var ProfileRouter = Backbone.Router.extend({
   routes: {
-    'tab?=:tab/id?=:id':"user"
+    'tab=:tab/id=:id':"user"
   },
   initialize: function(){
     Backbone.emulateHTTP = true;
