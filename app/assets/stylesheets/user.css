@@ -57,3 +57,12 @@
 	list-style: none;
 	margin-left:0;
 }
+#user-profile-page .placeholder{
+  width:980px;
+  height:600px;
+  background-position: 300px 100px;
+  background-repeat: no-repeat;
+}
+.coupon-bg{
+	background-image:url(/images/backgrounds/coupon.png);
+}

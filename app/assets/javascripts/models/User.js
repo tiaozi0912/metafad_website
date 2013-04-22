@@ -12,6 +12,12 @@ window.PointCollection = Backbone.Collection.extend({
 
 window.Coupon = Backbone.Model.extend(); 
 
-window.PointCollection = Backbone.Collection.extend({
+window.CouponCollection = Backbone.Collection.extend({
   model:Coupon
+})
+
+window.Store = Backbone.Model.extend(); 
+
+window.StoreCollection = Backbone.Collection.extend({
+  model:Store
 })

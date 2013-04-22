@@ -12,9 +12,6 @@
             %img.icon{:src=>'/images/icons/star-golden.png',:alt=>'golden star'}
             %i Privilege to view poll results.
 
-
-
-
 %script{:type=>"text/template",:id=>"point-collection-template"}
   %tr
     %td
@@ -24,5 +21,15 @@
       <%= content %>
 
 %script{:type=>"text/template",:id=>"coupons-template"}
+  .placeholder.coupon-bg
+    .alert.alert-warning You haven't redeemed any coupons yet. Keep on voting!
+  %table.table.table-striped.inline-block
+
+%script{:type=>"text/template",:id=>"coupon-collection-template"}
 
 %script{:type=>"text/template",:id=>"stores-template"}
+  .placeholder
+    .alert.alert-success We are working hard to ensure best coupons from brands. Thanks for being patient with us.
+  %table.table.table-striped.inline-block
+
+%script{:type=>"text/template",:id=>"store-collection-template"}

@@ -130,8 +130,10 @@ class User < ActiveRecord::Base
           }
         when 'coupons'
           #fetch user's redeemed coupons
+          extra = {}
         when 'stores'
           # fetch retailers' coupons for redeem
+          extra = {}
         end
     end
     photo_style ||= default[:photo_style]

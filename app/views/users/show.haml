@@ -2,18 +2,20 @@
   %section.content-container
     .container.relativePosition.shadow
       %ul.nav.nav-tabs
-        %li.active
-          %a{:href=>"#"} You wins
+        %li
+          %a{:href=>"#tab?=points/id?=#{current_user.id}"} Your points
         %li 
-          %a{:href=>"#"} Earned Deals
+          %a{:href=>"#tab?=coupons/id?=#{current_user.id}"} Earned Deals
         %li 
-          %a{:href=>"#"} Rewards Store
+          %a{:href=>"#tab?=stores/id?=#{current_user.id}"} Rewards Store
       #content-container
 
 = render :partial => 'template'
 
 = javascript_include_tag 'models/User.js'
 = javascript_include_tag 'views/UserProfile/PointCollectionView.js'
+= javascript_include_tag 'views/UserProfile/CouponCollectionView.js'
+= javascript_include_tag 'views/UserProfile/StoreCollectionView.js'
 = javascript_include_tag 'views/UserProfile/ProfileView.js'
 = javascript_include_tag 'routers/ProfileRouter.js' 
 
