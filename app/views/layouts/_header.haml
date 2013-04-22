@@ -1,7 +1,7 @@
 :javascript
 
   $(document).ready(function(){
-    $('#sign-in.btn').click(function(){
+    $('#sign-in').click(function(){
       $('#sign-in-modal').modal();
     });
 
@@ -15,7 +15,7 @@
       - if !cookies.signed[:page].nil?
 
         - if current_user.nil?
-          -#%b
+          %b
             %a#sign-in Sign In 
           - if is_consumer?
             %a#identity{:href=>"/retailers"}I'm a brand
