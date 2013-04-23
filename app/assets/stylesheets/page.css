@@ -143,6 +143,9 @@ img{
 .text-shadow-black{
 	text-shadow:2px 2px 0 black;
 }
+.text-shadow-black-2{
+	text-shadow:1px 1px 1px black;
+}
 
 
 .mobile-view-show{

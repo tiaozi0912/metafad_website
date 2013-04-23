@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
 
   def featured_polls_item_update
     item = Item.find(params[:id].to_i)
-    store_location
+    store_location root_path
     if item.update_attributes params[:item]
       render :nothing => true    
     else

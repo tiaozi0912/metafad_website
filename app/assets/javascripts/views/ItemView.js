@@ -23,6 +23,7 @@ window.ItemView = Backbone.View.extend({ //model:item
     this.$el.html(this.template(this.model.toJSON()));
     if (!this.settings.admin) this.$el.find('.btn-group').remove();
     if(!this.settings.voteEnabled) this.$el.find('.mask').remove();
+    if(!this.settings.result) this.$el.find('.poll-result').remove();
     return this.el;
   },
   showMask: function(e){
@@ -36,7 +37,7 @@ window.ItemView = Backbone.View.extend({ //model:item
   vote: function(e){
     var target = e.currentTarget;
     var url = '/featured_polls/items/' + this.model.get('id') + '/update';
-    var $votedIcon = $("<img src='/images/icons/red-heart.png' class='icon' id='voted' alt='red heart'>");
+    //var $votedIcon = $("<img src='/images/icons/red-heart.png' class='icon' id='voted' alt='red heart'>");
 
     //update the number of votes
     var count = parseInt(this.model.get('number_of_votes')) + 1;
@@ -54,7 +55,7 @@ window.ItemView = Backbone.View.extend({ //model:item
     $(target).attr('src','/images/icons/red-heart.png'); 
 
     //attach the voted icon to the item 
-    $(target).parents('.img-container').append($votedIcon);
+    //$(target).parents('.img-container').append($votedIcon);
   },
   redHeart: function(e){
     var target = e.currentTarget;

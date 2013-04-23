@@ -33,7 +33,7 @@
           %img{:src=>"/images/icons/coupon-icon-big.png",:alt=>"coupon icon big"}
           .title
             %h3 Obtain exclusive coupons
-  -#%section#featured-polls-section.relativePosition.content-container
+  %section#featured-polls-section.relativePosition.content-container
     .container.relativePosition
       .ribbon.ribbon-red.section-title
         .ribbon-stitches-top
@@ -114,7 +114,11 @@
       $('#notice-container').html("<h3 class='alert alert-warning'>Sign up today, you can receive <b>500</b> points for coupons!</h3>");
     })
 
-    var router = new MainPagePollRouter();
+    if(#{current_user.nil?}){
+      var router = new MainPagePollRouter({});
+    }else{
+      var router = new MainPagePollRouter({settings:{result:true}});
+    }
     Backbone.history.start();
   }) 
 /* router ends */

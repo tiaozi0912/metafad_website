@@ -32,8 +32,9 @@ class ApplicationController < ActionController::Base
     puts "old token is #{cookies.signed[:access_token]}"
   end
 
-  def store_location
-    cookies.signed[:return_to] = request.url
+  def store_location *path
+    url = (path.length > 0 ? path[0] : request.url)
+    cookies.signed[:return_to] = url
   end
 
   def clear_location

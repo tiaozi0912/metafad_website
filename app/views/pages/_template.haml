@@ -24,10 +24,14 @@
         %img.icon{:src=>"/images/icons/white-heart.png",:alt=>"white-heart"}
         %h3 vote
         <a href="<%= photo_url.replace(/medium/,'large') %>" class='lightbox' rel='lightbox[item]'><i class='icon-zoom-in icon-white'></i></a>
+    .poll-result
+      %h3.text-shadow-black-2
+        %img.icon.inline-block{:src=>'/images/icons/red-heart.png',:alt=>'red heart'}
+        <%= number_of_votes %>
   .item-info
     %span Brand here: <%= brand %>
     -#%p tags: <%= tags %>
   .btn-group
     %button.btn.btn-small.edit-btn
       %a{:href=>"#"}Edit
-    %button.btn.btn-small.delete-btn Delete  
+    %button.btn.btn-small.delete-btn Delete

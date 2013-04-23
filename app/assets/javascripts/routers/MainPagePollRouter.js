@@ -6,11 +6,13 @@ var MainPagePollRouter = Backbone.Router.extend({
   },
   settings: {
     title: true,
-    largeView: true
+    largeView: true,
+    result:false
   },
-  initialize: function(){
+  initialize: function(options){
     Backbone.emulateHTTP = true;
     Backbone.emulateJSON = true;
+    $.extend(this.settings,options.settings);
     var self = this;
     $('#featured-polls-section .close-btn').click(function(){
       var $btn = $(this);

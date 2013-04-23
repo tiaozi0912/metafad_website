@@ -88,11 +88,15 @@
   line-height:18px;
   color:#333;
 }
-#voted{
+#featured-polls-section .poll-result{
   position: absolute;
-  left:10px;
-  top:10px;
-  z-index:2;
+  left:0px;
+  top:0px;
+  background-color:rgba(0,0,0,0.5);
+  padding:8px;
+}
+#featured-polls-section .poll-result h3{
+  color:#eee;
 }
 #notice-container .alert{
   width:82%;
