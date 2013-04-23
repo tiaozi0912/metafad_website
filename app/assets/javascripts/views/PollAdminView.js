@@ -6,7 +6,7 @@ window.PollAdminView = Backbone.View.extend({ //model poll
     voteEnabled:false
   },
   initialize: function(){
-    this.model.bind('change',this.render,this);
+    this.model.on('change',this.render,this);
   },
   render: function(){
     var poll = this.model;

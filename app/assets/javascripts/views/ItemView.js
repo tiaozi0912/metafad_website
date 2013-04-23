@@ -15,7 +15,7 @@ window.ItemView = Backbone.View.extend({ //model:item
   },
   initialize: function(){
     this.template = _.template($('#item-view-template').html());
-  	this.model.bind('change',this.render,this);
+  	this.model.on('change',this.render,this);
   },
   render: function(){
   	var self = this;

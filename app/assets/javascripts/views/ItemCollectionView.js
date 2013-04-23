@@ -6,8 +6,8 @@ window.ItemCollectionView = Backbone.View.extend({ //model:ItemCollection
 	tagName: "div",
   className: "items-container",
   initialize: function(){
-    this.model.bind('change',this.render,this);
-    this.model.bind('reset',this.render,this);
+    this.model.on('change',this.render,this);
+    this.model.on('reset',this.render,this);
   },
   render: function(){
     var self = this;

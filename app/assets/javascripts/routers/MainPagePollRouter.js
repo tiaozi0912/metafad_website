@@ -17,11 +17,10 @@ var MainPagePollRouter = Backbone.Router.extend({
     $('#featured-polls-section .close-btn').click(function(){
       var $btn = $(this);
       $('#featured-polls').slideDown(400);
-     $('#poll-view-wrapper').animate({'height':0},'slow',function(){
+      $('#poll-view-wrapper').animate({'height':0},'slow',function(){
         self.pollView.remove();
         $btn.hide();
         $(this).height('auto');
-        //scrollTop
       });
     })
   },
@@ -35,6 +34,8 @@ var MainPagePollRouter = Backbone.Router.extend({
     $('#poll-view-wrapper').slideDown('fast',function(){
       $('#featured-polls-section .close-btn').show();
       $('#featured-polls').slideUp();
+      //scrollTop
+      $('body').animate({scrollTop:$('#featured-polls-section').offset().top},'fast');
     });
   }
 });
