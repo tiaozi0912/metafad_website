@@ -40,6 +40,9 @@
 .table td{
 	vertical-align: middle;
 }
+.points-tbody td:first-child{
+	white-space: nowrap;
+}
 .gray{
 	color:#666;
 }

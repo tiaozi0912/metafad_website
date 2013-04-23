@@ -18,7 +18,7 @@
       %h3.red + <%= point %>
     %td
       .date.gray <%= created_at %>
-      <a href="<%= poll_url %>"><%= content %></a>
+      <%= parsePointActionContent(content,poll_url) %>
 
 %script{:type=>"text/template",:id=>"coupons-template"}
   .placeholder.coupon-bg

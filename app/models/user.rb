@@ -115,16 +115,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def to_json *arg #{:photo_style => 'large',..}
+  def to_json *arg #{:photo_style => 'large',:point_action_count => 20,...}
     default = {
-      :photo_style => 'small'
+      :photo_style => 'small',
+      :point_action_count => 30
     }
     if arg.length > 0
       photo_style = arg[0][:photo_style] # could be nil
+      count = arg[0][:point_action_count]
+      count ||= default[:point_action_count]
         case arg[0][:tab]
         when 'points'
           extra = {
-            :points => point_actions.map do |pa|
+            :points => point_actions[0..count].map do |pa|
               pa.to_json
             end
           }
@@ -135,6 +138,7 @@ class User < ActiveRecord::Base
           # fetch retailers' coupons for redeem
           extra = {}
         end
+      
     end
     photo_style ||= default[:photo_style]
     base = {

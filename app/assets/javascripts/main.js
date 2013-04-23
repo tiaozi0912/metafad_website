@@ -89,6 +89,24 @@ function htmlText(text){
   return text.replace(/_/g," ");
 }
 
+function parsePointActionContent(text,poll_url){
+  /* content format:
+   * "for voting to \n " + poll.user.user_name + " \n " + poll.title + " poll"
+   * "for creating \n " + poll.title + "\n poll."
+   */
+  var arr = text.match(/[^\n]+/g);
+  if (arr[0] == 'for voting to '){
+    var len1 = arr[1].length;
+    var len2 = arr[2].length;
+    var count1 = 2;//two whitespaces
+    var count2 = 6; //two whitespaces and 'poll'
+    var retailer = arr[1].substr(1,len1-count1);
+    var pollTitle = arr[2].substr(1,len2-count2);
+    text = "for voting on " + "<b>" + retailer + "</b>'s poll: " + "<a href='" + poll_url + "'>" + pollTitle + "</a>";
+  }
+  return text; 
+}
+
 /* home page animation */
 $(window).load(function(){  //after the background image is loaded
   $('#logo-container').animate({"top":0},600,null,function(){
