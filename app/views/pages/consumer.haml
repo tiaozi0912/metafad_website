@@ -13,7 +13,7 @@
 
       #slogan.pull-right.relativePosition
         %h1.extra-big.text-shadow-black Let Your Fashion Voice Be Heard 
-        %a{:href=>"#pre-sign-up-modal",:"data-toggle"=>"modal",:class=>"sign-up-btn green-btn btn btn-big"} Sign Up 
+        %a{:class=>"sign-up-btn green-btn btn btn-big"} Sign Up For Points 
   %section#features-section.content-container
     .container
       %article.center
@@ -61,10 +61,7 @@
                   %img{:src=>'/images/icons/red-heart.png',:alt=>'heart-icon',:class=>'icon'}
                   %span 45
       #poll-view-wrapper.hide
-      %a{:href=>"#featured-polls-section",:class=>"close-btn btn hide"} Back
-
-  = render :partial => 'preSignUp'
-              
+      %a{:href=>"#featured-polls-section",:class=>"close-btn btn hide"} Back              
 
   -#%section#gallery-section.content-container.transition-config
     .container
@@ -110,6 +107,12 @@
       $(this).find('.mask').stop(true,true).fadeOut();
       $(this).siblings('.title-container').show();
     });
+
+    $('.sign-up-btn').click(function(){
+      $('.modal .alert').remove(); // remove the alert in the form if any
+      $('#sign-in-modal').modal();
+      $('#notice-container').html("<h3 class='alert alert-warning'>Sign up today, you can receive <b>500</b> points for coupons!</h3>");
+    })
 
     var router = new MainPagePollRouter();
     Backbone.history.start();

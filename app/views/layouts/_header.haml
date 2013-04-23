@@ -1,6 +1,7 @@
 :javascript
   $(document).ready(function(){
     $('#sign-in').click(function(){
+      $('.modal .alert').remove(); // remove the alert in the form if any
       $('#sign-in-modal').modal();
     });
 

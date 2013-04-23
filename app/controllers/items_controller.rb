@@ -25,8 +25,9 @@ class ItemsController < ApplicationController
     redirect_back_or_default root_path
   end
 
-  def gallery_item_update
+  def featured_polls_item_update
     item = Item.find(params[:id].to_i)
+    store_location
     if item.update_attributes params[:item]
       render :nothing => true    
     else

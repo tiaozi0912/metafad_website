@@ -94,6 +94,9 @@
   top:10px;
   z-index:2;
 }
+#notice-container .alert{
+  width:82%;
+}
 
 
 

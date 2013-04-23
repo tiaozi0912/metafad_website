@@ -34,16 +34,21 @@ window.ItemView = Backbone.View.extend({ //model:item
   },
   vote: function(e){
     var target = e.currentTarget;
-    var url = '/gallery_items/' + this.model.get('id') + '/update';
+    var url = '/featured_polls/items/' + this.model.get('id') + '/update';
     var $votedIcon = $("<img src='/images/icons/red-heart.png' class='icon' id='voted' alt='red heart'>");
 
     //update the number of votes
-    var count = parseInt($(target).siblings('h3').html()) + 1;
-    $(target).siblings('h3').html(count.toString());
+    var count = parseInt(this.model.get('number_of_votes')) + 1;
+    //$(target).siblings('h3').html(count.toString());
     $.post(url,{'item':{'number_of_votes': count}},function(data){
-       if(data.errors){
+        if(data.errors){
           console.log(data.errors);
-       }
+        }else{
+          //remind to sign in to view the poll results
+          $('.modal .alert').remove();
+          $('#sign-in-modal').modal();
+          $('#notice-container').html("<h3 class='alert alert-warning'>Sign in to see the voting result. Plus, you can receive <b>500</b> points for coupons today!</h3>");
+        }
     });
     $(target).attr('src','/images/icons/red-heart.png'); 
 
