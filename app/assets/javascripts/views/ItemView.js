@@ -3,7 +3,8 @@ window.ItemView = Backbone.View.extend({ //model:item
   className: 'item-container shadow-subtle',
   settings: {
     admin: false,
-    voteEnabled: true
+    voteEnabled: true,
+    result: true
   },
   events:{
     'mouseenter .img-container':'showMask',

@@ -3,11 +3,11 @@
     .container.relativePosition.shadow
       %ul.nav.nav-tabs
         %li
-          %a{:href=>"#tab?=points/id?=#{current_user.id}"} Your points
+          %a{:href=>"#tab=points/id=#{current_user.id}"} Your points
         %li 
-          %a{:href=>"#tab?=coupons/id?=#{current_user.id}"} Earned Deals
+          %a{:href=>"#tab=coupons/id=#{current_user.id}"} Earned Deals
         %li 
-          %a{:href=>"#tab?=stores/id?=#{current_user.id}"} Rewards Store
+          %a{:href=>"#tab=stores/id=#{current_user.id}"} Rewards Store
       #content-container
 
 = render :partial => 'template'
