@@ -19,6 +19,8 @@
     %td
       .date.gray <%= created_at %>
       <%= parsePointActionContent(content,poll_url) %>
+    %td.poll-thumbnail-container
+      <img src="<%= thumbnail %>" class='shadow-subtle-black'>
 
 %script{:type=>"text/template",:id=>"coupons-template"}
   .placeholder.coupon-bg

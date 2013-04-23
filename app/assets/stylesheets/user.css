@@ -43,6 +43,10 @@
 .points-tbody td:first-child{
 	white-space: nowrap;
 }
+.points-tbody td.poll-thumbnail-container img{
+	height:36px;
+	width:auto;
+}
 .gray{
 	color:#666;
 }

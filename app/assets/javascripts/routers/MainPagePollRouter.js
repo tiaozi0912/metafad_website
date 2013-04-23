@@ -31,6 +31,7 @@ var MainPagePollRouter = Backbone.Router.extend({
                                   settings:self.settings
                                 });
     $('#poll-view-wrapper').html(self.pollView.render());
+    //transitions
     $('#poll-view-wrapper').slideDown('fast',function(){
       $('#featured-polls-section .close-btn').show();
       $('#featured-polls').slideUp();
