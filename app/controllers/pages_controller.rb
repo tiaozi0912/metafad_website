@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     cookies.signed[:page] = 'consumers'
     @form_header = "Sign Up To Get Bonus Points"
     #@imgs = Dir.glob('public/images/gallery/colors/dusk_blue/*')
-    clear_location
+    clear_cookies
   end
 
   def retailer

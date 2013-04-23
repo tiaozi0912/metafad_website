@@ -123,7 +123,7 @@ class PollsController < ApplicationController
   end
 
   def store_choice
-    cookies.signed[:item_id] = params["item_id"]
+    store_vote params[:item_id]
     #puts "store choice: item id is #{cookies.signed[:item_id]}"
     render :nothing => true
   end
@@ -139,7 +139,7 @@ private
       #create audience if the voter is not the poll owner
       if current_user == item.poll.user
         flash.now[:notice] = "You can't vote on your own poll."  
-        cookies.signed[:item_id] = nil
+        clear_vote
       else
         create_audience cookies.signed[:item_id]
       end

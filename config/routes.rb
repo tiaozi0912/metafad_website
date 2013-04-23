@@ -43,7 +43,7 @@ SampleApp::Application.routes.draw do
   match '/admin/items/:id/edit' => 'items#edit'
   match '/items/:item_id/delete' => 'items#destroy'
   put '/items/:id' => 'items#update'
-  match '/featured_polls/items/:id/update' => 'items#featured_polls_item_update'
+  match '/featured_polls/items/:id/update' => 'items#featured_polls_item_vote'
   match '/gallery/:category' => 'pages#gallery'
 
   get '/web/polls/:id' => 'polls#poll_to_json'

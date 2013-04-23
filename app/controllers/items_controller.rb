@@ -25,16 +25,24 @@ class ItemsController < ApplicationController
     redirect_back_or_default root_path
   end
 
-  def featured_polls_item_update
+  def featured_polls_item_vote
     item = Item.find(params[:id].to_i)
-    store_location root_path
-    if item.update_attributes params[:item]
-      render :nothing => true    
+    if current_user.nil?
+      #record the vote in cookie, hold on the vote
+      store_vote params[:id]
+      render :nothing => true 
     else
-      render :json => {:errors => item.errors.full_messages}
-    end
-    
+      if current.vote item
+        user_id = current_user.id
+        redirect_to = "/web/users/#{user_id}#tab=points/id=#{user_id}"
+        store_location redirect_to
+        render :nothing => true    
+      else
+        render :json => {:errors => item.errors.full_messages}
+      end
+    end   
   end
+
   def destroy # ajax call
     item_id = params["item_id"].to_i
     Item.find(item_id).destroy

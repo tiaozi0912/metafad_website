@@ -2,7 +2,7 @@
 /* router begins */
 var MainPagePollRouter = Backbone.Router.extend({
   routes: {
-    'polls/:id':"selectTag"
+    'featured-polls-section/polls/:id':"selectTag"
   },
   settings: {
     title: true,
@@ -21,6 +21,7 @@ var MainPagePollRouter = Backbone.Router.extend({
         self.pollView.remove();
         $btn.hide();
         $(this).height('auto');
+        //scrollTop
       });
     })
   },

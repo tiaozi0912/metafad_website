@@ -155,6 +155,28 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def vote_action poll,item # update the points earned and record the point action
+    content = "for voting to \n " + poll.user.user_name + " \n " + poll.title + " poll"
+    reward_points = Reward.point_rewards[:vote]
+    thumbnail = item.photo(:thumbnail)
+    create_point_action(content,reward_points,poll.id,thumbnail,2)
+    reward :vote
+  end
+
+  def create_point_action(content,point,poll_id,thumbnail,type)
+    point_actions.create(:poll_id => poll_id,:point => point,:content => content,:thumbnail => thumbnail,:action_type => type)
+  end
+
+  def reward reward_type
+    self.point += Reward.point_rewards[reward_type]
+    self.save
+  end
+
+  def vote item
+    vote_action item.poll,item
+    item.update_number_of_votes
+  end
+
   private
 
     def encrypt(string)

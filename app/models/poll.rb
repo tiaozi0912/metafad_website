@@ -1,5 +1,5 @@
 class Poll < ActiveRecord::Base
-	attr_accessible :title, :user_id, :state, :is_deleted,:total_votes,:max_votes_for_single_item, :end_time, :category, :open_time, :items_attributes, :web_id
+	attr_accessible :title, :user_id, :state, :is_deleted,:total_votes,:max_votes_for_single_item, :end_time, :category, :open_time, :items_attributes, :web_id,:is_featured
   validates :title, :presence => true, :length => { :maximum => 90 }
   validates :category, :presence => true
 	belongs_to :user
@@ -9,6 +9,7 @@ class Poll < ActiveRecord::Base
 	has_many :poll_records,:dependent => :destroy
 	has_one :event,:dependent => :destroy
 	has_one :shared_poll,:dependent => :destroy
+  has_many :point_actions
 
 	default_scope :order => 'polls.created_at DESC'
 
@@ -61,10 +62,18 @@ class Poll < ActiveRecord::Base
       :category => category,
       :title => title,
       :date => open_time.to_s,
+      :url => url,
       :items => items.map do |item|
         item.to_json *arg
       end
     }
+  end
+
+  def url
+    default = "/polls/#{id}"
+    #for the featured polls
+    default = "/#featured-polls-section/polls/#{id}" if is_featured 
+    return default
   end
 
 end

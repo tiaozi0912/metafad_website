@@ -4,7 +4,7 @@ window.ItemView = Backbone.View.extend({ //model:item
   settings: {
     admin: false,
     voteEnabled: true,
-    result: true
+    result: true //the user can see the poll result
   },
   events:{
     'mouseenter .img-container':'showMask',
@@ -35,6 +35,7 @@ window.ItemView = Backbone.View.extend({ //model:item
     $(target).find('.mask').stop(true,true).fadeOut();
   },
   vote: function(e){
+    var self = this;
     var target = e.currentTarget;
     var url = '/featured_polls/items/' + this.model.get('id') + '/update';
     //var $votedIcon = $("<img src='/images/icons/red-heart.png' class='icon' id='voted' alt='red heart'>");
@@ -47,9 +48,11 @@ window.ItemView = Backbone.View.extend({ //model:item
           console.log(data.errors);
         }else{
           //remind to sign in to view the poll results
-          $('.modal .alert').remove();
-          $('#sign-in-modal').modal();
-          $('#notice-container').html("<h3 class='alert alert-warning'>Sign in to see the voting result. Plus, you can receive <b>500</b> points for coupons today!</h3>");
+          if (!self.settings.result){
+            $('.modal .alert').remove();
+            $('#sign-in-modal').modal();
+            $('#notice-container').html("<h3 class='alert alert-warning'>Sign in to see the voting result. Plus, you can receive <b>500</b> points for coupons today!</h3>");
+          }  
         }
     });
     $(target).attr('src','/images/icons/red-heart.png'); 

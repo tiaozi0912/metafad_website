@@ -8,6 +8,12 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@title = @user.user_name
+    # if there is held vote, submit the vote
+    if !cookies.signed[:item_id].nil?
+      item = Item.find(cookies.signed[:item_id].to_i)
+      current_user.vote item if !current_user.nil?
+    end
+    clear_cookies
   end
 
   def create

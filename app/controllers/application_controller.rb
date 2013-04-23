@@ -41,6 +41,19 @@ class ApplicationController < ActionController::Base
     cookies.signed[:return_to] = nil
   end
 
+  def store_vote item_id #item_is is string
+    cookies.signed[:item_id] = item_id
+  end
+
+  def clear_vote
+    cookies.signed[:item_id] = nil
+  end
+
+  def clear_cookies
+    clear_location
+    clear_vote
+  end
+
   def redirect_back_or_default(default)
     #print "url is #{session[:return_to].to_s}"
     redirect_to(cookies.signed[:return_to]||default)

@@ -1,3 +1,5 @@
-LOG:  database system was shut down at 2013-04-22 00:54:24 PDT
+LOG:  database system was shut down at 2013-04-23 00:55:34 PDT
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+ERROR:  cached plan must not change result type
+STATEMENT:  SELECT  "polls".* FROM "polls"  WHERE "polls"."id" = $1 ORDER BY polls.created_at DESC LIMIT 1

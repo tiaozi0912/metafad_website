@@ -2,6 +2,7 @@ class PointAction < ActiveRecord::Base
 	attr_accessible :user_id,:content,:poll_id,:point,:action_type,:thumbnail
 
 	belongs_to :user
+  belongs_to :poll
 
   default_scope :order => 'point_actions.created_at DESC'
 
@@ -23,12 +24,14 @@ class PointAction < ActiveRecord::Base
   end
 
   def to_json
+    poll_url = (poll.nil? ? '/polls/is_deleted' : poll.url)
     json = {
       :point => point,
       :content => content,
       :action_type => action_type,
       :thumbnail => thumbnail,
       :poll_id => poll_id,
+      :poll_url => poll_url,
       :user_id => user_id,
       :created_at => created_at.to_s
     }

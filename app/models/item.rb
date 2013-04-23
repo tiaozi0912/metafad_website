@@ -76,4 +76,10 @@ class Item < ActiveRecord::Base
     }
   end
 
+  def update_number_of_votes # item votes + 1 and poll votes + 1
+    self.number_of_votes  += 1
+    self.save
+    poll.total_votes += 1
+    poll.save 
+  end
 end
