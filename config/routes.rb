@@ -49,6 +49,7 @@ SampleApp::Application.routes.draw do
   get '/web/polls/:id' => 'polls#poll_to_json'
   get '/web/profile/:tab/:id' => 'users#user_to_json'
   get '/web/users/:id' => 'users#show'
+  get '/web/users/:id/settings' => 'users#edit'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,19 @@
+#user-settings-page
+  %section.content-container
+    .container.relativePosition.shadow
+      - if @valid
+        .profile-image-container.pull-left
+          %img.shadow{:src => "#{current_user.photo_url_with_style('large')}",:alt=>"profile photo"}
+          %button.btn 
+            %i.icon-pencil
+            Edit
+        .basic-information-container
+          = form_for(:user, :url => {:action => 'update'},:html=>{:method => 'put'}) do |f|
+            %field
+              =f.label :Username
+              =f.text_field :user_name, :value=>"#{current_user.user_name}"
+            %field
+              =f.label :Email
+              =f.text_field :email,:value => "#{current_user.email}"
+            %field.actions
+              =f.submit "Save changes",:class=>'btn green-btn'

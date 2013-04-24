@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :attachment_url # share the method with Views
   helper_method :is_consumer?
   include SessionsHelper
+  include UsersHelper
   include NotificationsHelper
 
   def authenticate

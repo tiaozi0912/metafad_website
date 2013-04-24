@@ -3,5 +3,13 @@ module UsersHelper
 		gravatar_image_tag(user.email.downcase, :alt => user.name,
 			                                    :class=> 'gravatar',
 			                                    :gravatar => options)
-    end
+  end
+
+  def settings_path
+    "/web/users/#{current_user.id}/settings"
+  end
+
+  def profile_path
+    "/web/users/#{current_user.id}#tab=points/id=#{current_user.id}"
+  end
 end

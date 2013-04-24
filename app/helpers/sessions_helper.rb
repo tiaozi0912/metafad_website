@@ -5,10 +5,6 @@ module SessionsHelper
 		current_user = user
 	end
 
-    def profile_path
-        "/web/users/#{current_user.id}#tab=points/id=#{current_user.id}"
-    end
-
     # designed to returen the value of @current_user
     def current_user
     	@current_user  ||= user_from_remember_token

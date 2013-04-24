@@ -1,4 +1,4 @@
-#user-profile-page .container{
+#user-profile-page .container,#user-settings-page .container{
 	min-height:400px;
 	background-color: white;
 	padding:20px;
@@ -73,3 +73,17 @@
 .coupon-bg{
 	background-image:url(/images/backgrounds/coupon.png);
 }
+
+/* settings page css begins */
+#user-settings-page .profile-image-container{
+	margin-right:20px;
+	width:125px;
+	height:100%;
+}
+#user-settings-page button{
+	margin-top:10px;
+}
+#user-settings-page .actions{
+	margin-top:5px;
+}
+/* settings page css ends */
