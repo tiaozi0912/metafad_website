@@ -1,19 +1,53 @@
 #user-settings-page
   %section.content-container
     .container.relativePosition.shadow
-      - if @valid
-        .profile-image-container.pull-left
-          %img.shadow{:src => "#{current_user.photo_url_with_style('large')}",:alt=>"profile photo"}
-          %button.btn 
-            %i.icon-pencil
-            Edit
-        .basic-information-container
-          = form_for(:user, :url => {:action => 'update'},:html=>{:method => 'put'}) do |f|
-            %field
-              =f.label :Username
-              =f.text_field :user_name, :value=>"#{current_user.user_name}"
-            %field
-              =f.label :Email
-              =f.text_field :email,:value => "#{current_user.email}"
-            %field.actions
-              =f.submit "Save changes",:class=>'btn green-btn'
+      .profile-image-container.pull-left.relativePosition
+        %img.shadow{:src => "#{current_user.photo_url_with_style('large')}",:alt=>"profile photo"}
+        .btn.choose-image-btn
+          %i.icon-pencil
+          Edit
+        %input.choose-image-input.hide{:type => "file",:name => "user[photo]"}
+        #progress.progress-striped.progress.active
+          .bar{:style=>'width:0%'}
+
+      .basic-information-container
+        = form_for(:user, :url => {:action => 'update'},:html=>{:method => 'put'}) do |f|
+          %field
+            =f.label :Username
+            =f.text_field :user_name, :value=>"#{current_user.user_name}"
+          %field
+            =f.label :Email
+            =f.text_field :email,:value => "#{current_user.email}"
+          %field.actions
+            =f.submit "Save changes",:class=>'btn green-btn'
+
+= javascript_include_tag 'photo-upload/jquery.ui.widget.js'
+= javascript_include_tag 'photo-upload/jquery.iframe-transport.js'
+= javascript_include_tag 'photo-upload/jquery.fileupload.js'
+
+:javascript
+  $('.choose-image-btn').click(function(){
+    $('.choose-image-input').click();
+  });
+
+  $('.choose-image-input').fileupload({
+    dataType: 'json',
+    url:"/web/users/#{current_user.id}/update",
+    progressall: function(e,data){
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#progress').css('width','80%');
+      $('#progress .bar').css('width',progress + '%');
+    },
+    done: function(e,data){
+      $('#progress').css('width','0%');
+      if(data.result.error){
+        alert(data.result.error);
+      }else{
+        console.log(data.result);
+        $('.profile-image-container img').attr('src',data.result.photo_url);
+        alert('Profile photo is updated.');
+      }
+    }
+  });
+
+

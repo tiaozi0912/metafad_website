@@ -34,13 +34,8 @@ class UsersController < ApplicationController
 
   def edit
     if authenticate
-      @valid = params[:id].to_i == current_user.id
-      if (@valid)
-        
-      else
-        #flash[:'alert-error'] = 'Oops, it is not your page!'
-        redirect_to settings_path
-      end
+      @valid = (params[:id].to_i == current_user.id)
+      redirect_to settings_path if !@valid
     end
   end
 
@@ -52,6 +47,15 @@ class UsersController < ApplicationController
       flash[:'alert-error'] = user.errors.full_messages
     end
     redirect_to settings_path
+  end
+
+  def update_profile_photo_ajax
+    user = User.find(params[:id].to_i)
+    if user.update_attributes(params[:user])
+      render :json => {:photo_url => user.photo_url_with_style('large')}
+    else
+      render :json => {:error => user.errors.full_messages}
+    end
   end
 
   def pre_sign_up

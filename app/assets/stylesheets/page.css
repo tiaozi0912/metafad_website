@@ -10,12 +10,23 @@
     font-family: "American Typewriter";
     src: url('/fonts/american_typewriter.ttf') format("truetype");
 }*/
-body{
-	margin:0px;
-	padding:0px;
-	background-color:rgb(51,55,69);
+/* color scheme*/
+/* 
+  BlueishWhite = rgb(213,234,222)
+  Red = rgb(234,46,73)
+  Blue = rgb(119,116,211)
+  Black = rgb(51,55,69)
+  Yellow = rgb(246,247,146)
+*/
+/*@font-face {
+    font-family: "American Typewriter";
+    src: url('/fonts/american_typewriter.ttf') format("truetype");
+}*/
+body {
 	background-color:#e8e8e8;
-	background-image:url('/images/backgrounds/bg.png');
+	background-image:url(/images/backgrounds/bg.png);
+	margin:0;
+	padding:0;
 }
 .main-content{
 	margin-top:68px;
@@ -878,6 +889,11 @@ a:hover{
 }
 
 /* ribbon css end */
+
+
+
+
+
 
 
 

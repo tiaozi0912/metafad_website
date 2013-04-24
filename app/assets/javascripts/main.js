@@ -107,6 +107,14 @@ function parsePointActionContent(text,poll_url){
   return text; 
 }
 
+function validateFileType(type){
+  var validTypes = {
+    'image/jpeg' : 1,
+    'image/png' : 1
+  }
+  return validTypes.hasOwnProperty(type);
+}
+
 /* home page animation */
 $(window).load(function(){  //after the background image is loaded
   $('#logo-container').animate({"top":0},600,null,function(){
