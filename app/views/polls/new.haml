@@ -8,8 +8,11 @@
       - @poll.errors.full_messages.each do |msg|
         %p = msg
       %fieldset.title-field
-        = f.label "Describle your poll (maximum 90 characters)"
+        = f.label "Title (maximum 90 characters)"
         = f.text_field :title
+      %fieldset.description-field
+        = f.label "Describle your poll (optional)"
+        = f.text_area :description
       %fieldset
         - value = @poll.web_id || Time.now.utc.to_s + "_" + current_user.id.to_s
         = f.text_field :web_id,:value => "#{value}", :class => "web_id"

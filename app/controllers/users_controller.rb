@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id].to_i)
+    params[:user][:updated_at] = Time.new.utc
     if user.update_attributes(params[:user])
       flash[:'alert-success'] = 'Updates saves successfully.'
     else
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
   def update_profile_photo_ajax
     user = User.find(params[:id].to_i)
     params[:user][:has_profile_photo_url] = true
+    params[:user][:updated_at] = Time.new.utc
     if user.update_attributes(params[:user])
       render :json => {:photo_url => user.photo_url_with_style('large')}
     else

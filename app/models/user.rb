@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     
   #create a virtual password attribute
   attr_accessor :password
-  attr_accessible :user_name, :email, :password, :password_confirmation,:profile_photo_url, :fb_id,:photo, :point,:last_name,:first_name,:pre_sign_up,:has_profile_photo_url
+  attr_accessible :user_name, :email, :password, :password_confirmation,:profile_photo_url, :fb_id,:photo, :point,:last_name,:first_name,:pre_sign_up,:has_profile_photo_url,:current_login_at,:last_login_at,:current_login_ip,:last_login_ip,:updated_at,:login_count
   
   has_many :events, :dependent => :destroy
   has_many :polls, :dependent => :destroy

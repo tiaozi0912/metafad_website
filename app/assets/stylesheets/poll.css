@@ -249,3 +249,7 @@ form .exceeded{color:#e00;}
 #attachment_list li input{
   width:200px;
 }
+#poll_new .description-field textarea{
+  width:450px;
+  height:150px;
+}

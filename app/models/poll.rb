@@ -1,5 +1,5 @@
 class Poll < ActiveRecord::Base
-	attr_accessible :title, :user_id, :state, :is_deleted,:total_votes,:max_votes_for_single_item, :end_time, :category, :open_time, :items_attributes, :web_id,:is_featured
+	attr_accessible :title, :user_id, :state, :is_deleted,:total_votes,:max_votes_for_single_item, :end_time, :category, :open_time, :items_attributes, :web_id,:is_featured,:description
   validates :title, :presence => true, :length => { :maximum => 90 }
   validates :category, :presence => true
 	belongs_to :user
@@ -61,8 +61,9 @@ class Poll < ActiveRecord::Base
       :id => id,
       :category => category,
       :title => title,
-      :date => open_time.to_s,
+      :date => open_time.localtime.to_s,
       :url => url,
+      :description => description,
       :items => items.map do |item|
         item.to_json *arg
       end

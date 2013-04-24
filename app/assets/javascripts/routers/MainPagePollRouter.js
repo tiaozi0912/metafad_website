@@ -6,6 +6,7 @@ var MainPagePollRouter = Backbone.Router.extend({
   },
   settings: {
     title: true,
+    description:true,
     largeView: true,
     result:false
   },
@@ -30,7 +31,8 @@ var MainPagePollRouter = Backbone.Router.extend({
     self.pollView = new PollView({model:self.poll,
                                   settings:self.settings
                                 });
-    $('#poll-view-wrapper').html(self.pollView.render());
+    self.poll.fetch();
+    $('#poll-view-wrapper').html(self.pollView.$el);
     //transitions
     $('#poll-view-wrapper').slideDown('fast',function(){
       $('#featured-polls-section .close-btn').show();

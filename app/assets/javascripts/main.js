@@ -47,8 +47,7 @@ function formValidate(title,$descriptions){
   var errorMsg;
 
   function validateTitle(){
-    //disable 90 chars limitation for now
-    // var charCount = 90;
+    var charCount = 90;
     var charCount = 100000000;
     $(".title-field .alert").remove();
     if(title.length > charCount || title == ""){

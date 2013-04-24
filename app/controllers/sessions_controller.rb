@@ -29,6 +29,7 @@ class SessionsController < ApplicationController
     # ====================================================================
     if !user.has_profile_photo_url
       #grab profile photo from fb
+      puts 'recreate the profile photo.'
       user.update_attributes(:photo => URI.parse(auth['info']['image'].sub(/square/,'large')),:has_profile_photo_url => true)
     end
 

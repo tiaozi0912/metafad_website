@@ -3,13 +3,14 @@ window.PollView = Backbone.View.extend({ //model poll
   className: "poll-container",
   settings: {
     title: true,
+    description: true,
     admin: false,
     closeBtn:false
   },
   initialize: function(){
     this.model.on('change',this.render,this);
     this.model.on('reset',this.render,this);
-    this.model.fetch();
+    //this.model.fetch();
   },
   render: function(){
     this.itemCollection = this.initItemCollection();
@@ -18,8 +19,16 @@ window.PollView = Backbone.View.extend({ //model poll
                                                     }); 
     //render title view
     var self = this;
+    var textTemplate = _.template($('#poll-text-template').html());
     $.extend(self.settings,self.options.settings);
-    if (this.settings.title) this.$el.append(this.titleViewRender());
+    this.$el.append(textTemplate(self.model.toJSON()));
+    //if (this.settings.title) this.$el.append(this.titleViewRender());
+    if (!this.settings.title){
+      this.$el.find('.poll-title').remove();
+    }
+    if (!this.settings.description){
+      this.$el.find('.poll-description').remove();
+    }
     //render item collection view
     this.$el.append(this.itemCollectionView.render());
     return this.el;
