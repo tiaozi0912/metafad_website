@@ -47,10 +47,13 @@ function formValidate(title,$descriptions){
   var errorMsg;
 
   function validateTitle(){
+    //disable 90 chars limitation for now
+    // var charCount = 90;
+    var charCount = 100000000;
     $(".title-field .alert").remove();
-    if(title.length > 90 || title == ""){
+    if(title.length > charCount || title == ""){
       validated = false;
-      title.length > 90 ? errorMsg = "Describe your poll within 90 characters" : errorMsg = "Poll description can't be blank."
+      title.length > charCount ? errorMsg = "Describe your poll within 90 characters" : errorMsg = "Poll description can't be blank."
       var titleTooLong = generateErrorMsg(errorMsg);      
       $(".title-field").append(titleTooLong);
     }

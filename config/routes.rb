@@ -25,10 +25,10 @@ SampleApp::Application.routes.draw do
   match 'contact' => 'contacts#create', :as => 'contacts', :via => :post
   match '/legal/terms' => 'pages#terms'
   match '/auth/facebook/callback' => "sessions#create_fb"
+  match '/auth/failure' => 'sessions#fb_signin_failure'
   match '/item/delete' => 'items#destroy'
   match '/publish/polls/:id' => 'polls#publish'
   match '/polls/:id/create_item' => 'items#create'
-  match '/auth/failure' => 'sessions#fb_signin_failure'
   #match '/consumers' => 'pages#consumer'
   match '/retailers' => 'pages#retailer'
   match '/users/pre_sign_up' => 'users#pre_sign_up'

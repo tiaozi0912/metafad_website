@@ -71,6 +71,7 @@ class PollsController < ApplicationController
   end
 
   def create
+    params[:poll][:is_featured] = (params[:poll][:category] == 'featured')
     @poll = Poll.find_by_web_id(params[:poll][:web_id])
     @poll = create_or_update_poll(params,@poll)
     if @poll.errors.full_messages.empty?

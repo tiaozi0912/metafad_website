@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     
   #create a virtual password attribute
   attr_accessor :password
-  attr_accessible :user_name, :email, :password, :password_confirmation,:profile_photo_url, :fb_id,:photo, :point,:last_name,:first_name,:pre_sign_up
+  attr_accessible :user_name, :email, :password, :password_confirmation,:profile_photo_url, :fb_id,:photo, :point,:last_name,:first_name,:pre_sign_up,:has_profile_photo_url
   
   has_many :events, :dependent => :destroy
   has_many :polls, :dependent => :destroy
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :url=>"/user_:id/created_at_:created_at/:style.jpg",
-                    :path => '/app/public:url'
+                    :path => '/app/public/users:url'
 
   Paperclip.interpolates :created_at do |attachment, style|
     attachment.instance.created_at
@@ -61,16 +61,19 @@ class User < ActiveRecord::Base
     return nil if user.nil?
     return user if user.has_password?(submitted_password)
   end
-
+  
+  #create user with the fb authentication
   def self.create_with_omniauth(auth)
     create! do |user|
       user.email = auth['info']['email']
       user.user_name = auth['info']['name']
       user.gender = auth['extra']['raw_info']['gender']
-      user.photo = URI.parse(auth['info']['image'])
-      user.has_profile_photo_url = true
       user.fb_id = auth['uid'].to_s
       password=auth['info']['name']
+      #grap fb photo
+      user.photo = URI.parse(auth['info']['image'].sub(/square/,'large'))
+      user.has_profile_photo_url = true
+
       user.encrypt_password password
       #user.crypted_password = auth['credentials']['token']
       #user.password_salt = auth['credentials']['token']
@@ -111,7 +114,7 @@ class User < ActiveRecord::Base
     if has_profile_photo_url
       url = photo.url(style.to_sym)
     else
-      url = nil
+      url = default_profile_photo_url
     end
   end
 
@@ -179,6 +182,10 @@ class User < ActiveRecord::Base
   def vote item
     vote_action item.poll,item
     item.update_number_of_votes
+  end
+
+  def default_profile_photo_url
+    '/images/default-profile-photo.png'
   end
 
   private

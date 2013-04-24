@@ -19,9 +19,19 @@ class SessionsController < ApplicationController
     end
   end
 
-  def create_fb
+  def create_fb #fb log in
     auth = request.env["omniauth.auth"]
     user = User.find_by_fb_id(auth["uid"].to_s) || User.find_by_email(auth['info']['email']) || User.create_with_omniauth(auth)
+
+    # ====================================================================
+    # move all the previous profile photos from Yong's bucket to Yujun's bucket
+    # create the profile photo again by setting has_profile_photo_url false to all the users
+    # ====================================================================
+    if !user.has_profile_photo_url
+      #grab profile photo from fb
+      user.update_attributes(:photo => URI.parse(auth['info']['image'].sub(/square/,'large')),:has_profile_photo_url => true)
+    end
+
     get_token auth #for debug
     sign_in user
     flash[:'alert-success'] = 'Sign in successfully.'
