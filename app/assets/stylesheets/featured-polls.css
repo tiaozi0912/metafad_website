@@ -101,6 +101,13 @@
 #notice-container .alert{
   width:82%;
 }
+#featured-polls-section .poll-description{
+  font-family: 'Helvetica',sans-serif;
+  margin-bottom: 20px;
+}
+.white{
+  color:#eee;
+}
 
 
 
