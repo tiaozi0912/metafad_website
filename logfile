@@ -12,3 +12,7 @@ STATEMENT:  SELECT  "users".* FROM "users"  WHERE "users"."fb_id" = 20187 LIMIT 
 ERROR:  could not create unique index "index_users_on_fb_id"
 DETAIL:  Key (fb_id)=(201875) is duplicated.
 STATEMENT:  CREATE UNIQUE INDEX "index_users_on_fb_id" ON "users" ("fb_id")
+ERROR:  syntax error at or near "465" at character 45
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (id IN 465,464,463) ORDER BY polls.created_at DESC
+ERROR:  syntax error at or near "465" at character 45
+STATEMENT:  SELECT "polls".* FROM "polls"  WHERE (id IN 465,464,463) ORDER BY polls.created_at DESC

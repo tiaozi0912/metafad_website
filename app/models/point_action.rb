@@ -33,7 +33,7 @@ class PointAction < ActiveRecord::Base
       :poll_id => poll_id,
       :poll_url => poll_url,
       :user_id => user_id,
-      :created_at => created_at.localtime.to_s
+      :created_at => created_at.localtime.strftime('%m/%d/%Y %H:%M')
     }
   end
 

@@ -61,7 +61,7 @@ class Poll < ActiveRecord::Base
       :id => id,
       :category => category,
       :title => title,
-      :date => open_time.localtime.to_s,
+      :date => open_time.localtime.strftime('%m/%d/%Y'),
       :url => url,
       :description => description,
       :items => items.map do |item|
