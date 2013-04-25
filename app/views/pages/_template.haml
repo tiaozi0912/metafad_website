@@ -29,11 +29,11 @@
         %img.icon.inline-block{:src=>'/images/icons/red-heart.png',:alt=>'red heart'}
         <%= number_of_votes %>
   .item-info
-    %span Brand here: <%= brand %>
+    %span <%= brand %>
     -#%p tags: <%= tags %>
   .btn-group
     %button.btn.btn-small.edit-btn
-      %a{:href=>"#"}Edit
+      <a href="/items/<%= id %>/edit">Edit</a>
     %button.btn.btn-small.delete-btn Delete
 
 %script{:type=>"text/template",:id=>"poll-text-template"}

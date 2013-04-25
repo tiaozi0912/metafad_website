@@ -12,7 +12,7 @@ class Item < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :url=>"/item_:id/created_at_:created_at/:style.jpg",
-                    :path => '/app/public/items:url'
+                    :path => Paperclip::Attachment.default_options[:item_path]
 	belongs_to :poll
 
   serialize :tags

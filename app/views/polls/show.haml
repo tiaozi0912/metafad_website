@@ -35,7 +35,7 @@
                     .item-description-container
                       .field
                         %span.brand #{@items[item_index].brand}
-                        %span.tags #{@items[item_index].tags.join(',')}
+                        -#%span.tags #{@items[item_index].tags.join(',')}
                     - @audiences = @items[item_index].item_voters
                     - if !@audiences.empty?
                       .poll-result-container

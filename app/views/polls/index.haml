@@ -16,7 +16,8 @@
         %li 
           %a{:href=>"/admin/polls/#{@page_end}"} >>
 
-%script{:type=>"text/template",:id=>"item-view-template"}
+= render :partial => 'pages/template'
+-#%script{:type=>"text/template",:id=>"item-view-template"}
   .img-container.relativePosition
     <img src="<%= photo_url %>" class="item-image" alt="item photo" id="item-image-<%= id %>"/>
     .mask.hide
@@ -29,7 +30,7 @@
     -#%p tags: <%= tags %>
   .btn-group
     %button.btn.btn-small.edit-btn
-      %a{:href=>"#"}Edit
+      <a href="/items/<%= id %>/edit">Edit</a>
     %button.btn.btn-small.delete-btn Delete  
 
 = javascript_include_tag 'models/Item.js'

@@ -215,6 +215,9 @@ input.delete-item{
 #fb-share-modal .span3{
   overflow: hidden;
 }
+#item-update .item-image{
+  width:auto;
+}
 
 /* ----- photo upload ------*/
 input[type="file"]{
@@ -238,6 +241,7 @@ form .warning{color:#600;}
 form .exceeded{color:#e00;}
 #poll_new .container{
   /*width:300px;*/
+  padding-top:40px;
 }
 #attachment_list li{
   width:500px;

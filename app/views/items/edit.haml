@@ -1,7 +1,7 @@
 #polls-admin
   .container#page
     = form_for(@item, :url=> {:action => "update"},:multipart => true,:html=>{:method => "put",:id => "item-update"}) do |f|
-      %img{:src=>"#{@item.photo_url_with_style('medium')}"}
+      %img.item-image{:src=>"#{@item.photo_url_with_style('medium')}"}
       %field
         = f.label :brand
         = f.text_field :brand,:value=>"#{@item.brand}"

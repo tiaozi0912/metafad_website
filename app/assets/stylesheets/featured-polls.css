@@ -88,14 +88,14 @@
   line-height:18px;
   color:#333;
 }
-#featured-polls-section .poll-result{
+.poll-result{
   position: absolute;
   left:0px;
   top:0px;
   background-color:rgba(0,0,0,0.5);
   padding:8px;
 }
-#featured-polls-section .poll-result h3{
+.poll-result h3{
   color:#eee;
 }
 #notice-container .alert{
