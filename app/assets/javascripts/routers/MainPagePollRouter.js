@@ -22,6 +22,7 @@ var MainPagePollRouter = Backbone.Router.extend({
         self.pollView.remove();
         $btn.hide();
         $(this).height('auto');
+        $(this).hide();
       });
     })
   },
