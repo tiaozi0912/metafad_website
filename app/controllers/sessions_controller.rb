@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
 
   def create_fb #fb log in
     auth = request.env["omniauth.auth"]
+    # search fb_id, then search email, then create new user
     user = User.find_by_fb_id(auth["uid"].to_s) || User.find_by_email(auth['info']['email']) || User.create_with_omniauth(auth)
 
     # ====================================================================

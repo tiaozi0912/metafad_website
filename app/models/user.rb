@@ -78,6 +78,8 @@ class User < ActiveRecord::Base
       #user.crypted_password = auth['credentials']['token']
       #user.password_salt = auth['credentials']['token']
     end
+    # good until the app is released
+    pre_sign_up_action
   end
 
   def picture_from_url url
@@ -168,6 +170,14 @@ class User < ActiveRecord::Base
     thumbnail = item.photo(:thumbnail)
     create_point_action(content,reward_points,poll.id,thumbnail,2)
     reward :vote
+  end
+
+  def pre_sign_up_action
+    content = "for the app pre-launch sign up"
+    reward_points = Reward.point_rewards[:pre_sign_up]
+    thumbnail = '/images/icons/pre_signup_icon.png'
+    create_point_action(content,reward_points,poll.id,thumbnail,4)
+    reward :pre_sign_up
   end
 
   def create_point_action(content,point,poll_id,thumbnail,type)

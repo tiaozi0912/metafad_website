@@ -3,7 +3,9 @@ module SessionsHelper
 	def sign_in(user)
         user.update_attributes(:login_count => user.login_count + 1,
             :current_login_at => Time.new.utc,
-            :current_login_ip => request.remote_ip
+            :current_login_ip => request.remote_ip,
+            #good until the ios app is released
+            :pre_sign_up => true
         )
 		cookies.permanent.signed[:remember_token] = [user.id, user.password_salt]
 		current_user = user

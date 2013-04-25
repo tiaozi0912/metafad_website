@@ -98,7 +98,11 @@ class PollsController < ApplicationController
       @poll = Poll.find(params[:id])   
       params[:items_attributes].each do |key,value|
         item_id = key.gsub('item_','').to_i
-        item_attributes = Hash[:id => item_id,:is_deleted => value[:is_deleted],:brand => value[:brand],:tags => value[:tags].split(",")]
+        item_attributes = Hash[:id => item_id,
+          :is_deleted => value[:is_deleted],
+          :brand => value[:brand]
+          #:tags => value[:tags].split(",")
+        ]
         Item.find(item_id).update_item_attributes item_attributes
       end
       if @poll.state == 1
