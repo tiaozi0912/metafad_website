@@ -1,11 +1,13 @@
 #featured-polls-section{
 	background-color:#333;
+  background:url(/images/backgrounds/black-texture-bg.png) repeat;
 	z-index:0;
+  padding:65px 0;
 }
 #featured-polls-section .section-title{
   left:25%;
   width:50%;
-  top:-75px;
+  top:-110px;
 }
 #featured-polls-section .header{
   margin-bottom: 10px;
@@ -63,7 +65,7 @@
   background-position: 49% 49%;
 }
 #featured-polls-section #poll-view-wrapper{
-  padding-top:60px;
+  padding-top:30px;
 }
 #poll-view-wrapper .poll-title{
   margin-bottom:10px;
@@ -82,7 +84,7 @@
   font-family: 'Arial';
 }
 h2 .date{
-  font-size:16px;
+  font-size:13px;
 }
 .item-info{
   padding:10px;

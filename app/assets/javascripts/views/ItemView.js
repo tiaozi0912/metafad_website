@@ -47,12 +47,18 @@ window.ItemView = Backbone.View.extend({ //model:item
         if(data.errors){
           console.log(data.errors);
         }else{
-          //remind to sign in to view the poll results
-          if (!self.settings.result){
+          if (!self.settings.result){ //remind to sign in to view the poll results
             $('.modal .alert').remove();
             $('#sign-in-modal').modal();
             $('#notice-container').html("<h3 class='alert alert-warning'>Sign in to see the voting result. Plus, you can receive <b>500</b> points for coupons today!</h3>");
-          }  
+          }else{ // for the signed in user
+            var votes_count = self.model.get('number_of_votes') + 1;
+            var $redHeart = $("<img src='/images/icons/red-heart.png' alt='red heart'>")
+                .addClass('icon inline-block');
+            self.$el.find('.poll-result h3').html($redHeart)
+              .append(votes_count);
+            alert('Cool, you are definitely the trend setter');
+          } 
         }
     });
     $(target).attr('src','/images/icons/red-heart.png'); 
