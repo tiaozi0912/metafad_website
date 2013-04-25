@@ -64,22 +64,25 @@ class User < ActiveRecord::Base
   
   #create user with the fb authentication
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.email = auth['info']['email']
-      user.user_name = auth['info']['name']
-      user.gender = auth['extra']['raw_info']['gender']
-      user.fb_id = auth['uid'].to_s
-      password=auth['info']['name']
-      #grap fb photo
-      user.photo = URI.parse(auth['info']['image'].sub(/square/,'large'))
-      user.has_profile_photo_url = true
+    user = User.new
+    #create! do |user|
+    user.email = auth['info']['email']
+    user.user_name = auth['info']['name']
+    user.gender = auth['extra']['raw_info']['gender']
+    user.fb_id = auth['uid'].to_s
+    password=auth['info']['name']
+    #grap fb photo
+    user.photo = URI.parse(auth['info']['image'].sub(/square/,'large'))
+    user.has_profile_photo_url = true
 
-      user.encrypt_password password
-      #user.crypted_password = auth['credentials']['token']
-      #user.password_salt = auth['credentials']['token']
+    user.encrypt_password password
+    #user.crypted_password = auth['credentials']['token']
+    #user.password_salt = auth['credentials']['token']
+    #end
+    if user.save
+      # good until the app is released
+      user.pre_sign_up_action
     end
-    # good until the app is released
-    pre_sign_up_action
   end
 
   def picture_from_url url
@@ -176,7 +179,7 @@ class User < ActiveRecord::Base
     content = "for the app pre-launch sign up"
     reward_points = Reward.point_rewards[:pre_sign_up]
     thumbnail = '/images/icons/pre_signup_icon.png'
-    create_point_action(content,reward_points,poll.id,thumbnail,4)
+    create_point_action(content,reward_points,nil,thumbnail,4)
     reward :pre_sign_up
   end
 
