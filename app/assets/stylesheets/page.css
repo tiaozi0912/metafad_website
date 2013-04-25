@@ -110,6 +110,9 @@ img{
   background-color:rgb(54,115,0);
   color:#2a4f07;
 }
+.green{
+	color:rgb(213,234,222);
+}
 .error{
 	color:#b94a48;
 	background-color:#f2dede;
@@ -455,6 +458,10 @@ article.center{
 .modal-body .btn{
 	margin-top:20px;
 }
+.modal-body .sign-up-btn{
+	width:100%;
+	padding:10px 0;
+}
 input[type="text"],input[type="email"],input[type="password"]{
 	height:24px;
 	border:1px solid #333;
@@ -465,7 +472,7 @@ input[type="text"],input[type="email"],input[type="password"]{
 input#user_last_name,.modal .alert{
 	display: inline-block;
 }
-.modal .alert{
+.modal .alert.error-msg{
 	position: relative;
 	left:5px;
 	/* align up with text input */
@@ -473,14 +480,59 @@ input#user_last_name,.modal .alert{
 	padding-top:6.5px;
 	padding-bottom:6.5px;
 	margin-bottom:9px;
-	border-radius: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 }
 .alert h3{
 	color:#b94a48;
 }
-
+.alert{
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+.modal button.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+}
+.modal .fb-login-btn{
+  margin-top:40%;
+}
+.modal #new_user{
+  
+}
+.div-line{
+  position: absolute;
+  top:0;
+  left:50%;
+  height:100%;
+  border-right:1px solid #ddd;
+  box-shadow: 0 1px 2px 2px white;
+  -webkit-box-shadow: 0 1px 2px 2px white;
+  -moz-box-shadow: 0 1px 2px 2px white;
+}
+.notice-container .div-line{
+  width:40%;
+  height:0;
+  left:30%;
+  bottom:0;
+  top:auto;
+  border-right-width:0px;
+  border-bottom:1px solid #ddd;
+}
+#pre-sign-up-modal .notice-container{
+  text-align: center;
+  padding:10px 0 30px 0;
+}
+#pre-sign-up-modal .notice-container h3{
+	text-shadow:0 1px 2px gray;
+}
+#pre-sign-up-modal .modal-body{
+	padding-left:60px;
+	padding-right:60px;
+}
+#pre-sign-up-modal form{
+	padding-top:20px;
+}
 
 /* modal forms css ends */
 

@@ -4,7 +4,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   .modal-body
     - if is_consumer?
-      = form_for(:user, :url =>"/users/pre_sign_up") do |f|
+      = render :partial => 'users/new_form'
+      -#= form_for(:user, :url =>"/users/pre_sign_up") do |f|
         .field
           =f.label :last_name
           =f.text_field :last_name
@@ -29,6 +30,9 @@
         .btn.green-btn.submit-btn Submit
   :javascript
     $("form").validateForm();
-    $('.sign-up-btn').click(function(){
+    $('#featured-section .sign-up-btn').click(function(){
       $('.modal .alert-error').remove(); // remove the alert errors in the form if any
+      $('#pre-sign-up-modal').modal();
     });
+
+    

@@ -123,16 +123,11 @@
   margin-left:auto;
   margin-right:auto;
 }
+#sign-in-modal .login-fb{
+  margin-left:65px;
+}
 #sign-in-modal .actions{
   margin-left:80px;
-}
-.modal button.close{
-  position:absolute;
-  right:15px;
-  top:10px;
-}
-.modal a.login-fb{
-  margin-left:70px;
 }
 a.login-fb img{
   width:230px;

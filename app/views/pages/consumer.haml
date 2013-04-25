@@ -62,25 +62,7 @@
       #poll-view-wrapper.hide
       %a{:href=>"#featured-polls-section",:class=>"close-btn btn hide"} Back              
 
-  -#%section#gallery-section.content-container.transition-config
-    .container
-      #gallery.relativePosition.hide
-        .nav
-        .row
-          #image-wall
-          #sidebar.pull-right
-        %a{:href=>"#gallery-section",:class=>"half-circle close-btn shadow"}
-          .triangle
-      #play.relativePosition
-        .round-wrapper
-          .img-container
-        %h1.red.play-btn EXPLORE
-        %h1.red.cancel-btn CANCEL
-        .text-content
-          %h3 Spring 2013's most directional fashion-forward <span class='red'>colors</span> and new items from top <span class='red'>brands</span>.
-          %h3 <span class='red'>Vote</span> for your favorite!
-        .left-half-circle.half-circle.white.collapsed
-        .right-half-circle.half-circle.black.collapsed
+  = render :partial => 'preSignUp' 
 
 = render :partial => 'template'
     
@@ -106,12 +88,6 @@
       $(this).find('.mask').stop(true,true).fadeOut();
       $(this).siblings('.title-container').show();
     });
-
-    $('.sign-up-btn').click(function(){
-      $('.modal .alert').remove(); // remove the alert in the form if any
-      $('#sign-in-modal').modal();
-      $('#notice-container').html("<h3 class='alert alert-warning'>Sign up today, you can receive <b>500</b> points for coupons!</h3>");
-    })
 
     if(#{current_user.nil?}){
       var router = new MainPagePollRouter({});

@@ -1,0 +1,23 @@
+.notice-container.relativePosition
+  %h3.text-shadow-2 Sign up today, receive <b>500</b> points for coupons!
+  .div-line
+.row-fluid.relativePosition
+  .span6
+    .fb-login-btn
+      %a.login-fb{:href=>"/auth/facebook"}
+        %img{:src=>"/images/login-facebook.png"}
+  .span6
+    = form_for(@user,:html=>{:class=>'pull-right'}) do |f|
+      = render :partial => 'shared/error_messages'
+      %field
+        =f.label :email
+        =f.text_field :email
+      %field
+        =f.label :password
+        =f.password_field :password
+      %field
+        =f.label :password_confirmation, "Confirmation"
+        =f.password_field :password_confirmation
+      %field
+        .btn.green-btn.submit-btn.sign-up-btn Sign Up
+  .div-line

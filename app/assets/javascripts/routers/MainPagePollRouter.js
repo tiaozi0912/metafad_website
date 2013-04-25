@@ -34,13 +34,17 @@ var MainPagePollRouter = Backbone.Router.extend({
                                 });
     self.poll.fetch();
     $('#poll-view-wrapper').html(self.pollView.$el);
-    //transitions
-    $('#poll-view-wrapper').slideDown('fast',function(){
-      $('#featured-polls-section .close-btn').show();
-      $('#featured-polls').slideUp();
-      //scrollTop
-      $('body').animate({scrollTop:$('#featured-polls-section').offset().top},'fast');
-    });
+    $('#poll-view-wrapper .item-image').imagesLoaded(function(){ //transitions
+      $('#poll-view-wrapper').slideDown('fast',function(){
+        $('#featured-polls-section .close-btn').show();
+        $('#featured-polls').slideUp('fast',function(){ //scrollTop
+          $('body').animate({scrollTop:$('#featured-polls-section').offset().top},'fast');
+        });
+        
+      });
+    })
+    
+    
   }
 });
 
