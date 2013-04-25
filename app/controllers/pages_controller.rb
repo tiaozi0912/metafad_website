@@ -18,8 +18,8 @@ class PagesController < ApplicationController
     cookies.signed[:page] = 'consumers'
     @form_header = "Sign Up To Get Bonus Points"
     #update manually
-    #@featured_poll_id = [503,501,500]
-    @featured_poll_id = [465,464,463]
+    @featured_poll_id = [503,501,500]
+    #@featured_poll_id = [465,464,463]
     @featured_polls = Poll.where(:id => @featured_poll_id)
     #@imgs = Dir.glob('public/images/gallery/colors/dusk_blue/*')
     clear_cookies
