@@ -58,10 +58,11 @@ function formValidate(title,$descriptions){
     }
   }
 
-  function validateDescriptions(){    
+  function validateDescriptions(){ 
+    var charCount = 100000;   
     $descriptions.each(function(index){
       $(this).siblings('.alert').remove();
-      if($(this).val().length > 33){
+      if($(this).val().length > charCount){
         validated = false;
         errorMsg = "Describe the item within 33 characters."  
         $(this).parent().append(generateErrorMsg(errorMsg));
