@@ -48,7 +48,7 @@ function formValidate(title,$descriptions){
 
   function validateTitle(){
     var charCount = 90;
-    var charCount = 100000000;
+    //var charCount = 100000000;
     $(".title-field .alert").remove();
     if(title.length > charCount || title == ""){
       validated = false;
