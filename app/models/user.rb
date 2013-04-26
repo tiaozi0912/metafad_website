@@ -84,6 +84,7 @@ class User < ActiveRecord::Base
       NotificationsMailer.consumer_welcome_email(user).deliver
       user.pre_sign_up_action
     end
+    return user
   end
 
   def picture_from_url url
