@@ -4,7 +4,7 @@
 .row-fluid.relativePosition
   .span6
     .fb-login-btn
-      %a.login-fb{:href=>"/auth/facebook"}
+      .login-fb
         %img{:src=>"/images/login-facebook.png"}
   .span6
     = form_for(@user,:html=>{:class=>'pull-right'}) do |f|

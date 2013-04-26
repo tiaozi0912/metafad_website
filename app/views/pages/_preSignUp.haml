@@ -5,17 +5,6 @@
   .modal-body
     - if is_consumer?
       = render :partial => 'users/new_form'
-      -#= form_for(:user, :url =>"/users/pre_sign_up") do |f|
-        .field
-          =f.label :last_name
-          =f.text_field :last_name
-        .field
-          =f.label :first_name
-          =f.text_field :first_name
-        .field
-          =f.label :email
-          =f.email_field :email
-        .btn.green-btn.submit-btn Submit
     - else  
       = form_for(:retailer, :url =>"/retailers/pre_sign_up") do |f|
         .field
