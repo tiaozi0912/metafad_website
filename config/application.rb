@@ -82,7 +82,11 @@ module SampleApp
     config.action_mailer.raise_delivery_errors = true
 
     #configure action dispatch
-    config.action_dispatch.default_headers[:'X-Frame-Options'] = "ALLOW-FROM https://www.facebook.com"
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => "ALLOW-FROM https://www.facebook.com",
+      'X-XSS-Protection' => '1; mode=block',
+      'X-Content-Type-Options' => 'nosniff'
+    }
         
   end
 end
