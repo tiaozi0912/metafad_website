@@ -1,6 +1,6 @@
 window.User = Backbone.Model.extend({
 	initialize: function(){
-    this.urlRoot = '/web/profile/' + this.get('tab');
+    this.urlRoot = '/profile/' + this.get('tab');
 	}
 }); 
 

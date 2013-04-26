@@ -32,7 +32,7 @@
 
   $('.choose-image-input').fileupload({
     dataType: 'json',
-    url:"/web/users/#{current_user.id}/update",
+    url:"/users/#{current_user.id}/update",
     progressall: function(e,data){
       var progress = parseInt(data.loaded / data.total * 100, 10);
       $('#progress').css('width','80%');

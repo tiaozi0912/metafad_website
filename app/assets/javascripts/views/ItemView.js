@@ -57,7 +57,7 @@ window.ItemView = Backbone.View.extend({ //model:item
                 .addClass('icon inline-block');
             self.$el.find('.poll-result h3').html($redHeart)
               .append(votes_count);
-            alert('Cool, you are definitely the trend setter');
+            alert('Cool, you are definitely the trend setter!');
           } 
         }
     });

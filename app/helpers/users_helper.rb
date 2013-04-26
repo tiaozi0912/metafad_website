@@ -6,10 +6,10 @@ module UsersHelper
   end
 
   def settings_path
-    "/web/users/#{current_user.id}/settings"
+    "/users/#{current_user.id}/settings"
   end
 
   def profile_path
-    "/web/users/#{current_user.id}#tab=points/id=#{current_user.id}"
+    "/users/#{current_user.id}#tab=points/id=#{current_user.id}"
   end
 end

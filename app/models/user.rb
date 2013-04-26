@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
     #end
     if user.save
       # good until the app is released
+      NotificationsMailer.consumer_welcome_email(user).deliver
       user.pre_sign_up_action
     end
   end
@@ -121,6 +122,7 @@ class User < ActiveRecord::Base
     else
       url = default_profile_photo_url
     end
+    return url
   end
 
   def to_json *arg #{:photo_style => 'large',:point_action_count => 20,...}

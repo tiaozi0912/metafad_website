@@ -18,14 +18,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user[:user_name] ||= @user[:email].match(/^[^@]+/).to_s 
+    @user[:user_name] ||= @user[:email].match(/^[^@]+/).to_s
     @user.encrypt_password(params[:user][:password])
     if @user.save
       #handle a successful case
       current_user = sign_in @user
+      NotificationsMailer.consumer_welcome_email(@user).deliver
+      @user.pre_sign_up_action
       flash[:'alert-success'] = "Welcome to MetaFad!"
       # equal to redirect_to user_path(@user)
-      redirect_back_or_default root_path
+      redirect_back_or_default profile_path
     else
       @title = "Sign Up"
       render 'new'

@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     else
       if current_user.vote item
         user_id = current_user.id
-        redirect_to = "/web/users/#{user_id}#tab=points/id=#{user_id}"
+        redirect_to = "/users/#{user_id}#tab=points/id=#{user_id}"
         store_location redirect_to
         render :nothing => true    
       else
