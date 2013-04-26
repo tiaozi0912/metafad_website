@@ -41,4 +41,8 @@ class PagesController < ApplicationController
     render :json => {:polls => @polls_to_json}
   end
 
+  def channel
+    render 'channel',:layout => false
+  end
+
 end

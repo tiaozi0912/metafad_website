@@ -51,6 +51,8 @@ SampleApp::Application.routes.draw do
   get '/users/:id' => 'users#show'
   match '/users/:id/settings' => 'users#edit'
   match '/users/:id/update' => 'users#update_profile_photo_ajax'
+
+  match '/channel.html' => 'pages#channel'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
