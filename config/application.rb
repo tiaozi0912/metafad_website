@@ -80,6 +80,9 @@ module SampleApp
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
+
+    #configure action dispatch
+    config.action_dispatch.default_headers[:'X-Frame-Options'] = "ALLOW-FROM https://www.facebook.com"
         
   end
 end

@@ -22,23 +22,17 @@
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
             // connected
-            $('.login-fb').click(function(){
-              window.location.href = '/auth/facebook';
-            });
             console.log(response.authResponse);
           } else if (response.status === 'not_authorized') {
             // not_authorized
             console.log('not authorized.');
-            $('.login-fb').click(function(){
-              login();
-            });
           } else {
             // not_logged_in
             console.log('not log in.');
-            $('.login-fb').click(function(){
-              login();
-            });
           }
+          $('.login-fb').click(function(){
+            window.location.href = '/auth/facebook';
+          });
         });
       };
 

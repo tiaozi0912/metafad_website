@@ -121,6 +121,9 @@ img{
 	-webkit-border-radius:4px;
 	-moz-border-radius:4px;
 }
+.login-fb{
+	cursor: pointer;
+}
 .alert{
 	opacity: 0.85;
 	-webkit-opacity:0.85;
