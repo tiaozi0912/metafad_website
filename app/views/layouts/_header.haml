@@ -39,7 +39,7 @@
               %li 
                 %a{:href=>"/users/#{current_user.id}/settings",:tabindex=>"-1"} Settings
               %li
-                %a{:href=>"/signout",:tabindex=>"-1"} Logout
+                %a.logout{:href=>"/signout",:tabindex=>"-1"} Logout
               
 
 = render :partial=>"sessions/signin"  

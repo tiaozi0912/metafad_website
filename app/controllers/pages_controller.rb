@@ -26,6 +26,7 @@ class PagesController < ApplicationController
   end
 
   def retailer
+    @title = 'A platform to collect real time market data for fashion brands'
     cookies.signed[:page] = 'retailers'
     @form_header = "Sign Up To Get Free Trial"
     clear_location

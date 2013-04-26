@@ -21,37 +21,53 @@
         // Additional init code here
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
-            // connected
+            // connected and authorize the app
             console.log(response.authResponse);
-          } else if (response.status === 'not_authorized') {
+          } else if (response && response.status === 'not_authorized') {
             // not_authorized
             console.log('not authorized.');
+            fbLogin();
           } else {
             // not_logged_in
             console.log('not log in.');
+            fbLogin();
           }
-          $('.login-fb').click(function(){
-            window.location.href = '/auth/facebook';
-          });
         });
       };
 
-      function login(){
-        FB.login(function(response) {
-          if (response.authResponse) {
-              // connected
-          } else {
-              // cancelled
-          }
+      function fbLogin(){
+        $('.login-fb').click(function(e){
+          e.preventDefault();
+          //use client side log in flow
+          return FB.login(function(response) {
+            if (response.authResponse) {
+                // connected
+                console.log('connected!');
+                return window.location = '/auth/facebook/callback';
+            } else {
+                // cancelled
+                console.log('not log in');
+            }
+          });
         });
       }
+
+        /*$('.logout').click(function(e){
+          FB.getLoginStatus(function(response){
+            if (response.authResponse){
+              return FB.logout();
+            }
+          });
+          return true;
+        })*/
+      });
       
       //load ths SDK Asynchronously
       (function(d){
         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
+        js.src = window.location.protocol + "//connect.facebook.net/en_US/all.js";
         ref.parentNode.insertBefore(js, ref);
       }(document));
     </script>
