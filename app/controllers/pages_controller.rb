@@ -19,8 +19,8 @@ class PagesController < ApplicationController
     cookies.signed[:page] = 'consumers'
     @form_header = "Sign Up"
     #update manually
-    #@featured_poll_id = [502,501,500]
-    @featured_poll_id = [465,464,463]
+    @featured_poll_id = [502,501,500]
+    #@featured_poll_id = [465,464,463]
     @featured_polls = Poll.where(:id => @featured_poll_id)
     clear_cookies
   end
