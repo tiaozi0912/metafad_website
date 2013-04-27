@@ -60,6 +60,10 @@ class ApplicationController < ActionController::Base
     redirect_to(cookies.signed[:return_to]||default)
     clear_location
   end
+
+  def allow_iframe
+    response.headers["X-Frame-Options"] = "GOFORIT"
+  end
   
   def select_not_deleted obj_arr
     obj_new_arr = obj_arr.where('is_deleted = false')

@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  after_filter :allow_iframe
+
   def home
     @title = 'Home'
     cookies.signed[:return_to] = '/polls/new'
