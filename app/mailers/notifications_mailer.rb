@@ -9,7 +9,7 @@ class NotificationsMailer < ActionMailer::Base
   def consumer_welcome_email user
   	@user = user
   	email_with_name = "#{@user.user_name} <#{@user.email}>"
-  	mail(:to => email_with_name,:subject => "Welcome to MetaFad!")
+  	mail(:to => email_with_name,:subject => "Welcome to MetaFad!",:css=>[:email],:bcc => ['yujun@metafad.com'])
   end
 
   def retailer_welcome_email retailer

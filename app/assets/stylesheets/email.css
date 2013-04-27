@@ -1,28 +1,59 @@
 .email-content-container{
-	margin-top:30px;
-	padding:50px;
-	width:525px;
-	background-color:white;
+  margin-top:30px;
+  padding:50px;
+  width:525px;
+  background-color:#eee;
+  border:1px solid #666;
 }
 .point-badge{
-	height:100px;
-	width:100px;
+  height:100px;
+  width:100px;
 }
 .email-content-container p{
-	font-size:16px;
-	line-height:20px;
-	text-align: justify;
+  font-size:16px;
+  line-height:20px;
+  text-align: justify;
 }
 .email-content-container .point-badge h1{
-	color:#eee;
-	text-align: center;
-	font-weight: 700;
-	padding-top:26px;
+  color:#eee;
+  text-align: center;
+  font-weight: 700;
+  padding-top:26px;
+  font-size:36px;
+  line-height:1.2em;
+  margin:0;
 }
 .email-content-container .round{
-	float: right;
-	margin:0;
+  float: right;
+  margin:0;
 }
 .email-content-container .text-container{
-	padding-right:120px;
+  padding-right:120px;
+}
+.round{
+  border-radius:50%;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+}
+.black-bg{
+  background-color:black;
+}
+.row-fluid{
+  width:100%;
+}
+.shadow{
+  box-shadow:0px 0px 5px 0px #666;
+  -webkit-box-shadow:0px 0px 5px 0px #666;
+  -moz-box-shadow:0px 0px 5px 0px #666;
+}
+a{
+  cursor:pointer;
+  color:#08c;
+}
+a:hover{
+  color:#005580;
+  text-decoration:none;
+}
+body,h1,p,a{
+  font-family:'Century Gothic',san-serif;
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE>
+%html{:lang => 'en'}
+  %head
+    %meta{:'http-equiv'=>'Content-Type',:content=>'text/html;charset=utf-8'}
+    = stylesheet_link_tag :email
+  %body
+    %article.email-content-container.shadow
+      .row-fluid
+        .point-badge.round.black-bg
+          %h1 500
+      .row-fluid
+        .text-container
+          %p Hi #{@user.user_name},
+          %br
+          %p Thanks for the pre-launch registering!
+          %p You have earned 500 points! The points can be used to redeem exclusive coupons as soon as our mobile app is released. Meanwhile, check out our <a href='www.metafad.com#featured-poll-section'>featured polls</a> to express your opinions on the fashion trends. 
+          %p Stay faddy and let your fashion voice be heard!
+          %br
+          %p Sincerely,
+          %p The MetaFad Team
