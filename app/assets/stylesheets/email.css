@@ -1,0 +1,28 @@
+.email-content-container{
+	margin-top:30px;
+	padding:50px;
+	width:525px;
+	background-color:white;
+}
+.point-badge{
+	height:100px;
+	width:100px;
+}
+.email-content-container p{
+	font-size:16px;
+	line-height:20px;
+	text-align: justify;
+}
+.email-content-container .point-badge h1{
+	color:#eee;
+	text-align: center;
+	font-weight: 700;
+	padding-top:26px;
+}
+.email-content-container .round{
+	float: right;
+	margin:0;
+}
+.email-content-container .text-container{
+	padding-right:120px;
+}

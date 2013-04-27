@@ -77,9 +77,14 @@ class UsersController < ApplicationController
   end
 
   def test_email
-    @user = User.find(444)
+    @user = current_user
     NotificationsMailer.consumer_welcome_email(@user).deliver
-    redirect_to '/consumers'
+    redirect_to '/show_email'
+  end
+
+  def show_email
+    @user = current_user
+    render 'notifications_mailer/consumer_welcome_email',:layout => false
   end
 
   def user_to_json
